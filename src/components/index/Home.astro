@@ -1,0 +1,43 @@
+<section id="home" class="text-gray-300 body-font">
+    <div class="container flex px-40 pt-80 pb-64 mx-auto">
+        <div class="w-1/2 pr-8">
+            <h1 class="text-6xl text-white mb-4 font-mono">Hello,</h1>
+            <h1 class="text-6xl text-white mb-16 font-mono">
+                I'm <span class="text-purple-500 font-mono">Jok</span>
+            </h1>
+            <h2 class="text-3xl mb-8 font-mono text-gray-400">
+                <span class="text-purple-600 hidden md:inline">&gt;</span>
+                <span id="typed-text"></span>
+            </h2>
+            <h3 class="text-lg mb-8 font-mono text-gray-400">
+                Welcome to my digital realm — built with passion. I’m a student of
+                <span class="text-purple-400">software </span> and
+                <span class="text-purple-400">game development</span>, creating <span class="text-purple-400">web</span
+                >, <span class="text-purple-400">apps</span>, and <span class="text-purple-400">indie games</span>, with
+                a goal to become a <span class="text-purple-400">cybersecurity expert</span>.
+            </h3>
+        </div>
+        <div class="w-1/2 pl-8">
+            <img class="rounded-full w-96 h-96 mx-auto" src="/avatar.jpg" alt="avatar" />
+        </div>
+    </div>
+
+    <script>
+        import Typed from 'typed.js';
+
+        if (typeof window !== 'undefined') {
+            new Typed('#typed-text', {
+                strings: [
+                    'A Software Engineer',
+                    'A Indie Game Developer',
+                    'A Web Freelancer',
+                    'A Cybersecurity Apprentice',
+                ],
+                typeSpeed: 45,
+                backSpeed: 40,
+                backDelay: 1500,
+                loop: true,
+            });
+        }
+    </script>
+</section>

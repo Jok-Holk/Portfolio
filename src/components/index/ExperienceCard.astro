@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+    title: string;
+    company: string;
+    time: string;
+    description: string;
+    techs: string[];
+    url: string;
+}
+
+const { title, company, time, description, techs, url } = Astro.props;
+---
+
+<a href={url} class="block" target="_blank" rel="noopener noreferrer">
+    <div
+        class="relative flex flex-col md:flex-row p-4 md:p-8 space-y-4 md:space-y-0 md:space-x-8 group font-mono rounded-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg"
+    >
+        <div
+            class="absolute inset-0 rounded-lg border-2 border-transparent bg-transparent transition-colors duration-300 group-hover:bg-purple-900/30 group-hover:border-purple-500/50"
+        >
+        </div>
+
+        <div class="relative flex flex-col items-start md:w-1/5 z-10">
+            <div class="absolute left-0 top-0 h-full w-0.5 bg-purple-700 transition-colors duration-200"></div>
+            <p
+                class="pl-4 md:pl-0 text-gray-400 font-semibold text-xs md:text-sm md:text-right w-full md:absolute md:top-1 md:right-4"
+            >
+                {time}
+            </p>
+        </div>
+
+        <div class="relative pl-4 md:pl-0 flex-1 space-y-2 z-10">
+            <h3 class="text-white text-lg md:text-xl font-semibold group-hover:text-purple-400">
+                {title}
+                <span class="text-white font-medium group-hover:text-purple-400">· {company}</span>
+            </h3>
+
+            <div class="prose prose-sm prose-invert text-gray-400" set:html={description} />
+
+            <div class="flex flex-wrap gap-2 pt-2">
+                {
+                    techs.map((tech) => (
+                        <span class="bg-purple-900 text-purple-100 text-sm font-medium px-3 py-1 rounded-full">
+                            {tech}
+                        </span>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</a>
