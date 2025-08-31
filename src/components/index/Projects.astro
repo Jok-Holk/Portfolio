@@ -1,0 +1,41 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<section id="projects" class="text-gray-300 body-font font-mono pb-40">
+    <div class="container px-32 pt-64 mx-auto">
+        <div class="flex items-center text-purple-600 gap-4 mb-8">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-10 h-10"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"></path>
+                </svg>
+            <h1 class="text-4xl md:text-5xl text-white ml-2">projects</h1>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                projects.map((item) => (
+                    <ProjectCard
+                        title={item.data.title}
+                        description={item.body}
+                        tags={item.data.tags}
+                        codeLink={item.data.codeLink}
+                        demoLink={item.data.demoLink}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</section>

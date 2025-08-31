@@ -10,7 +10,17 @@ const experienceCollection = defineCollection({
         url: z.string().url(),
     }),
 });
+const projectsCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        tags: z.array(z.string()),
+        codeLink: z.string().url(),
+        demoLink: z.string().url().optional(),
+    }),
+});
 
 export const collections = {
     'experience': experienceCollection,
+    'projects': projectsCollection,
 };
