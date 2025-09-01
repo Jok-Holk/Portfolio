@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-    overflow-x: visible !important;
+    overflow-x: hidden !important;
 }
