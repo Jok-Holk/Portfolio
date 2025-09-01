@@ -17,6 +17,7 @@
         "typed.js": "^2.1.0"
     },
     "devDependencies": {
+        "@types/aos": "^3.0.7",
         "@types/ms": "^2.1.0",
         "@types/unist": "^3.0.3"
     }
