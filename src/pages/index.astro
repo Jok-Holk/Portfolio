@@ -6,13 +6,17 @@ import Education from '../components/index/Education.astro';
 import Experience from '../components/index/Experience.astro';
 import Project from '../components/index/Projects.astro';
 import Blog from '../components/index/Blogs.astro';
+import Portfolio from '../components/index/Portfolio.astro';
+import Contact from '../components/index/Contact.astro';
 ---
 
 <Layout title="JokHolk Realm">
-    <Home />
-    <About />
-    <Education />
-    <Experience />
-    <Project />
-    <Blog />
+    <Home client:visible />
+    <About client:visible />
+    <Education client:visible />
+    <Experience client:visible />
+    <Project client:visible />
+    <Blog client:visible />
+    <Portfolio client:visible />
+    <Contact client:visible />
 </Layout>

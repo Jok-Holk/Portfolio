@@ -1,0 +1,493 @@
+<section id="contact" class="text-gray-300 font-mono min-h-screen py-8 sm:py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32">
+        <!-- Header with improved responsive spacing -->
+        <div
+            class="flex flex-col sm:flex-row items-center text-purple-600 gap-3 sm:gap-4 mb-8 sm:mb-12"
+            data-aos="fade-up"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8 h-8 sm:w-10 sm:h-10"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.903l-11.25 6.75a2.25 2.25 0 01-2.108 0L2.25 9.196V6.75"
+                ></path>
+            </svg>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold tracking-wider">contact</h1>
+        </div>
+
+        <!-- Contact Form -->
+        <form id="contact-form" action="https://formspree.io/f/mwpnbnoy" method="POST" class="w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Left Column - Form Fields -->
+                <div class="flex flex-col gap-6 sm:gap-8" data-aos="fade-right" data-aos-delay="100">
+                    <!-- Name Fields -->
+                    <div class="group">
+                        <label
+                            for="firstName"
+                            class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold"
+                        >
+                            <span class="inline-block w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></span>
+                            Name
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="relative">
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    id="firstName"
+                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                    placeholder="First Name"
+                                    required
+                                />
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    id="lastName"
+                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                    placeholder="Last Name"
+                                    required
+                                />
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="group">
+                        <label for="email" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
+                            <span class="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+                            Email
+                        </label>
+                        <div class="relative">
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                placeholder="your.email@example.com"
+                                required
+                            />
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone Field -->
+                    <div class="group">
+                        <label for="phone" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
+                            <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                            Phone <span class="text-sm text-gray-400 font-normal">(Optional)</span>
+                        </label>
+                        <div class="relative">
+                            <input
+                                type="tel"
+                                name="phone"
+                                id="phone"
+                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                placeholder="e.g. +84 123 456 789"
+                            />
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Message -->
+                <div class="flex flex-col" data-aos="fade-left" data-aos-delay="200">
+                    <label for="message" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
+                        <span class="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse"></span>
+                        Message
+                    </label>
+                    <div class="relative flex-1">
+                        <textarea
+                            name="message"
+                            id="message"
+                            rows="8"
+                            class="w-full h-full min-h-[200px] lg:min-h-[300px] bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg p-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 resize-none"
+                            placeholder="Tell me about your project, ideas, or just say hello! I'd love to hear from you..."
+                            required></textarea>
+                        <div class="absolute top-4 right-4">
+                            <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
+                        </div>
+                        <div class="absolute bottom-4 right-4 text-xs text-gray-500" id="char-count">
+                            0 / 500 characters
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center mt-8 sm:mt-12" data-aos="fade-up" data-aos-delay="300">
+                <button
+                    type="submit"
+                    id="submit-btn"
+                    class="button-hover-effect bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg transition-all duration-300 text-lg relative group"
+                >
+                    <span class="relative z-10 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                        Send Message
+                    </span>
+                </button>
+            </div>
+        </form>
+
+        <!-- Success Message -->
+        <div id="contact-success-message" class="hidden text-center text-white mt-12 sm:mt-16" data-aos="fade-up">
+            <div
+                class="success-message max-w-lg mx-auto p-6 sm:p-8 bg-gray-800/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl"
+            >
+                <div class="mb-4">
+                    <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Thank you!</h2>
+                <p class="text-lg sm:text-xl text-gray-300 leading-relaxed">
+                    Your message has been sent successfully. I will get back to you within 24 hours.
+                </p>
+                <button
+                    id="send-another-btn"
+                    class="mt-6 text-purple-400 hover:text-purple-300 transition-colors duration-300 underline"
+                >
+                    Send another message
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 1. Typed references to DOM elements
+    const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
+    const successMessage = document.getElementById('contact-success-message') as HTMLElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const sendAnotherBtn = document.getElementById('send-another-btn') as HTMLButtonElement | null;
+    const messageTextarea = document.getElementById('message') as HTMLTextAreaElement | null;
+    const charCount = document.getElementById('char-count') as HTMLElement | null;
+
+    // Only these IDs exist, so we can strongly type them
+    type FieldId = 'firstName' | 'lastName' | 'email' | 'phone' | 'message';
+    const formFields: FieldId[] = ['firstName', 'lastName', 'email', 'phone', 'message'];
+
+    // 2. Field validation with proper types
+    function validateField(field: HTMLInputElement | HTMLTextAreaElement): boolean {
+        const parent = field.parentElement as HTMLElement | null;
+        const indicator = parent?.querySelector('.validation-indicator') as HTMLElement | null;
+        let isValid = false;
+
+        if (field.type === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isValid = emailRegex.test(field.value);
+        } else if (field.type === 'tel') {
+            // allow empty phone or at least 10 digits
+            isValid = field.value === '' || field.value.replace(/\D/g, '').length >= 10;
+        } else {
+            isValid = field.value.trim().length > 0;
+        }
+
+        // toggle classes & indicator color
+        if (isValid) {
+            field.classList.remove('input-error');
+            field.classList.add('input-success');
+            if (indicator) {
+                indicator.className = 'w-2 h-2 bg-green-500 rounded-full validation-indicator';
+            }
+        } else if (field.value.trim() !== '') {
+            field.classList.add('input-error');
+            field.classList.remove('input-success');
+            if (indicator) {
+                indicator.className = 'w-2 h-2 bg-red-500 rounded-full validation-indicator';
+            }
+        } else {
+            field.classList.remove('input-error', 'input-success');
+            if (indicator) {
+                indicator.className = 'w-2 h-2 bg-gray-500 rounded-full validation-indicator';
+            }
+        }
+
+        return isValid || (field.type === 'tel' && field.value === '');
+    }
+
+    // 3. Character count on message textarea
+    if (messageTextarea && charCount) {
+        messageTextarea.addEventListener('input', () => {
+            const length = messageTextarea.value.length;
+            const maxLength = 500;
+            charCount.textContent = `${length} / ${maxLength} characters`;
+
+            if (length > maxLength) {
+                charCount.classList.add('text-red-400');
+            } else if (length > maxLength * 0.8) {
+                charCount.classList.add('text-yellow-400');
+                charCount.classList.remove('text-red-400');
+            } else {
+                charCount.classList.remove('text-red-400', 'text-yellow-400');
+            }
+        });
+    }
+
+    // 4. Attach blur/input listeners to each field
+    formFields.forEach((fieldId) => {
+        const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
+        if (!field) return;
+
+        field.addEventListener('blur', () => validateField(field));
+        field.addEventListener('input', () => {
+            if (field.classList.contains('input-error')) {
+                validateField(field);
+            }
+        });
+    });
+
+    // 5. Form submission with Fetch and TypeScript-safe DOM usage
+    if (contactForm && submitBtn && successMessage) {
+        contactForm.addEventListener('submit', (event: SubmitEvent) => {
+            event.preventDefault();
+
+            // Validate required fields
+            let isFormValid = true;
+            formFields.forEach((fieldId) => {
+                const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
+                if (field?.required && !validateField(field)) {
+                    isFormValid = false;
+                }
+            });
+
+            if (!isFormValid) {
+                const firstError = contactForm.querySelector('.input-error') as HTMLElement | null;
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    (firstError as HTMLInputElement).focus();
+                }
+                return;
+            }
+
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="opacity-0">Send Message</span>';
+
+            // Safe cast for FormData
+            const formEl = event.target as HTMLFormElement;
+            const data = new FormData(formEl);
+            const url = formEl.action;
+
+            fetch(url, {
+                method: 'POST',
+                body: data,
+                headers: { Accept: 'application/json' },
+            })
+                .then((response) => {
+                    if (!response.ok) throw new Error('Form submission failed');
+                    // Animate out, then hide form and reveal success banner
+                    contactForm.style.animation = 'fadeInUp 0.5s ease-out reverse';
+                    setTimeout(() => {
+                        contactForm.classList.add('hidden');
+                        successMessage.classList.remove('hidden');
+                        successMessage.scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                })
+                .catch((err) => {
+                    console.error('Error submitting form:', err);
+                    alert('Something went wrong. Please try again later or contact me directly.');
+                })
+                .finally(() => {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                });
+        });
+    }
+
+    // 6. “Send another” resets everything
+    if (sendAnotherBtn && contactForm && successMessage) {
+        sendAnotherBtn.addEventListener('click', () => {
+            successMessage.classList.add('hidden');
+            contactForm.classList.remove('hidden');
+            contactForm.reset(); // now valid on HTMLFormElement
+
+            formFields.forEach((fieldId) => {
+                const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
+                if (!field) return;
+                field.classList.remove('input-error', 'input-success');
+                const parent = field.parentElement as HTMLElement | null;
+                const indicator = parent?.querySelector('.validation-indicator') as HTMLElement | null;
+                if (indicator) {
+                    indicator.className = 'w-2 h-2 bg-gray-500 rounded-full validation-indicator';
+                }
+            });
+
+            if (charCount) {
+                charCount.textContent = '0 / 500 characters';
+                charCount.classList.remove('text-red-400', 'text-yellow-400');
+            }
+
+            contactForm.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    // 7. Smooth scroll & keyboard-focus styles
+    document.documentElement.style.scrollBehavior = 'smooth';
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Tab') document.body.classList.add('keyboard-navigation');
+    });
+    document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+    });
+</script>
+
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.02);
+        }
+    }
+
+    @keyframes glow {
+        0%,
+        100% {
+            box-shadow: 0 0 5px rgba(168, 85, 247, 0.3);
+        }
+        50% {
+            box-shadow:
+                0 0 20px rgba(168, 85, 247, 0.6),
+                0 0 30px rgba(168, 85, 247, 0.4);
+        }
+    }
+
+    .input-focus-effect {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .input-focus-effect:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+    }
+
+    .button-hover-effect {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .button-hover-effect:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s;
+    }
+
+    .button-hover-effect:hover:before {
+        left: 100%;
+    }
+
+    .button-hover-effect:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+    }
+
+    .success-message {
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Loading animation for form submission */
+    .loading {
+        position: relative;
+        pointer-events: none;
+    }
+
+    .loading:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin-left: -10px;
+        margin-top: -10px;
+        border: 2px solid transparent;
+        border-top: 2px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Form validation styles */
+    .input-error {
+        border-color: #ef4444 !important;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .input-success {
+        border-color: #10b981 !important;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #7c3aed;
+        border-radius: 4px;
+    }
+</style>

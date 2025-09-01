@@ -1,43 +1,192 @@
-<section id="home" class="text-gray-300 body-font">
-    <div class="container flex px-40 pt-80 pb-64 mx-auto">
-        <div class="w-1/2 pr-8">
-            <h1 class="text-6xl text-white mb-4 font-mono">Hello,</h1>
-            <h1 class="text-6xl text-white mb-16 font-mono">
-                I'm <span class="text-purple-500 font-mono">Jok</span>
-            </h1>
-            <h2 class="text-3xl mb-8 font-mono text-gray-400">
-                <span class="text-purple-600 hidden md:inline">&gt;</span>
-                <span id="typed-text"></span>
-            </h2>
-            <h3 class="text-lg mb-8 font-mono text-gray-400">
-                Welcome to my digital realm — built with passion. I’m a student of
-                <span class="text-purple-400">software </span> and
-                <span class="text-purple-400">game development</span>, creating <span class="text-purple-400">web</span
-                >, <span class="text-purple-400">apps</span>, and <span class="text-purple-400">indie games</span>, with
-                a goal to become a <span class="text-purple-400">cybersecurity expert</span>.
-            </h3>
-        </div>
-        <div class="w-1/2 pl-8">
-            <img class="rounded-full w-96 h-96 mx-auto" src="/avatar.jpg" alt="avatar" />
+<section id="home" class="text-gray-300 body-font min-h-screen flex items-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 py-16 sm:py-24 lg:py-32">
+        <div class="flex flex-col lg:flex-row items-center justify-center" data-aos="fade">
+            <!-- Text Content -->
+            <div
+                class="w-full lg:w-1/2 lg:pr-8 xl:pr-12 mb-12 lg:mb-0 mobile-center"
+                data-aos="fade-up"
+                data-aos-delay="200"
+            >
+                <!-- Main Heading -->
+                <h1
+                    class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-2 sm:mb-4 font-mono hover-lift"
+                >
+                    Hello,
+                </h1>
+
+                <h1
+                    class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-6 sm:mb-8 md:mb-12 font-mono hover-lift"
+                >
+                    I'm <span class="gradient-text animate-glow font-mono">Jok</span>
+                </h1>
+
+                <!-- Typed Text -->
+                <h2
+                    class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 font-mono text-gray-400 min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[4rem]"
+                >
+                    <span class="text-purple-600 hidden sm:inline">&gt;</span>
+                    <span id="typed-text"></span>
+                </h2>
+
+                <!-- Description -->
+                <h3
+                    class="text-sm sm:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 font-mono text-gray-400 leading-relaxed max-w-2xl"
+                >
+                    Welcome to my digital realm — built with passion. I'm a student of
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">software</span> and
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">game development</span>,
+                    creating
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">web</span>,
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">apps</span>, and
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">indie games</span>, with a
+                    goal to become a
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">cybersecurity expert</span>.
+                </h3>
+            </div>
+
+            <!-- Avatar Image -->
+            <div
+                class="w-full lg:w-1/2 lg:pl-8 xl:pl-12 flex justify-center lg:justify-end"
+                data-aos="fade-right"
+                data-aos-delay="400"
+            >
+                <div class="animate-float">
+                    <img
+                        class="rounded-full w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-cover avatar-glow"
+                        src="/avatar.png"
+                        alt="Jok's Avatar"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        import Typed from 'typed.js';
-
-        if (typeof window !== 'undefined') {
-            new Typed('#typed-text', {
-                strings: [
-                    'A Software Engineer',
-                    'A Indie Game Developer',
-                    'A Web Freelancer',
-                    'A Cybersecurity Apprentice',
-                ],
-                typeSpeed: 45,
-                backSpeed: 40,
-                backDelay: 1500,
-                loop: true,
-            });
-        }
-    </script>
 </section>
+
+<script>
+    import Typed from 'typed.js';
+    import type { TypedOptions } from 'typed.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Cast the target element
+        const typedEl = document.querySelector('#typed-text') as HTMLElement | null;
+        const parentEl = typedEl?.parentElement as HTMLElement | null;
+
+        if (!typedEl) {
+            console.warn('Typed target element not found');
+            return;
+        }
+
+        // 2. Build options with proper types
+        const options: TypedOptions = {
+            strings: [
+                'A Software Engineer',
+                'An Indie Game Developer',
+                'A Web Freelancer',
+                'A Cybersecurity Apprentice',
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 1500,
+            startDelay: 800,
+            loop: true,
+            cursorChar: '|',
+            contentType: 'html',
+
+            // 3. Typed.js hook with typed parameters
+            preStringTyped: (arrayPos: number, self: Typed) => {
+                if (!parentEl) return;
+                parentEl.style.transform = 'translateX(2px)';
+                setTimeout(() => {
+                    parentEl.style.transform = 'translateX(0)';
+                }, 100);
+            },
+        };
+
+        // 4. Instantiate Typed
+        new Typed(typedEl, options);
+    });
+</script>
+<style>
+    @keyframes glow {
+        0%,
+        100% {
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+        50% {
+            text-shadow:
+                0 0 30px rgba(168, 85, 247, 0.8),
+                0 0 40px rgba(168, 85, 247, 0.6);
+        }
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .animate-glow {
+        animation: glow 3s ease-in-out infinite;
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Enhanced hover effects */
+    .hover-lift {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Purple gradient text effect */
+    .gradient-text {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Typing cursor enhancement */
+    .typed-cursor {
+        color: #a855f7;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%,
+        50% {
+            opacity: 1;
+        }
+        51%,
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* Responsive improvements */
+    @media (max-width: 768px) {
+        .mobile-center {
+            text-align: center;
+        }
+    }
+
+    /* Image enhancements */
+    .avatar-glow {
+        box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .avatar-glow:hover {
+        box-shadow: 0 0 70px rgba(168, 85, 247, 0.5);
+        transform: scale(1.05);
+    }
+</style>

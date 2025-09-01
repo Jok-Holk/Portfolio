@@ -1,30 +1,514 @@
----
+<!-- Footer -->
+<footer class="text-gray-400 font-mono footer-gradient relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-1/4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-24 h-24 bg-blue-500 rounded-full blur-3xl"></div>
+    </div>
 
----
+    <!-- Section divider -->
+    <div class="section-divider"></div>
 
-<footer class="text-gray-600 body-font">
-    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-                viewBox="0 0 24 24"
-            >
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span class="ml-3 text-xl">Jok Holk</span>
-        </a>
-        <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-            © {new Date().getFullYear()} Jok Holk —
-            <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank"
-                >@your_twitter_handle</a
-            >
-        </p>
-        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start"> </span>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            <!-- Quick Links Section -->
+            <div class="animate-slide-in-left stagger-1">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse-custom"></div>
+                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">Quick Links</h3>
+                </div>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm sm:text-base">
+                    <a href="/#home" class="link-hover-effect text-gray-400">Home</a>
+                    <a href="/#about" class="link-hover-effect text-gray-400">About</a>
+                    <a href="/#education" class="link-hover-effect text-gray-400">Education</a>
+                    <a href="/#experience" class="link-hover-effect text-gray-400">Experience</a>
+                    <a href="/#projects" class="link-hover-effect text-gray-400">Projects</a>
+                    <a href="/#blogs" class="link-hover-effect text-gray-400">Blogs</a>
+                    <a href="/#portfolios" class="link-hover-effect text-gray-400">Portfolios</a>
+                    <a href="/#contact" class="link-hover-effect text-gray-400">Contact</a>
+                </div>
+            </div>
+
+            <!-- Connect Section -->
+            <div class="animate-fade-in-up stagger-2">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse-custom"></div>
+                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">Connect</h3>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <a
+                        href="https://github.com/Jok-Holk"
+                        target="_blank"
+                        class="social-link-effect flex items-center gap-3 group"
+                    >
+                        <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.867-.013-1.702-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.007.07 1.532 1.03 1.532 1.03.89 1.529 2.34 1.087 2.91.828.092-.643.35-1.087.636-1.334-2.22-.253-4.555-1.113-4.555-4.949 0-1.09.39-1.983 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.268 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.704.114 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.699 1.029 1.592 1.029 2.682 0 3.844-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.335-.012 2.41-.012 2.727 0 .268.18.579.688.482C21.137 20.17 24 16.415 24 12.017 24 6.484 19.522 2 14 2h-2z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm sm:text-base">GitHub</span>
+                        <svg
+                            class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+
+                    <a href="mailto:jokholk.dev@gmail.com" class="social-link-effect flex items-center gap-3 group">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5 sm:w-6 sm:h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.903l-11.25 6.75a2.25 2.25 0 01-2.108 0L2.25 9.196V6.75"
+                            ></path>
+                        </svg>
+                        <span class="text-sm sm:text-base">Gmail</span>
+                        <svg
+                            class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+
+                    <a
+                        href="https://discord.com/users/586394957158547456"
+                        target="_blank"
+                        class="social-link-effect flex items-center gap-3 group"
+                    >
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.120.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"
+                            ></path>
+                        </svg>
+                        <span class="text-sm sm:text-base">Discord</span>
+                        <svg
+                            class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Brand & Info Section -->
+            <div class="animate-slide-in-right stagger-3 md:col-span-2 lg:col-span-1">
+                <div class="flex flex-col items-start lg:items-end text-left lg:text-right">
+                    <div class="logo-hover-effect flex items-center gap-3 mb-6">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-8 h-8 sm:w-10 sm:h-10 text-purple-600 animate-glow"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"
+                            ></path>
+                        </svg>
+                        <span class="text-2xl sm:text-3xl font-bold text-purple-600 animate-glow">v1.0</span>
+                    </div>
+
+                    <div class="space-y-2 text-sm sm:text-base">
+                        <p class="text-gray-300">
+                            <span class="font-semibold">Built with</span> ❤️ using Astro & Tailwind
+                        </p>
+                        <p class="text-gray-400">Crafted for performance & accessibility</p>
+                        <div class="flex items-center gap-2 mt-4">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse-custom"></div>
+                            <span class="text-xs text-green-400">Online & Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="section-divider mt-8 sm:mt-12"></div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 animate-fade-in-up stagger-4">
+            <p id="copyright" class="text-sm sm:text-base text-gray-400 order-2 sm:order-1">
+                © 2025 Jok Holk. All rights reserved.
+            </p>
+
+            <div class="flex items-center gap-4 text-xs sm:text-sm text-gray-500 order-1 sm:order-2">
+                <span>Made in Vietnam 🇻🇳</span>
+                <span>•</span>
+                <span id="last-updated">Updated recently</span>
+            </div>
+        </div>
     </div>
 </footer>
+<script>
+    // 1. Typed DOM references
+    const copyrightElement = document.getElementById('copyright') as HTMLElement | null;
+
+    const lastUpdatedElement = document.getElementById('last-updated') as HTMLElement | null;
+
+    const backToTopButton = document.getElementById('backToTop') as HTMLButtonElement | null;
+
+    // 2. Update copyright year
+    const currentYear = new Date().getFullYear();
+    if (copyrightElement) {
+        copyrightElement.textContent = `© ${currentYear} Jok Holk. All rights reserved.`;
+    }
+
+    // 3. Update last updated time
+    if (lastUpdatedElement) {
+        const now = new Date();
+        const options: Intl.DateTimeFormatOptions = {
+            month: 'short',
+            day: 'numeric',
+        };
+        // only include year field if it differs
+        if (now.getFullYear() !== currentYear) {
+            options.year = 'numeric';
+        }
+        lastUpdatedElement.textContent = `Updated ${now.toLocaleDateString('en-US', options)}`;
+    }
+
+    // 4. Intersection Observer for animations
+    const observerOptions: IntersectionObserverInit = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0) translateX(0)';
+            }
+        });
+    }, observerOptions);
+
+    document
+        .querySelectorAll<HTMLElement>('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right')
+        .forEach((el) => observer.observe(el));
+
+    // 5. Back to top functionality
+    function toggleBackToTop() {
+        if (!backToTopButton) return;
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    }
+
+    window.addEventListener('scroll', toggleBackToTop);
+
+    if (backToTopButton) {
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 6. Smooth scroll for anchor links
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="/#"]').forEach((anchor) => {
+        anchor.addEventListener(
+            'click',
+            function (e: MouseEvent) {
+                e.preventDefault();
+                const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+                if (!href) return;
+
+                const targetId = href.slice(2);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    });
+                } else {
+                    // fallback to normal navigation
+                    window.location.href = href;
+                }
+            },
+            false,
+        );
+    });
+
+    // 7. Keyboard navigation & ESC key
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+        if (e.key === 'Escape' && window.pageYOffset > 0) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+    });
+
+    // 8. Throttle scroll events for performance
+    let ticking = false;
+    function requestTick() {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                toggleBackToTop();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    window.addEventListener('scroll', requestTick);
+</script>
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+    }
+
+    @keyframes glow {
+        0%,
+        100% {
+            text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+        }
+        50% {
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    .animate-slide-in-left {
+        animation: slideInLeft 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    .animate-slide-in-right {
+        animation: slideInRight 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    .animate-pulse-custom {
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .animate-glow {
+        animation: glow 3s ease-in-out infinite;
+    }
+
+    .link-hover-effect {
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .link-hover-effect::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #a855f7, #8b5cf6);
+        transition: width 0.3s ease;
+    }
+
+    .link-hover-effect:hover::after {
+        width: 100%;
+    }
+
+    .link-hover-effect:hover {
+        transform: translateY(-2px);
+        color: #c084fc;
+    }
+
+    .social-link-effect {
+        position: relative;
+        padding: 8px;
+        border-radius: 8px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background: rgba(17, 24, 39, 0.3);
+        border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .social-link-effect:hover {
+        transform: translateY(-3px) scale(1.02);
+        background: rgba(168, 85, 247, 0.1);
+        border-color: rgba(168, 85, 247, 0.4);
+        box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+    }
+
+    .social-link-effect svg {
+        transition: transform 0.3s ease;
+    }
+
+    .social-link-effect:hover svg {
+        transform: rotate(-5deg) scale(1.1);
+    }
+
+    .logo-hover-effect {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+    }
+
+    .logo-hover-effect:hover {
+        transform: scale(1.05);
+    }
+
+    .logo-hover-effect:hover svg {
+        animation: pulse 1s ease-in-out;
+    }
+
+    .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+        margin: 2rem 0;
+    }
+
+    .footer-gradient {
+        background: linear-gradient(
+            180deg,
+            rgba(17, 24, 39, 0) 0%,
+            rgba(17, 24, 39, 0.5) 50%,
+            rgba(17, 24, 39, 1) 100%
+        );
+    }
+
+    .stagger-1 {
+        animation-delay: 0.1s;
+    }
+    .stagger-2 {
+        animation-delay: 0.2s;
+    }
+    .stagger-3 {
+        animation-delay: 0.3s;
+    }
+    .stagger-4 {
+        animation-delay: 0.4s;
+    }
+
+    /* Back to top button */
+    .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #7c3aed, #a855f7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+    }
+
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 30px rgba(168, 85, 247, 0.4);
+    }
+
+    .back-to-top svg {
+        transition: transform 0.3s ease;
+    }
+
+    .back-to-top:hover svg {
+        transform: translateY(-2px);
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #7c3aed;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #8b5cf6;
+    }
+</style>

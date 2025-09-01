@@ -1,13 +1,15 @@
-<section id="education" class="text-gray-300 body-font">
-    <div class="container px-32 pt-32 mx-auto">
-        <div class="flex items-center text-purple-600 gap-4 mb-8">
+<section id="education" class="text-gray-300 body-font pb-20 md:pb-40">
+    <div class="container px-5 md:px-20 lg:px-32 pt-16 md:pt-24 lg:pt-32 mx-auto">
+        <!-- Header with animation -->
+
+        <div class="flex items-center text-purple-600 gap-4 mb-6 md:mb-8" data-aos="fade" data-aos-delay="100">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-10 h-10"
+                class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
             >
                 <path
                     stroke-linecap="round"
@@ -15,16 +17,29 @@
                     d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
                 ></path>
             </svg>
-            <h1 class="text-4xl md:text-5xl text-white font-mono ml-2">education</h1>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-mono ml-2">education</h1>
         </div>
-        <div class="font-mono">
-            <ol class="relative border-s border-gray-200 dark:border-gray-700 space-y-8">
-                <li class="mb-10 ms-6 border border-purple-500/40 rounded-lg p-6">
+
+        <!-- Timeline -->
+        <div class="font-mono" data-aos="fade-up" data-aos-delay="200">
+            <ol class="relative border-s-2 border-gray-600 dark:border-gray-700 space-y-6 md:space-y-8 ml-4 md:ml-0">
+                <!-- First Education Item -->
+                <li
+                    class="mb-8 md:mb-10 ms-4 md:ms-6 border border-purple-500/40 rounded-lg p-4 md:p-6
+                 transform transition-all duration-500 hover:border-purple-400/60 hover:shadow-lg hover:shadow-purple-500/20"
+                    data-aos="fade-right"
+                    data-aos-delay="300"
+                >
                     <span
-                        class="absolute flex items-center justify-center w-6 h-6 bg-purple-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-purple-900"
+                        class="absolute flex items-center justify-center
+                                   w-5 h-5 md:w-6 md:h-6
+                                   bg-purple-100 rounded-full
+                                   -start-3 md:-start-3
+                                   ring-4 md:ring-8 ring-gray-900 dark:ring-gray-900 dark:bg-purple-900
+                                   transform transition-all duration-300 hover:scale-110"
                     >
                         <svg
-                            class="w-2.5 h-2.5 text-purple-800 dark:text-purple-300"
+                            class="w-2 h-2 md:w-2.5 md:h-2.5 text-purple-800 dark:text-purple-300"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
@@ -35,21 +50,70 @@
                             ></path>
                         </svg>
                     </span>
-                    <time class="block mb-2 text-base font-normal leading-none text-purple-500 dark:text-purple-400">
-                        October 2024 - Present
+
+                    <time
+                        class="block mb-2 text-sm md:text-base font-normal leading-none text-purple-500 dark:text-purple-400
+                                   transform transition-colors duration-300 hover:text-purple-300"
+                    >
+                        October 2023 - Present
                     </time>
-                    <h3 class="flex items-center mb-1 text-xl font-semibold text-gray-900 dark:text-white">
+
+                    <h3
+                        class="flex items-center mb-1 text-lg md:text-xl font-semibold text-gray-900 dark:text-white
+                                 transform transition-colors duration-300 hover:text-purple-300"
+                    >
                         FUNiX Online University
+                        <span
+                            class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded
+                     dark:bg-purple-900 dark:text-purple-300 ml-3 hover:scale-105"
+                            data-aos="fade-left"
+                            data-aos-delay="400"
+                        >
+                            Current
+                        </span>
                     </h3>
-                    <p class="mb-4 text-lg font-normal text-gray-500 dark:text-gray-400">Software Engineer Program</p>
+
+                    <p
+                        class="mb-2 md:mb-4 text-base md:text-lg font-normal text-gray-500 dark:text-gray-400
+                                 transform transition-colors duration-300 hover:text-gray-300"
+                    >
+                        Software Engineer Program
+                    </p>
+
+                    <!-- Additional details with stagger animation -->
+                    <div class="flex flex-wrap gap-2" data-aos="fade-up" data-aos-delay="500">
+                        <span
+                            class="inline-flex items-center px-2 py-1 text-xs font-medium text-purple-800 bg-purple-100 rounded-full
+                                       dark:bg-purple-900 dark:text-purple-300 transform transition-all duration-300 hover:scale-105"
+                        >
+                            🎓 Online Learning
+                        </span>
+                        <span
+                            class="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-full
+                                       dark:bg-blue-900 dark:text-blue-300 transform transition-all duration-300 hover:scale-105"
+                        >
+                            💻 Software Development
+                        </span>
+                    </div>
                 </li>
 
-                <li class="ms-6 border border-purple-500/40 rounded-lg p-6">
+                <!-- Second Education Item -->
+                <li
+                    class="ms-4 md:ms-6 border border-purple-500/40 rounded-lg p-4 md:p-6
+                 transform transition-all duration-500 hover:border-purple-400/60 hover:shadow-lg hover:shadow-purple-500/20"
+                    data-aos="fade-left"
+                    data-aos-delay="600"
+                >
                     <span
-                        class="absolute flex items-center justify-center w-6 h-6 bg-purple-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-purple-900"
+                        class="absolute flex items-center justify-center
+                                   w-5 h-5 md:w-6 md:h-6
+                                   bg-purple-100 rounded-full
+                                   -start-3 md:-start-3
+                                   ring-4 md:ring-8 ring-gray-900 dark:ring-gray-900 dark:bg-purple-900
+                                   transform transition-all duration-300 hover:scale-110"
                     >
                         <svg
-                            class="w-2.5 h-2.5 text-purple-800 dark:text-purple-300"
+                            class="w-2 h-2 md:w-2.5 md:h-2.5 text-purple-800 dark:text-purple-300"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
@@ -60,13 +124,137 @@
                             ></path>
                         </svg>
                     </span>
-                    <time class="block mb-2 text-base font-normal leading-none text-purple-500 dark:text-purple-400">
+
+                    <time
+                        class="block mb-2 text-sm md:text-base font-normal leading-none text-purple-500 dark:text-purple-400
+                                   transform transition-colors duration-300 hover:text-purple-300"
+                    >
                         January 2025 - Present
                     </time>
-                    <h3 class="mb-1 text-xl font-semibold text-gray-900 dark:text-white">FPT Polytechnic College</h3>
-                    <p class="text-lg font-normal text-gray-500 dark:text-gray-400">Game Programming</p>
+
+                    <h3
+                        class="mb-1 text-lg md:text-xl font-semibold text-gray-900 dark:text-white
+                                 transform transition-colors duration-300 hover:text-purple-300"
+                    >
+                        FPT Polytechnic College
+                        <span
+                            class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded
+                     dark:bg-green-900 dark:text-green-300 ml-3 hover:scale-105"
+                            data-aos="fade-right"
+                            data-aos-delay="700"
+                        >
+                            New
+                        </span>
+                    </h3>
+
+                    <p
+                        class="text-base md:text-lg font-normal text-gray-500 dark:text-gray-400
+                                 transform transition-colors duration-300 hover:text-gray-300 mb-2 md:mb-4"
+                    >
+                        Game Programming
+                    </p>
+
+                    <!-- Additional details with stagger animation -->
+                    <div class="flex flex-wrap gap-2" data-aos="fade-up" data-aos-delay="800">
+                        <span
+                            class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full
+                                       dark:bg-green-900 dark:text-green-300 transform transition-all duration-300 hover:scale-105"
+                        >
+                            🎮 Game Development
+                        </span>
+                        <span
+                            class="inline-flex items-center px-2 py-1 text-xs font-medium text-orange-800 bg-orange-100 rounded-full
+                                       dark:bg-orange-900 dark:text-orange-300 transform transition-all duration-300 hover:scale-105"
+                        >
+                            🏫 Traditional Learning
+                        </span>
+                    </div>
                 </li>
             </ol>
         </div>
     </div>
 </section>
+
+<script>
+    // Enhanced scroll animations with intersection observer
+    document.addEventListener('DOMContentLoaded', function () {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px',
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe education items
+        const educationItems = document.querySelectorAll('.education-item');
+        educationItems.forEach((item) => observer.observe(item));
+
+        // Add hover effects for timeline dots
+        const timelineDots = document.querySelectorAll('span[class*="bg-purple-100"]');
+        timelineDots.forEach((dot) => {
+            dot.addEventListener('mouseenter', () => {
+                dot.classList.add('animate-pulse');
+            });
+            dot.addEventListener('mouseleave', () => {
+                dot.classList.remove('animate-pulse');
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Scroll-triggered animations */
+    .education-item.animate-visible {
+        opacity: 1 !important;
+    }
+
+    /* Enhanced mobile responsiveness */
+    @media (max-width: 640px) {
+        .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .border-s-2 {
+            margin-left: 0.5rem;
+        }
+
+        .education-item {
+            margin-left: 1rem;
+            padding: 1rem;
+        }
+
+        .education-item h3 {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .education-item span[class*='ml-3'] {
+            margin-left: 0;
+            margin-top: 0.25rem;
+        }
+    }
+
+    @media (min-width: 641px) and (max-width: 768px) {
+        .container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    /* Hover effects enhancement */
+    .education-item:hover {
+        transform: translateY(-2px);
+    }
+
+    .education-item:hover span[class*='bg-purple-100'] {
+        box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+    }
+</style>

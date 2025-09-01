@@ -1,8 +1,16 @@
 export default interface Article {
+    id: number;
+    documentId: string;
     title: string;
     content: string;
+    publish_date: string;
+    slug: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
     image: {
         id: number;
+        documentId: string;
         name: string;
         alternativeText: string | null;
         caption: string | null;
@@ -10,25 +18,52 @@ export default interface Article {
         height: number;
         formats: {
             thumbnail: {
-                name: string;
-                hash: string;
                 ext: string;
+                url: string;
+                hash: string;
                 mime: string;
+                name: string;
                 path: null | string;
+                size: number;
                 width: number;
                 height: number;
-                size: number;
                 sizeInBytes: number;
-                url: string;
             };
             small: {
+                ext: string;
                 url: string;
+                hash: string;
+                mime: string;
+                name: string;
+                path: null | string;
+                size: number;
+                width: number;
+                height: number;
+                sizeInBytes: number;
             };
             medium: {
+                ext: string;
                 url: string;
+                hash: string;
+                mime: string;
+                name: string;
+                path: null | string;
+                size: number;
+                width: number;
+                height: number;
+                sizeInBytes: number;
             };
             large: {
+                ext: string;
                 url: string;
+                hash: string;
+                mime: string;
+                name: string;
+                path: null | string;
+                size: number;
+                width: number;
+                height: number;
+                sizeInBytes: number;
             };
         };
         hash: string;
@@ -43,6 +78,12 @@ export default interface Article {
         updatedAt: string;
         publishedAt: string;
     };
-    slug: string;
-    publish_date: string;
+    Article: {
+        id: number;
+        documentId: string;
+        name: string;
+        createdAt: string;
+        updatedAt: string;
+        publishedAt: string;
+    }[];
 }

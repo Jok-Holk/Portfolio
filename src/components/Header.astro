@@ -1,151 +1,780 @@
----
+<header
+    id="main-header"
+    class="header-backdrop fixed top-0 left-0 w-full z-50 bg-black/30 border-b border-purple-500/20 font-mono"
+>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a
+                href="/"
+                class="flex items-center font-mono text-white hover:scale-105 transition-transform duration-300"
+            >
+                <span class="text-purple-800 text-lg">$</span>
+                <span class="ml-1 text-lg pr-4">jokholk@portfolio</span>
+            </a>
 
----
+            <!-- Desktop Navigation (1536px+) -->
+            <nav class="hidden 2xl:flex items-center space-x-1">
+                <a
+                    href="/#home"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="home"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                        ></path>
+                    </svg>
+                    <span>Home</span>
+                </a>
+                <a
+                    href="/#about"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="about"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    <span>About</span>
+                </a>
+                <a
+                    href="/#education"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="education"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                        ></path>
+                    </svg>
+                    <span>Education</span>
+                </a>
+                <a
+                    href="/#experience"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="experience"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V6m8 0V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2"
+                        ></path>
+                    </svg>
+                    <span>Experience</span>
+                </a>
+                <a
+                    href="/#projects"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="projects"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                    <span>Projects</span>
+                </a>
+                <a
+                    href="/#blogs"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="blogs"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        ></path>
+                    </svg>
+                    <span>Blogs</span>
+                </a>
+                <a
+                    href="/#portfolio"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="portfolio"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                        ></path>
+                    </svg>
+                    <span>Portfolios</span>
+                </a>
+                <a
+                    href="/#contact"
+                    class="nav-link flex items-center space-x-2 px-4 py-2 rounded-lg text-sm hover:text-purple-700 hover:bg-purple-500/10 transition-all duration-300"
+                    data-scroll-target="contact"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        ></path>
+                    </svg>
+                    <span>Contact</span>
+                </a>
+            </nav>
 
-<header class="fixed top-0 left-0 w-full z-index py-7 backdrop-blur-md bg-black/30 border-b border-purple-600">
-    <div class="container mx-auto flex items-center justify-between px-5 md:px-10 lg:px-40">
-        <a href="/" class="flex items-center font-mono text-white">
-            <span class="text-purple-600">$</span>
-            <span class="ml-1 text-white text-lg">jokholk@portfolio</span>
-        </a>
+            <!-- Right Side Controls -->
+            <div class="flex items-center space-x-4">
+                <!-- Language Selector -->
+                <div class="relative">
+                    <button
+                        id="language-button"
+                        class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm hover:bg-purple-500/10 transition-all duration-300 font-mono"
+                        aria-expanded="false"
+                    >
+                        <div id="current-flag" class="w-5 h-5 rounded-full overflow-hidden">
+                            <svg viewBox="0 0 512 512" class="w-full h-full">
+                                <g fill-rule="evenodd">
+                                    <g stroke-width="1pt">
+                                        <path
+                                            fill="#bd3d44"
+                                            d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                                            transform="scale(3.9385)"></path>
+                                        <path
+                                            fill="#fff"
+                                            d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                                            transform="scale(3.9385)"></path>
+                                    </g>
+                                    <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"></path>
+                                    <path
+                                        fill="#fff"
+                                        d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
+                                        transform="scale(3.9385)"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <span id="current-lang">EN</span>
+                        <svg
+                            class="w-4 h-4 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+                            ></path>
+                        </svg>
+                    </button>
 
-        <nav class="flex items-center text-base font-mono space-x-7">
-            <a href="/#home" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v4.875h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                    ></path>
-                </svg>
-                <span>Home</span>
-            </a>
-            <a href="/#about" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                    ></path>
-                </svg>
-                <span>About</span>
-            </a>
-            <a href="/#education" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
-                    ></path>
-                </svg>
-                <span>Education</span>
-            </a>
-            <a href="/#experience" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"
-                    ></path>
-                </svg>
-                <span>Experience</span>
-            </a>
-            <a href="/#projects" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"></path>
-                </svg>
-                <span>Projects</span>
-            </a>
-            <a href="/#blogs" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                    ></path>
-                </svg>
-                <span>Blogs</span>
-            </a>
-            <a href="#portfolio" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
-                    ></path>
-                </svg>
+                    <div
+                        id="language-dropdown"
+                        class="language-dropdown absolute right-0 mt-2 w-36 bg-black/90 backdrop-blur-xl border border-purple-500/30 rounded-xl shadow-xl"
+                    >
+                        <div class="py-2">
+                            <a
+                                href="#"
+                                class="flex items-center space-x-3 px-4 py-2 text-sm hover:bg-purple-500/20 transition-colors duration-200"
+                                data-lang="en"
+                            >
+                                <div class="w-4 h-4 rounded-full overflow-hidden">
+                                    <svg viewBox="0 0 512 512" class="w-full h-full">
+                                        <g fill-rule="evenodd">
+                                            <g stroke-width="1pt">
+                                                <path
+                                                    fill="#bd3d44"
+                                                    d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                                                    transform="scale(3.9385)"></path>
+                                                <path
+                                                    fill="#fff"
+                                                    d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                                                    transform="scale(3.9385)"></path>
+                                            </g>
+                                            <path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"></path>
+                                            <path
+                                                fill="#fff"
+                                                d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3z"
+                                            ></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <span>EN</span>
+                            </a>
+                            <a
+                                href="#"
+                                class="flex items-center space-x-3 px-4 py-2 text-sm hover:bg-purple-500/20 transition-colors duration-200"
+                                data-lang="vi"
+                            >
+                                <div class="w-4 h-4 rounded-full overflow-hidden">
+                                    <svg viewBox="0 0 512 512" class="w-full h-full">
+                                        <path fill="#DA251D" d="M0 0h512v512H0z"></path>
+                                        <path
+                                            fill="#FFFE00"
+                                            d="m256 331.4-98.2 64.1 36.6-114.8-98.2-64.1 121.6-1.5L256 128l38.2 113.1 121.6 1.5-98.2 64.1 36.6 114.8z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <span>VI</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                <span>Portfolios</span>
-            </a>
-            <a href="#contact" class="flex items-center space-x-1 hover:text-purple-600">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
+                <!-- Mobile Menu Toggle (1535px and below) -->
+                <button
+                    id="mobile-menu-toggle"
+                    class="2xl:hidden flex flex-col items-center justify-center w-8 h-8 rounded-lg hover:bg-purple-500/10 transition-colors duration-300"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.903l-11.25 6.75a2.25 2.25 0 01-2.108 0L2.25 9.196V6.75"
-                    ></path>
-                </svg>
-                <span>Contact</span>
-            </a>
-        </nav>
+                    <div class="hamburger">
+                        <span class="hamburger-line block w-5 h-0.5 bg-purple-700 mb-1 rounded-full"></span>
+                        <span class="hamburger-line block w-5 h-0.5 bg-purple-700 mb-1 rounded-full"></span>
+                        <span class="hamburger-line block w-5 h-0.5 bg-purple-700 rounded-full"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu (1535px and below) -->
+        <div
+            id="mobile-menu"
+            class="mobile-menu 2xl:hidden bg-black/95 backdrop-blur-xl border-t border-purple-500/30 rounded-b-xl"
+        >
+            <nav class="px-4 py-4">
+                <div class="space-y-2">
+                    <a
+                        href="/#home"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="home"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                            ></path>
+                        </svg>
+                        <span>Home</span>
+                    </a>
+                    <a
+                        href="/#about"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="about"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        <span>About</span>
+                    </a>
+                    <a
+                        href="/#education"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="education"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                        </svg>
+                        <span>Education</span>
+                    </a>
+                    <a
+                        href="/#experience"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="experience"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V6m8 0V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2"
+                            ></path>
+                        </svg>
+                        <span>Experience</span>
+                    </a>
+                    <a
+                        href="/#projects"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="projects"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                        <span>Projects</span>
+                    </a>
+                    <a
+                        href="/#blogs"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="blogs"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            ></path>
+                        </svg>
+                        <span>Blogs</span>
+                    </a>
+                    <a
+                        href="/#portfolio"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="portfolio"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                            ></path>
+                        </svg>
+                        <span>Portfolios</span>
+                    </a>
+                    <a
+                        href="/#contact"
+                        class="nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-500/20 transition-all duration-300"
+                        data-scroll-target="contact"
+                    >
+                        <svg class="w-5 h-5 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            ></path>
+                        </svg>
+                        <span>Contact</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
     </div>
 </header>
+<script>
+    declare global {
+        interface Window {
+            tailwind: any;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Grab all the elements once
+        const headerEl = document.getElementById('main-header') as HTMLElement | null;
+        const mobileMenuToggleEl = document.getElementById('mobile-menu-toggle') as HTMLElement | null;
+        const mobileMenuEl = document.getElementById('mobile-menu') as HTMLElement | null;
+        const languageButtonEl = document.getElementById('language-button') as HTMLElement | null;
+        const languageDropdownEl = document.getElementById('language-dropdown') as HTMLElement | null;
+        const navLinks = document.querySelectorAll<HTMLElement>('.nav-link');
+
+        // Bail out early if any critical element is missing
+        if (!headerEl || !mobileMenuToggleEl || !mobileMenuEl || !languageButtonEl || !languageDropdownEl) {
+            console.error('Required DOM elements not found');
+            return;
+        }
+
+        // Now that we've checked them, assert non-null for the rest of the code
+        const header = headerEl!;
+        const mobileMenuToggle = mobileMenuToggleEl!;
+        const mobileMenu = mobileMenuEl!;
+        const languageButton = languageButtonEl!;
+        const languageDropdown = languageDropdownEl!;
+
+        // Easing helper
+        function easeInOutCubic(t: number, b: number, c: number, d: number): number {
+            t /= d / 2;
+            if (t < 1) return (c / 2) * t * t * t + b;
+            t -= 2;
+            return (c / 2) * (t * t * t + 2) + b;
+        }
+
+        // Smooth‐scroll to an anchor by ID
+        function smoothScrollTo(targetId: string, duration = 1000): void {
+            const targetEl = document.getElementById(targetId);
+            if (!targetEl) return;
+
+            const startY = window.pageYOffset;
+            const endY = targetEl.getBoundingClientRect().top + startY - 80;
+            const distance = endY - startY;
+            let startTime: number | null = null;
+
+            function step(currentTime: number) {
+                if (startTime === null) startTime = currentTime;
+                const elapsed = currentTime - startTime;
+                const nextY = easeInOutCubic(elapsed, startY, distance, duration);
+                window.scrollTo(0, nextY);
+                if (elapsed < duration) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        // Toggle header class on scroll
+        function updateHeaderOnScroll(): void {
+            const scrolled = window.scrollY > 50;
+            header.classList.toggle('header-scrolled', scrolled);
+        }
+
+        // Mobile menu open/close
+        function toggleMobileMenu(): void {
+            const isOpen = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            const nextState = !isOpen;
+            mobileMenuToggle.setAttribute('aria-expanded', String(nextState));
+            mobileMenuToggle.querySelector('.hamburger')?.classList.toggle('active', nextState);
+            mobileMenu.classList.toggle('active', nextState);
+            document.body.style.overflow = nextState ? 'hidden' : '';
+        }
+
+        // Language dropdown open/close
+        function toggleLanguageDropdown(): void {
+            const isOpen = languageButton.getAttribute('aria-expanded') === 'true';
+            const nextState = !isOpen;
+            languageButton.setAttribute('aria-expanded', String(nextState));
+            languageDropdown.classList.toggle('active', nextState);
+
+            const arrow = languageButton.querySelector('svg:last-child') as SVGElement | null;
+            if (arrow) {
+                arrow.style.transform = nextState ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+        }
+
+        // Highlight the active nav link
+        function updateActiveNavLink(activeId: string): void {
+            navLinks.forEach((link) => {
+                const href = link.getAttribute('href');
+                if (href === `/#${activeId}`) link.classList.add('active');
+                else link.classList.remove('active');
+            });
+
+            // If mobile menu was open, close it after click
+            if (mobileMenu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        }
+
+        // Click handler for nav links
+        function handleNavClick(this: HTMLElement, e: Event): void {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('/#')) {
+                e.preventDefault();
+                const targetId = href.slice(2);
+
+                // Brief loading effect
+                this.style.opacity = '0.7';
+                this.style.transform = 'scale(0.95)';
+
+                smoothScrollTo(targetId);
+
+                setTimeout(() => {
+                    this.style.opacity = '';
+                    this.style.transform = '';
+                }, 300);
+
+                updateActiveNavLink(targetId);
+            }
+        }
+
+        // Click handler for selecting a language
+        function handleLanguageSelect(this: HTMLElement, e: Event): void {
+            e.preventDefault();
+            const langCode = this.getAttribute('data-lang')!;
+            const flagSvg = this.querySelector('svg')?.outerHTML ?? '';
+            const langText = this.querySelector('span')?.textContent ?? '';
+
+            document.getElementById('current-flag')!.innerHTML = flagSvg;
+            document.getElementById('current-lang')!.textContent = langText;
+
+            toggleLanguageDropdown();
+            console.log('Language changed to:', langCode);
+        }
+
+        // Scroll-spy to update the active section link
+        function handleScrollSpy(): void {
+            const sections = document.querySelectorAll<HTMLElement>('section[id]');
+            const scrollPos = window.scrollY + 150;
+
+            sections.forEach((section) => {
+                const top = section.offsetTop;
+                const bottom = top + section.offsetHeight;
+                const id = section.id;
+                if (scrollPos >= top && scrollPos < bottom) {
+                    updateActiveNavLink(id);
+                }
+            });
+        }
+
+        // Close menus when clicking outside
+        function handleOutsideClick(e: MouseEvent): void {
+            const tgt = e.target as Node;
+            if (
+                mobileMenu.classList.contains('active') &&
+                !mobileMenu.contains(tgt) &&
+                !mobileMenuToggle.contains(tgt)
+            ) {
+                toggleMobileMenu();
+            }
+            if (
+                languageDropdown.classList.contains('active') &&
+                !languageDropdown.contains(tgt) &&
+                !languageButton.contains(tgt)
+            ) {
+                toggleLanguageDropdown();
+            }
+        }
+
+        // Close menus on Escape key
+        function handleKeyDown(e: KeyboardEvent): void {
+            if (e.key === 'Escape') {
+                if (mobileMenu.classList.contains('active')) toggleMobileMenu();
+                if (languageDropdown.classList.contains('active')) toggleLanguageDropdown();
+            }
+        }
+
+        // Attach event listeners
+        window.addEventListener('scroll', () => {
+            updateHeaderOnScroll();
+            handleScrollSpy();
+        });
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        languageButton.addEventListener('click', toggleLanguageDropdown);
+        document.addEventListener('click', handleOutsideClick);
+        document.addEventListener('keydown', handleKeyDown);
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', handleNavClick);
+        });
+        languageDropdown.querySelectorAll<HTMLElement>('[data-lang]').forEach((item) => {
+            item.addEventListener('click', handleLanguageSelect);
+        });
+
+        // Initial invocation
+        updateHeaderOnScroll();
+        handleScrollSpy();
+
+        console.log('🚀 Enhanced Astro header initialized successfully!');
+    });
+
+    // Tailwind config must live on window
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = {
+        theme: {
+            extend: {
+                animation: {
+                    'pulse-soft': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    'fade-in-up': 'fadeInUp 0.6s ease-out',
+                    'slide-down': 'slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    'scale-in': 'scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    'bounce-gentle': 'bounceGentle 0.6s ease-out',
+                },
+                backdropBlur: {
+                    xs: '2px',
+                },
+            },
+        },
+    };
+</script>
+
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 20px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translate3d(0, -10px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes bounceGentle {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-4px);
+        }
+        60% {
+            transform: translateY(-2px);
+        }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #a855f7, #ec4899);
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #9333ea, #db2777);
+    }
+
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
+    }
+
+    /* Header backdrop effects */
+    .header-backdrop {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .header-scrolled {
+        background: rgba(0, 0, 0, 0.9) !important;
+        border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Mobile menu animations */
+    .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+    }
+
+    .mobile-menu.active {
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Hamburger animations */
+    .hamburger-line {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Language dropdown */
+    .language-dropdown {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px) scale(0.95);
+    }
+
+    .language-dropdown.active {
+        max-height: 200px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+
+    /* Nav link hover effects */
+    .nav-link {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
+    }
+
+    .nav-link:hover::before {
+        left: 0;
+    }
+
+    .nav-link.active {
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+        border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    /* Body padding for fixed header */
+    body {
+        padding-top: 80px;
+    }
+</style>
