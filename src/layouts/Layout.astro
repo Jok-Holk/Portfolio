@@ -41,10 +41,11 @@ import 'aos/dist/aos.css';
             import('aos')
                 .then((AOS) => {
                     AOS.init({
-                        duration: 800,
-                        easing: 'ease-out-quad',
+                        duration: 1000,
+                        easing: 'ease-in-out',
                         once: true,
-                        offset: 50,
+                        offset: 200,
+disable: window.innerWidth < 768
                     });
 
                     document.addEventListener('astro:after-swap', () => {
