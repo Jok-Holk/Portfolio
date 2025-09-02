@@ -386,47 +386,35 @@
             tailwind: any;
         }
     }
-
     document.addEventListener('DOMContentLoaded', () => {
-        // Grab all the elements once
         const headerEl = document.getElementById('main-header') as HTMLElement | null;
         const mobileMenuToggleEl = document.getElementById('mobile-menu-toggle') as HTMLElement | null;
         const mobileMenuEl = document.getElementById('mobile-menu') as HTMLElement | null;
         const languageButtonEl = document.getElementById('language-button') as HTMLElement | null;
         const languageDropdownEl = document.getElementById('language-dropdown') as HTMLElement | null;
         const navLinks = document.querySelectorAll<HTMLElement>('.nav-link');
-
-        // Bail out early if any critical element is missing
         if (!headerEl || !mobileMenuToggleEl || !mobileMenuEl || !languageButtonEl || !languageDropdownEl) {
             console.error('Required DOM elements not found');
             return;
         }
-
-        // Now that we've checked them, assert non-null for the rest of the code
         const header = headerEl!;
         const mobileMenuToggle = mobileMenuToggleEl!;
         const mobileMenu = mobileMenuEl!;
         const languageButton = languageButtonEl!;
         const languageDropdown = languageDropdownEl!;
-
-        // Easing helper
         function easeInOutCubic(t: number, b: number, c: number, d: number): number {
             t /= d / 2;
             if (t < 1) return (c / 2) * t * t * t + b;
             t -= 2;
             return (c / 2) * (t * t * t + 2) + b;
         }
-
-        // Smooth‐scroll to an anchor by ID
         function smoothScrollTo(targetId: string, duration = 1000): void {
             const targetEl = document.getElementById(targetId);
             if (!targetEl) return;
-
             const startY = window.pageYOffset;
             const endY = targetEl.getBoundingClientRect().top + startY - 80;
             const distance = endY - startY;
             let startTime: number | null = null;
-
             function step(currentTime: number) {
                 if (startTime === null) startTime = currentTime;
                 const elapsed = currentTime - startTime;
@@ -436,17 +424,12 @@
                     requestAnimationFrame(step);
                 }
             }
-
             requestAnimationFrame(step);
         }
-
-        // Toggle header class on scroll
         function updateHeaderOnScroll(): void {
             const scrolled = window.scrollY > 50;
             header.classList.toggle('header-scrolled', scrolled);
         }
-
-        // Mobile menu open/close
         function toggleMobileMenu(): void {
             const isOpen = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
             const nextState = !isOpen;
@@ -455,75 +438,48 @@
             mobileMenu.classList.toggle('active', nextState);
             document.body.style.overflow = nextState ? 'hidden' : '';
         }
-
-        // Language dropdown open/close
         function toggleLanguageDropdown(): void {
             const isOpen = languageButton.getAttribute('aria-expanded') === 'true';
             const nextState = !isOpen;
             languageButton.setAttribute('aria-expanded', String(nextState));
             languageDropdown.classList.toggle('active', nextState);
-
             const arrow = languageButton.querySelector('svg:last-child') as SVGElement | null;
             if (arrow) {
                 arrow.style.transform = nextState ? 'rotate(180deg)' : 'rotate(0deg)';
             }
         }
-
-        // Highlight the active nav link
         function updateActiveNavLink(activeId: string): void {
             navLinks.forEach((link) => {
                 const href = link.getAttribute('href');
                 if (href === `/#${activeId}`) link.classList.add('active');
                 else link.classList.remove('active');
             });
-
-            // If mobile menu was open, close it after click
             if (mobileMenu.classList.contains('active')) {
                 toggleMobileMenu();
             }
         }
-
-        // Click handler for nav links
         function handleNavClick(this: HTMLElement, e: Event): void {
             const href = this.getAttribute('href');
             if (href && href.startsWith('/#')) {
                 e.preventDefault();
                 const targetId = href.slice(2);
-
-                // Brief loading effect
-                this.style.opacity = '0.7';
-                this.style.transform = 'scale(0.95)';
-
                 smoothScrollTo(targetId);
-
-                setTimeout(() => {
-                    this.style.opacity = '';
-                    this.style.transform = '';
-                }, 300);
-
                 updateActiveNavLink(targetId);
             }
         }
-
-        // Click handler for selecting a language
         function handleLanguageSelect(this: HTMLElement, e: Event): void {
             e.preventDefault();
             const langCode = this.getAttribute('data-lang')!;
             const flagSvg = this.querySelector('svg')?.outerHTML ?? '';
             const langText = this.querySelector('span')?.textContent ?? '';
-
             document.getElementById('current-flag')!.innerHTML = flagSvg;
             document.getElementById('current-lang')!.textContent = langText;
-
             toggleLanguageDropdown();
             console.log('Language changed to:', langCode);
         }
-
-        // Scroll-spy to update the active section link
         function handleScrollSpy(): void {
             const sections = document.querySelectorAll<HTMLElement>('section[id]');
             const scrollPos = window.scrollY + 150;
-
             sections.forEach((section) => {
                 const top = section.offsetTop;
                 const bottom = top + section.offsetHeight;
@@ -533,8 +489,6 @@
                 }
             });
         }
-
-        // Close menus when clicking outside
         function handleOutsideClick(e: MouseEvent): void {
             const tgt = e.target as Node;
             if (
@@ -552,16 +506,12 @@
                 toggleLanguageDropdown();
             }
         }
-
-        // Close menus on Escape key
         function handleKeyDown(e: KeyboardEvent): void {
             if (e.key === 'Escape') {
                 if (mobileMenu.classList.contains('active')) toggleMobileMenu();
                 if (languageDropdown.classList.contains('active')) toggleLanguageDropdown();
             }
         }
-
-        // Attach event listeners
         window.addEventListener('scroll', () => {
             updateHeaderOnScroll();
             handleScrollSpy();
@@ -570,22 +520,15 @@
         languageButton.addEventListener('click', toggleLanguageDropdown);
         document.addEventListener('click', handleOutsideClick);
         document.addEventListener('keydown', handleKeyDown);
-
         navLinks.forEach((link) => {
             link.addEventListener('click', handleNavClick);
         });
         languageDropdown.querySelectorAll<HTMLElement>('[data-lang]').forEach((item) => {
             item.addEventListener('click', handleLanguageSelect);
         });
-
-        // Initial invocation
         updateHeaderOnScroll();
         handleScrollSpy();
-
-        console.log('🚀 Enhanced Astro header initialized successfully!');
     });
-
-    // Tailwind config must live on window
     window.tailwind = window.tailwind || {};
     window.tailwind.config = {
         theme: {
@@ -616,7 +559,6 @@
             transform: translate3d(0, 0, 0);
         }
     }
-
     @keyframes slideDown {
         from {
             opacity: 0;
@@ -627,7 +569,6 @@
             transform: translate3d(0, 0, 0);
         }
     }
-
     @keyframes scaleIn {
         from {
             opacity: 0;
@@ -638,7 +579,6 @@
             transform: scale(1);
         }
     }
-
     @keyframes bounceGentle {
         0%,
         20%,
@@ -654,44 +594,36 @@
             transform: translateY(-2px);
         }
     }
-
     /* Custom scrollbar */
     ::-webkit-scrollbar {
         width: 6px;
     }
-
     ::-webkit-scrollbar-track {
         background: #1a1a1a;
     }
-
     ::-webkit-scrollbar-thumb {
         background: linear-gradient(to bottom, #a855f7, #ec4899);
         border-radius: 3px;
     }
-
     ::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(to bottom, #9333ea, #db2777);
     }
-
     /* Smooth scrolling */
     html {
         scroll-behavior: smooth;
         scroll-padding-top: 100px;
     }
-
     /* Header backdrop effects */
     .header-backdrop {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .header-scrolled {
         background: rgba(0, 0, 0, 0.9) !important;
         border-bottom: 1px solid rgba(168, 85, 247, 0.3);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
-
     /* Mobile menu animations */
     .mobile-menu {
         max-height: 0;
@@ -701,33 +633,27 @@
         visibility: hidden;
         transform: translateY(-10px);
     }
-
     .mobile-menu.active {
         max-height: 500px;
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
-
     /* Hamburger animations */
     .hamburger-line {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         transform-origin: center;
     }
-
     .hamburger.active .hamburger-line:nth-child(1) {
         transform: rotate(45deg) translate(6px, 6px);
     }
-
     .hamburger.active .hamburger-line:nth-child(2) {
         opacity: 0;
         transform: scaleX(0);
     }
-
     .hamburger.active .hamburger-line:nth-child(3) {
         transform: rotate(-45deg) translate(6px, -6px);
     }
-
     /* Language dropdown */
     .language-dropdown {
         max-height: 0;
@@ -737,21 +663,17 @@
         visibility: hidden;
         transform: translateY(-10px) scale(0.95);
     }
-
     .language-dropdown.active {
         max-height: 200px;
         opacity: 1;
         visibility: visible;
         transform: translateY(0) scale(1);
     }
-
     /* Nav link hover effects */
     .nav-link {
         position: relative;
         overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .nav-link::before {
         content: '';
         position: absolute;
@@ -763,16 +685,13 @@
         transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: -1;
     }
-
     .nav-link:hover::before {
         left: 0;
     }
-
     .nav-link.active {
         background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
-        border: 1px solid rgba(168, 85, 247, 0.3);
+        transition: none; /* No transition for instant change */
     }
-
     /* Body padding for fixed header */
     body {
         padding-top: 80px;

@@ -176,8 +176,6 @@
 
     const lastUpdatedElement = document.getElementById('last-updated') as HTMLElement | null;
 
-    const backToTopButton = document.getElementById('backToTop') as HTMLButtonElement | null;
-
     // 2. Update copyright year
     const currentYear = new Date().getFullYear();
     if (copyrightElement) {
@@ -218,24 +216,6 @@
         .querySelectorAll<HTMLElement>('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right')
         .forEach((el) => observer.observe(el));
 
-    // 5. Back to top functionality
-    function toggleBackToTop() {
-        if (!backToTopButton) return;
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
-    }
-
-    window.addEventListener('scroll', toggleBackToTop);
-
-    if (backToTopButton) {
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
     // 6. Smooth scroll for anchor links
     document.querySelectorAll<HTMLAnchorElement>('a[href^="/#"]').forEach((anchor) => {
         anchor.addEventListener(
@@ -275,19 +255,6 @@
     document.addEventListener('mousedown', () => {
         document.body.classList.remove('keyboard-navigation');
     });
-
-    // 8. Throttle scroll events for performance
-    let ticking = false;
-    function requestTick() {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                toggleBackToTop();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-    window.addEventListener('scroll', requestTick);
 </script>
 <style>
     @keyframes fadeInUp {

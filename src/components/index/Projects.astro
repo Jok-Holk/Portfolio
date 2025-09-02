@@ -7,11 +7,7 @@ const projects = await getCollection('projects');
 <section id="projects" class="text-gray-300 font-mono pb-20 md:pb-40">
     <div class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 pt-32 md:pt-48 lg:pt-64 mx-auto">
         <!-- Header with AOS -->
-        <div
-            class="flex items-center text-purple-600 gap-3 md:gap-4 mb-12 md:mb-16"
-            data-aos="fade-up"
-            data-aos-delay="100"
-        >
+        <div class="flex items-center text-purple-600 gap-3 md:gap-4 mb-12 md:mb-16">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -32,7 +28,7 @@ const projects = await getCollection('projects');
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
             {
                 projects.map((item, index) => (
-                    <div data-aos="fade-up" data-aos-delay={`${index * 150}`}>
+                    <div>
                         <ProjectCard
                             title={item.data.title}
                             description={item.body}

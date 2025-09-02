@@ -3,22 +3,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/tailwind.css';
 
-import 'aos/dist/aos.css';
-
-interface Props {
-    title: string;
-}
-
-const { title } = Astro.props;
-
-import 'aos/dist/aos.css';
+const { title = 'JokHolk Realm' } = Astro.props;
 ---
 
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,8 +19,6 @@ import 'aos/dist/aos.css';
             href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
             rel="stylesheet"
         />
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     </head>
     <body class="bg-black text-gray-300">
         <Header />
@@ -36,24 +26,5 @@ import 'aos/dist/aos.css';
             <slot />
         </main>
         <Footer />
-
-        <script>
-            import('aos')
-                .then((AOS) => {
-                    AOS.init({
-                        duration: 800,
-                        easing: 'ease-out-quad',
-                        once: true,
-                        offset: 50,
-                    });
-
-                    document.addEventListener('astro:after-swap', () => {
-                        AOS.refresh();
-                    });
-                })
-                .catch((error) => {
-                    console.error('Failed to load AOS:', error);
-                });
-        </script>
     </body>
 </html>
