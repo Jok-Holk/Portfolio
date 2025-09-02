@@ -1,0 +1,63 @@
+<div class="fixed inset-0 pointer-events-none z-[1]">
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div>
+
+<style>
+    .firefly {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: #d500d5;
+        border-radius: 50%;
+        box-shadow:
+            0 0 15px 5px rgba(213, 0, 213, 0.7),
+            0 0 30px 10px rgba(213, 0, 213, 0.3);
+        animation: flutter 5s infinite ease-in-out;
+    }
+
+    @keyframes flutter {
+        0%,
+        100% {
+            transform: translate(0, 0);
+            opacity: 0.9;
+        }
+        25% {
+            transform: translate(calc(-50px + 100px * var(--random-x)), calc(-40dvh + 80dvh * var(--random-y)));
+            opacity: 0.5;
+        }
+        50% {
+            transform: translate(calc(-75px + 150px * var(--random-x)), calc(-80dvh + 160dvh * var(--random-y)));
+            opacity: 0.3;
+        }
+        75% {
+            transform: translate(calc(-50px + 100px * var(--random-x)), calc(-40dvh + 80dvh * var(--random-y)));
+            opacity: 0.5;
+        }
+    }
+</style>
+
+<script>
+    const fireflies = document.querySelectorAll('.firefly');
+    fireflies.forEach((firefly) => {
+        const el = firefly as HTMLElement;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const delay = Math.random() * 3;
+        const duration = 3 + Math.random() * 3;
+        el.style.left = `${x}%`;
+        el.style.top = `${y}%`;
+        el.style.animationDelay = `${delay}s`;
+        el.style.animationDuration = `${duration}s`;
+        el.style.setProperty('--random-x', Math.random().toString());
+        el.style.setProperty('--random-y', Math.random().toString());
+    });
+</script>

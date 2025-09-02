@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import fetchApi from '../../lib/strapi';
 import type Article from '../../interfaces/article';
 import BlogListWithSearch from '../../components/BlogListWithSearch.vue';
-
+import Firefly from '../../components/Firefly.astro';
 const articles = await fetchApi<Article[]>({
     endpoint: 'articles?populate=*',
     wrappedByKey: 'data',
@@ -11,6 +11,7 @@ const articles = await fetchApi<Article[]>({
 ---
 
 <Layout title="JokHolk Blogs">
+    <Firefly />
     <section
         class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 mx-auto my-16 sm:my-20 md:my-24 lg:my-32 text-gray-300 font-mono min-h-screen"
     >

@@ -6,12 +6,16 @@
                 <!-- Main Heading -->
                 <h1
                     class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-2 sm:mb-4 font-mono hover-lift"
+                    data-animate
+                    data-direction="top"
                 >
                     Hello,
                 </h1>
 
                 <h1
                     class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-6 sm:mb-8 md:mb-12 font-mono hover-lift"
+                    data-animate
+                    data-direction="left"
                 >
                     I'm <span class="gradient-text animate-glow font-mono">Jok</span>
                 </h1>
@@ -19,6 +23,8 @@
                 <!-- Typed Text -->
                 <h2
                     class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 font-mono text-gray-400 min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[4rem]"
+                    data-animate
+                    data-direction="left"
                 >
                     <span class="text-purple-600 hidden sm:inline">&gt;</span>
                     <span id="typed-text"></span>
@@ -27,6 +33,7 @@
                 <!-- Description -->
                 <h3
                     class="text-sm sm:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 font-mono text-gray-400 leading-relaxed max-w-2xl"
+                    data-animate
                 >
                     Welcome to my digital realm — built with passion. I'm a student of
                     <span class="text-purple-400 hover:text-purple-300 transition-colors">software</span> and
@@ -48,6 +55,8 @@
                         src="/avatar.png"
                         alt="Jok's Avatar"
                         loading="lazy"
+                        data-animate
+                        data-direction="right"
                     />
                 </div>
             </div>
@@ -80,7 +89,7 @@
             typeSpeed: 50,
             backSpeed: 30,
             backDelay: 1500,
-            startDelay: 800,
+            startDelay: 2050,
             loop: true,
             cursorChar: '|',
             contentType: 'html',
@@ -99,6 +108,7 @@
         new Typed(typedEl, options);
     });
 </script>
+
 <style>
     @keyframes glow {
         0%,
