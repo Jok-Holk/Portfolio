@@ -2,10 +2,12 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel';
-// https://astro.build/config
+import vercel from '@astrojs/vercel/serverless'; // Use serverless for SSR
+
 export default defineConfig({
     integrations: [vue(), tailwind()],
-    output: 'server',
-    adapter: vercel(),
+    output: 'server', // SSR mode
+    adapter: vercel({
+        webAnalytics: { enabled: true }, // Optional: enable Vercel analytics
+    }),
 });
