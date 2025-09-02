@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import fetchApi from '../../lib/strapi';
 import type Article from '../../interfaces/article';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
     const articles = await fetchApi<Article[]>({
         endpoint: '/articles?populate=*',
