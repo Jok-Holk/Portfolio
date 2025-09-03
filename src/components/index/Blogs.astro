@@ -32,7 +32,7 @@ const articles = await fetchApi<Article[]>({
         <!-- Blog Grid -->
         <ul class="grid grid-cols-1 gap-6 md:gap-8 font-mono">
             {
-                articles.slice(0, 3).map((article, index) => (
+                articles.slice(0, 3).map((article) => (
                     <li
                         class="blog-card border-2 border-purple-600/30 rounded-xl p-6 md:p-8 transition-all duration-500 ease-out hover:border-purple-500/60 hover:bg-gradient-to-br hover:from-purple-900/10 hover:via-blue-900/5 hover:to-pink-900/10 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2"
                         data-animate
@@ -45,7 +45,7 @@ const articles = await fetchApi<Article[]>({
                             {article.image && (
                                 <div class="image-container flex-shrink-0 overflow-hidden rounded-lg">
                                     <img
-                                        src={`${article.image.url}`}
+                                        src={`${import.meta.env.STRAPI_URL}${article.image.url}`}
                                         alt={article.title}
                                         class="w-full lg:w-32 xl:w-40 h-24 lg:h-24 xl:h-28 object-cover rounded-lg transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
                                         loading="lazy"

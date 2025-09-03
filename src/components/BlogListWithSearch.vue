@@ -1,3 +1,66 @@
+<script setup>
+const strapiUrl = import.meta.env.STRAPI_URL;
+
+import { ref, computed, onMounted } from 'vue';
+
+const props = defineProps({
+    articles: {
+        type: Array,
+        required: true,
+    },
+});
+
+const searchQuery = ref('');
+const isSearching = ref(false);
+
+// Computed filtered articles with better search logic
+const filteredArticles = computed(() => {
+    if (!searchQuery.value.trim()) {
+        return props.articles;
+    }
+
+    const query = searchQuery.value.toLowerCase().trim();
+
+    return props.articles.filter((article) => {
+        const titleMatch = article.title.toLowerCase().includes(query);
+        const tagsMatch = article.Article?.some((tag) => tag.name.toLowerCase().includes(query)) || false;
+
+        return titleMatch || tagsMatch;
+    });
+});
+
+// Enhanced search input handler
+const onSearchInput = () => {
+    isSearching.value = true;
+    setTimeout(() => {
+        isSearching.value = false;
+    }, 300);
+};
+
+// Clear search function
+const clearSearch = () => {
+    searchQuery.value = '';
+};
+
+// Enhanced date formatting
+const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+};
+
+// Animation on mount
+onMounted(() => {
+    const cards = document.querySelectorAll('.article-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 100}ms`;
+        card.classList.add('animate-fade-in-up');
+    });
+});
+</script>
+
 <template>
     <div class="space-y-8 md:space-y-12">
         <!-- Enhanced Search Bar -->
@@ -80,7 +143,7 @@
                                 class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             ></div>
                             <img
-                                :src="article.image.formats?.medium?.url || article.image.url"
+                                :src="`${strapiUrl}${article.image.formats?.medium?.url || article.image.url}`"
                                 :alt="article.title"
                                 class="w-full lg:w-40 xl:w-48 h-32 md:h-36 lg:h-32 xl:h-36 object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
                                 loading="lazy"
@@ -186,67 +249,6 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { ref, computed, onMounted } from 'vue';
-
-const props = defineProps({
-    articles: {
-        type: Array,
-        required: true,
-    },
-});
-
-const searchQuery = ref('');
-const isSearching = ref(false);
-
-// Computed filtered articles with better search logic
-const filteredArticles = computed(() => {
-    if (!searchQuery.value.trim()) {
-        return props.articles;
-    }
-
-    const query = searchQuery.value.toLowerCase().trim();
-
-    return props.articles.filter((article) => {
-        const titleMatch = article.title.toLowerCase().includes(query);
-        const tagsMatch = article.Article?.some((tag) => tag.name.toLowerCase().includes(query)) || false;
-
-        return titleMatch || tagsMatch;
-    });
-});
-
-// Enhanced search input handler
-const onSearchInput = () => {
-    isSearching.value = true;
-    setTimeout(() => {
-        isSearching.value = false;
-    }, 300);
-};
-
-// Clear search function
-const clearSearch = () => {
-    searchQuery.value = '';
-};
-
-// Enhanced date formatting
-const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-};
-
-// Animation on mount
-onMounted(() => {
-    const cards = document.querySelectorAll('.article-card');
-    cards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 100}ms`;
-        card.classList.add('animate-fade-in-up');
-    });
-});
-</script>
 
 <style scoped>
 @keyframes fade-in-up {
