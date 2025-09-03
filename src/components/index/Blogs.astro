@@ -43,7 +43,7 @@ const articles = await fetchApi<Article[]>({
                             class="group flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6 transition-all duration-300 ease-in-out hover:text-purple-400"
                         >
                             {article.image && (
-                                <div class="image-container flex-shrink-0 overflow-hidden rounded-lg aspect-[4/3]">
+                                <div class="image-container flex-shrink-0 overflow-hidden rounded-lg">
                                     <img
                                         src={`${article.image.url}`}
                                         alt={article.title}
