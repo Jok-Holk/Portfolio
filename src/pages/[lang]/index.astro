@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Home from '../../components/index/Home.astro';
+import About from '../../components/index/About.astro';
+import Education from '../../components/index/Education.astro';
+import Experience from '../../components/index/Experience.astro';
+import Project from '../../components/index/Projects.astro';
+import Blog from '../../components/index/Blogs.astro';
+import Portfolio from '../../components/index/Portfolio.astro';
+import Contact from '../../components/index/Contact.astro';
+import Firefly from '../../components/Firefly.astro';
+
+import { getTranslations } from '../../locales';
+
+export async function getStaticPaths() {
+    return [{ params: { lang: 'en' } }, { params: { lang: 'vi' } }];
+}
+
+const { lang } = Astro.params;
+const translations = await getTranslations(lang);
+---
+
+<Layout title={translations?.title}>
+    <head>
+        <meta name="description" content={translations.description} />
+        <meta property="og:title" content={translations.title} />
+        <meta property="og:description" content={translations.description} />
+        <meta property="og:image" content="/avatar.png" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:locale" content={lang} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={translations.title} />
+        <meta name="twitter:description" content={translations.description} />
+        <meta name="twitter:image" content="/avatar.png" />
+    </head>
+    <Firefly />
+    <Home translations={translations} currentLang={lang} />
+    <About translations={translations} currentLang={lang} />
+    <Education translations={translations} currentLang={lang} />
+    <Experience translations={translations} currentLang={lang} />
+    <Project translations={translations} currentLang={lang} />
+    <Blog translations={translations} currentLang={lang} />
+    <Portfolio translations={translations} currentLang={lang} />
+    <Contact translations={translations} currentLang={lang} />
+</Layout>

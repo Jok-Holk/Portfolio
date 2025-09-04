@@ -1,0 +1,208 @@
+{
+    "title": "Không gian ảo của Thái",
+    "description": "Chào mừng bạn đến với không gian ảo của tôi, nơi tôi chia sẻ về phát triển phần mềm, phát triển game indie và hành trình trở thành chuyên gia an ninh mạng.",
+    "titleBlog": "Bài viết của Thái",
+    "blogContent": {
+        "goback": "Quay lại",
+        "myJournals": "Nhật ký của tôi",
+        "search": {
+            "placeholder": "Tìm kiếm bài viết theo tiêu đề hoặc tag...",
+            "result": "kết quả",
+            "results": "kết quả",
+            "found": "được tìm thấy",
+            "noArticlesFoundTitle": "Không tìm thấy bài viết nào",
+            "noArticlesFoundDescription": "Thử tìm kiếm với từ khóa khác hoặc",
+            "clearSearch": "xóa tìm kiếm"
+        }
+    },
+    "slugBlog": {
+        "backToBlogs": "Quay lại trang blog",
+        "publishedOn": "Được xuất bản vào:",
+        "readmore": "Đọc thêm bài viết",
+        "thanksforreading": "Cảm ơn bạn đã đọc! ✨"
+    },
+    "header": {
+        "home": "Trang chủ",
+        "about": "Giới thiệu",
+        "education": "Học vấn",
+        "experience": "Kinh nghiệm",
+        "projects": "Dự án",
+        "blogs": "Bài viết",
+        "portfolios": "Hồ sơ",
+        "contact": "Liên hệ"
+    },
+    "home": {
+        "hello": "Xin chào,",
+        "Iam": "Tôi là",
+        "name": "Thái",
+        "description-0": "Chào mừng bạn đến với không gian ảo của tôi — được xây dựng bằng đam mê. Tôi là một sinh viên về",
+        "description-1": "phần mềm",
+        "description-2": "và",
+        "description-3": "phát triển game",
+        "description-4": "tạo ra",
+        "description-5": "trang web",
+        "description-6": "ứng dụng",
+        "description-7": "game indie",
+        "description-8": "với mục tiêu trở thành",
+        "description-9": "chuyên gia an ninh mạng",
+        "type-strings": ["Kỹ sư phần mềm", "Nhà phát triển game indie", "Freelancer web", "Thực tập sinh an ninh mạng"]
+    },
+    "about": {
+        "title": "Về tôi",
+        "description-0": "Tôi là một sinh viên đang học",
+        "description-1": "phát triển phần mềm và trò chơi",
+        "description-2": "không ngừng học hỏi thông qua việc xây dựng",
+        "description-3": "ứng dụng",
+        "description-4": "trang web",
+        "description-5": "và",
+        "description-6": "game indie",
+        "description-7": "Những dự án này không chỉ nuôi dưỡng sự sáng tạo mà còn củng cố nền tảng của tôi về",
+        "description-8": "lập trình",
+        "description-9": "và",
+        "description-10": "thiết kế phần mềm",
+        "description-11": "mà tôi xem là những bước đi thiết yếu hướng tới mục tiêu lâu dài.",
+
+        "description-12": "Hướng chính của tôi là",
+        "description-13": "an ninh mạng",
+        "description-14": "Tôi mong muốn tìm hiểu sâu về bảo vệ hệ thống, hacking có đạo đức và các chiến lược phòng thủ để hiểu rõ hơn cách công nghệ có thể được bảo vệ.",
+        "description-15": "Đồng thời, tôi cũng nhận các dự án",
+        "description-16": "web tự do",
+        "description-17": "với những công cụ hiện đại như",
+        "description-18": "Astro",
+        "description-19": "và khám phá việc xây dựng một",
+        "description-20": "studio game indie",
+        "description-21": "Những trải nghiệm này không phải là đích đến cuối cùng, nhưng chúng mang lại cơ hội rèn luyện lập trình quý giá và mở rộng góc nhìn, giúp tôi mạnh mẽ hơn trên con đường hướng tới sự nghiệp trong lĩnh vực an ninh mạng."
+    },
+    "education": {
+        "title": "Học vấn",
+        "items": [
+            {
+                "institution": "Đại học trực tuyến FUNiX",
+                "program": "Chương trình Kỹ sư Phần mềm",
+                "dates": "Tháng 10 năm 2023 - Hiện tại",
+                "status": "Hiện tại",
+                "details": ["Học trực tuyến", "Phát triển phần mềm"]
+            },
+            {
+                "institution": "Cao đẳng FPT Polytechnic",
+                "program": "Lập trình Game",
+                "dates": "Tháng 1 năm 2025 - Hiện tại",
+                "status": "Mới",
+                "details": ["Phát triển game", "Học truyền thống"]
+            }
+        ]
+    },
+    "experience": {
+        "title": "kinh nghiệm"
+    },
+    "projects": {
+        "title": "dự án"
+    },
+    "blogs": {
+        "title": "bài viết",
+        "viewAllButton": "Kho lưu trữ bài viết"
+    },
+    "portfolio": {
+        "title": "hồ sơ",
+        "socials": {
+            "tryhackme": {
+                "title": "Hồ sơ TryHackMe",
+                "description": "Xem hành trình và thành tựu an ninh mạng của tôi trên TryHackMe.",
+                "cta": "Nhấn để khám phá →"
+            },
+            "facebook": {
+                "title": "Hồ sơ Facebook",
+                "description": "Hãy kết nối! Theo dõi các dự án, hiểu biết sâu sắc và mọi điều tôi đam mê.",
+                "cta": "Kết nối với tôi →"
+            },
+            "github": {
+                "title": "Hồ sơ GitHub",
+                "description": "Khám phá các đóng góp mã nguồn mở và dự án cá nhân của tôi.",
+                "cta": "Xem dự án →"
+            },
+            "discord": {
+                "title": "Hồ sơ Discord",
+                "description": "Kết nối với tôi trên Discord để trò chuyện về công nghệ, dự án hoặc bất cứ điều gì khác.",
+                "cta": "Trò chuyện ngay →"
+            }
+        }
+    },
+    "contact": {
+        "title": "liên hệ",
+        "form": {
+            "name": {
+                "label": "Họ và tên",
+                "firstNamePlaceholder": "Tên",
+                "lastNamePlaceholder": "Họ"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "emailcủa.bạn@ví_dụ.com"
+            },
+            "phone": {
+                "label": "Điện thoại",
+                "optional": "(Tùy chọn)",
+                "placeholder": "vd: +84 123 456 789"
+            },
+            "message": {
+                "label": "Tin nhắn",
+                "placeholder": "Hãy cho tôi biết về dự án, ý tưởng của bạn, hoặc chỉ đơn giản là gửi lời chào! Tôi rất mong được nghe từ bạn...",
+                "charCount": "0 / 500 ký tự"
+            },
+            "submitButton": "Gửi tin nhắn"
+        },
+        "successMessage": {
+            "title": "Cảm ơn!",
+            "text": "Tin nhắn của bạn đã được gửi thành công. Tôi sẽ liên hệ lại với bạn trong vòng 24 giờ.",
+            "sendAnotherButton": "Gửi tin nhắn khác"
+        }
+    },
+
+    "footer": {
+        "quickLinksTitle": "Liên kết nhanh",
+        "connectTitle": "Kết nối",
+        "quickLinks": [
+            {
+                "name": "Trang chủ",
+                "url": "/${currentLang}#home"
+            },
+            {
+                "name": "Giới thiệu",
+                "url": "/${currentLang}#about"
+            },
+            {
+                "name": "Học vấn",
+                "url": "/${currentLang}#education"
+            },
+            {
+                "name": "Kinh nghiệm",
+                "url": "/${currentLang}#experience"
+            },
+            {
+                "name": "Dự án",
+                "url": "/${currentLang}#projects"
+            },
+            {
+                "name": "Bài viết",
+                "url": "/${currentLang}#blogs"
+            },
+            {
+                "name": "Hồ sơ",
+                "url": "/${currentLang}#portfolios"
+            },
+            {
+                "name": "Liên hệ",
+                "url": "/${currentLang}#contact"
+            }
+        ],
+        "brand": {
+            "builtWith": "Được xây dựng với ",
+            "heartAndAstroTailwind": "❤️ bằng Astro & Tailwind",
+            "craftedFor": "Được chế tác để tối ưu hiệu suất & khả năng tiếp cận",
+            "status": "Trực tuyến & Sẵn sàng"
+        },
+        "copyright": "Thái Nguyễn. Tất cả các quyền được bảo lưu.",
+        "location": "Làm tại Việt Nam 🇻🇳",
+        "updatedText": "Cập nhật"
+    }
+}

@@ -8,6 +8,7 @@ const experienceCollection = defineCollection({
         time: z.string(),
         techs: z.array(z.string()),
         url: z.string().url(),
+        lang: z.enum(['en', 'vi']).default('en'),
     }),
 });
 const projectsCollection = defineCollection({
@@ -17,6 +18,7 @@ const projectsCollection = defineCollection({
         tags: z.array(z.string()),
         codeLink: z.string().url(),
         demoLink: z.string().url().optional(),
+        lang: z.enum(['en', 'vi']).default('en'),
     }),
 });
 

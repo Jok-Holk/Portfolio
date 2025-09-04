@@ -1,16 +1,25 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import fetchApi from '../../lib/strapi';
-import type Article from '../../interfaces/article';
-import BlogListWithSearch from '../../components/BlogListWithSearch.vue';
-import Firefly from '../../components/Firefly.astro';
+import Layout from '../../../layouts/Layout.astro';
+import fetchApi from '../../../lib/strapi';
+import type Article from '../../../interfaces/article';
+import BlogListWithSearch from '../../../components/BlogListWithSearch.vue';
+import Firefly from '../../../components/Firefly.astro';
+
+import { getTranslations } from '../../../locales';
+export async function getStaticPaths() {
+    return [{ params: { lang: 'en' } }, { params: { lang: 'vi' } }];
+}
+const { lang } = Astro.params;
+const translations = await getTranslations(lang);
 const articles = await fetchApi<Article[]>({
-    endpoint: 'articles?populate=*',
+    endpoint: `articles?populate=*&locale=${lang}`,
     wrappedByKey: 'data',
 });
+
+const strapiUrl = import.meta.env.STRAPI_URL;
 ---
 
-<Layout title="JokHolk Blogs">
+<Layout title={translations?.titleBlog}>
     <Firefly />
     <section
         class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 mx-auto my-16 sm:my-20 md:my-24 lg:my-32 text-gray-300 font-mono min-h-screen"
@@ -18,7 +27,7 @@ const articles = await fetchApi<Article[]>({
         <!-- Back Button with Animation -->
         <div class="animate-fade-in-left mb-8 md:mb-12">
             <a
-                href="/#blogs"
+                href={`/${lang}/`}
                 class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg text-purple-400 font-mono transition-all duration-300 hover:text-purple-300 hover:scale-105"
             >
                 <svg
@@ -31,14 +40,14 @@ const articles = await fetchApi<Article[]>({
                 >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
                 </svg>
-                <span class="underline-on-hover">Go back</span>
+                <span class="underline-on-hover"> {translations?.blogContent?.goback}</span>
             </a>
         </div>
 
         <!-- Page Title with Animation -->
         <div class="animate-fade-in-up mb-8 md:mb-12">
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
-                My Journals
+                {translations?.blogContent?.myJournals}
             </h1>
             <div
                 class="h-1 w-20 sm:w-24 md:w-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-gradient"
@@ -48,7 +57,13 @@ const articles = await fetchApi<Article[]>({
 
         <!-- Blog List Component -->
         <div class="animate-fade-in-up opacity-0" style="animation-delay: 300ms; animation-fill-mode: forwards;">
-            <BlogListWithSearch client:visible articles={articles} />
+            <BlogListWithSearch
+                articles={articles}
+                translations={translations}
+                lang={lang}
+                strapiUrl={strapiUrl}
+                client:visible
+            />
         </div>
     </section>
 </Layout>

@@ -1,3 +1,7 @@
+---
+const { translations, currentLang } = Astro.props;
+---
+
 <section id="portfolio" class="text-gray-300 font-mono min-h-screen py-20 md:py-40">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32">
         <!-- Header with improved responsive spacing -->
@@ -16,7 +20,9 @@
                     d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
                 ></path>
             </svg>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">portfolios</h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">
+                {translations?.portfolio?.title}
+            </h1>
         </div>
 
         <!-- Grid with improved responsive breakpoints -->
@@ -35,20 +41,20 @@
                         <h3
                             class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
                         >
-                            TryHackMe Profile
+                            {translations?.portfolio?.socials?.tryhackme?.title}
                         </h3>
                     </div>
                     <p
                         class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
                     >
-                        View my cybersecurity journey and achievements on TryHackMe.
+                        {translations?.portfolio?.socials?.tryhackme?.description}
                     </p>
                 </div>
                 <div class="mt-4 sm:mt-6 flex justify-between items-center">
                     <span
                         class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
-                        Click to explore →
+                        {translations?.portfolio?.socials?.tryhackme?.cta}
                     </span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -81,20 +87,20 @@
                         <h3
                             class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
                         >
-                            Facebook Profile
+                            {translations?.portfolio?.socials?.facebook?.title}
                         </h3>
                     </div>
                     <p
                         class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
                     >
-                        Let's connect! Follow my latest projects, insights, and everything I'm passionate about
+                        {translations?.portfolio?.socials?.facebook?.description}
                     </p>
                 </div>
                 <div class="mt-4 sm:mt-6 flex justify-between items-center">
                     <span
                         class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
-                        Connect with me →
+                        {translations?.portfolio?.socials?.facebook?.cta}
                     </span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -127,20 +133,20 @@
                         <h3
                             class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
                         >
-                            GitHub Profile
+                            {translations?.portfolio?.socials?.github?.title}
                         </h3>
                     </div>
                     <p
                         class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
                     >
-                        Explore my open-source contributions and personal projects.
+                        {translations?.portfolio?.socials?.github?.description}
                     </p>
                 </div>
                 <div class="mt-4 sm:mt-6 flex justify-between items-center">
                     <span
                         class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
-                        View projects →
+                        {translations?.portfolio?.socials?.github?.cta}
                     </span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -173,20 +179,20 @@
                         <h3
                             class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
                         >
-                            Discord Profile
+                            {translations?.portfolio?.socials?.discord?.title}
                         </h3>
                     </div>
                     <p
                         class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
                     >
-                        Feel free to connect with me on Discord to chat about tech, projects, or anything else.
+                        {translations?.portfolio?.socials?.discord?.description}
                     </p>
                 </div>
                 <div class="mt-4 sm:mt-6 flex justify-between items-center">
                     <span
                         class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
-                        Let's chat →
+                        {translations?.portfolio?.socials?.discord?.cta}
                     </span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

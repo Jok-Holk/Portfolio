@@ -3,10 +3,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Loader from '../components/Loader.astro';
 import '../styles/tailwind.css';
-const { title = 'JokHolk Realm' } = Astro.props;
+import { getTranslations, getLangFromUrl } from '../locales';
+const currentLang = getLangFromUrl(Astro.url);
+const translations = await getTranslations(currentLang);
+
+const { title } = Astro.props;
 ---
 
-<html lang="en">
+<html lang={currentLang}>
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -24,11 +28,11 @@ const { title = 'JokHolk Realm' } = Astro.props;
         <div id="loader" class="loader">
             <Loader />
         </div>
-        <Header />
+        <Header translations={translations} currentLang={currentLang} />
         <main>
             <slot />
         </main>
-        <Footer />
+        <Footer translations={translations} currentLang={currentLang} />
         <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.umd.js" is:inline></script>
         <script src="/scripts/scroll-animate.js" is:inline></script>
     </body>

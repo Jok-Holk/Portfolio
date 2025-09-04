@@ -3,6 +3,7 @@ title: 'Rogue Adeventure'
 tags: ['Unity', 'C#', 'Game Development', '2D Platformer']
 codeLink: 'https://github.com/Jok-Holk/du-an-1'
 demoLink: 'https://jok-holk.itch.io/rogue-adventure'
+lang: 'en'
 ---
 
 This is a 2D pixel platformer game project created as part of my coursework. Rogue Adventure is a small platformer that helped me apply my knowledge and gain a deeper understanding of the development process.

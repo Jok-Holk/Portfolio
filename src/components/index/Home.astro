@@ -1,3 +1,7 @@
+---
+const { translations, currentLang } = Astro.props;
+---
+
 <section id="home" class="text-gray-300 body-font flex items-center">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 py-16 sm:py-24 lg:py-32">
         <div class="flex flex-col lg:flex-row items-center justify-center">
@@ -9,7 +13,7 @@
                     data-animate
                     data-direction="top"
                 >
-                    Hello,
+                    {translations?.home?.hello}
                 </h1>
 
                 <h1
@@ -17,7 +21,10 @@
                     data-animate
                     data-direction="left"
                 >
-                    I'm <span class="gradient-text animate-glow font-mono rounded-2xl px-1">Jok</span>
+                    {translations?.home?.Iam}
+                    <span class="gradient-text animate-glow font-mono rounded-2xl px-1">
+                        {translations?.home?.name}
+                    </span>
                 </h1>
 
                 <!-- Typed Text -->
@@ -25,6 +32,8 @@
                     class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 font-mono text-gray-400 min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[4rem]"
                     data-animate
                     data-direction="left"
+                    id="typed-container"
+                    data-strings={JSON.stringify(translations?.home?.['type-strings'] || [])}
                 >
                     <span class="text-purple-600 hidden sm:inline">&gt;</span>
                     <span id="typed-text"></span>
@@ -35,15 +44,28 @@
                     class="text-sm sm:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 font-mono text-gray-400 leading-relaxed max-w-2xl"
                     data-animate
                 >
-                    Welcome to my digital realm — built with passion. I'm a student of
-                    <span class="text-purple-400 hover:text-purple-300 transition-colors">software</span> and
-                    <span class="text-purple-400 hover:text-purple-300 transition-colors">game development</span>,
-                    creating
-                    <span class="text-purple-400 hover:text-purple-300 transition-colors">web</span>,
-                    <span class="text-purple-400 hover:text-purple-300 transition-colors">apps</span>, and
-                    <span class="text-purple-400 hover:text-purple-300 transition-colors">indie games</span>, with a
-                    goal to become a
-                    <span class="text-purple-400 hover:text-purple-300 transition-colors">cybersecurity expert</span>.
+                    {translations?.home?.['description-0']}{' '}
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">
+                        {translations?.home?.['description-1']}</span
+                    >{' '}
+                    {translations?.home?.['description-2']}{' '}
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">
+                        {translations?.home?.['description-3']}</span
+                    >,{' '}
+                    {translations?.home?.['description-4']}{' '}
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">
+                        {translations?.home?.['description-5']}</span
+                    >,{' '}
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">
+                        {translations?.home?.['description-6']}</span
+                    >,{' '}and{' '}
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">
+                        {translations?.home?.['description-7']}</span
+                    >,{' '}
+                    {translations?.home?.['description-8']}{' '}
+                    <span class="text-purple-400 hover:text-purple-300 transition-colors">
+                        {translations?.home?.['description-9']}</span
+                    >.
                 </h3>
             </div>
 
@@ -70,6 +92,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         // 1. Cast the target element
+        const container = document.getElementById('typed-container');
+        if (!container) return;
         const typedEl = document.querySelector('#typed-text') as HTMLElement | null;
         const parentEl = typedEl?.parentElement as HTMLElement | null;
 
@@ -78,14 +102,9 @@
             return;
         }
 
-        // 2. Build options with proper types
+        const strings = JSON.parse(container.getAttribute('data-strings') || '[]');
         const options: TypedOptions = {
-            strings: [
-                'A Software Engineer',
-                'An Indie Game Developer',
-                'A Web Freelancer',
-                'A Cybersecurity Apprentice',
-            ],
+            strings,
             typeSpeed: 50,
             backSpeed: 30,
             backDelay: 1500,
@@ -190,5 +209,10 @@
     .avatar-glow:hover {
         box-shadow: 0 0 70px rgba(168, 85, 247, 0.5);
         transform: scale(1.05);
+    }
+
+    span .text-purple-400 {
+        display: inline;
+        white-space: nowrap;
     }
 </style>

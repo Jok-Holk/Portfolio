@@ -1,6 +1,4 @@
 <script setup>
-const strapiUrl = import.meta.env.STRAPI_URL;
-
 import { ref, computed, onMounted } from 'vue';
 
 const props = defineProps({
@@ -8,12 +6,23 @@ const props = defineProps({
         type: Array,
         required: true,
     },
+    translations: {
+        type: Object,
+        required: true,
+    },
+    lang: {
+        type: String,
+        required: true,
+    },
+    strapiUrl: {
+        type: String,
+        required: true,
+    },
 });
 
 const searchQuery = ref('');
 const isSearching = ref(false);
 
-// Computed filtered articles with better search logic
 const filteredArticles = computed(() => {
     if (!searchQuery.value.trim()) {
         return props.articles;
@@ -23,13 +32,12 @@ const filteredArticles = computed(() => {
 
     return props.articles.filter((article) => {
         const titleMatch = article.title.toLowerCase().includes(query);
-        const tagsMatch = article.Article?.some((tag) => tag.name.toLowerCase().includes(query)) || false;
+        const tagsMatch = article.category?.some((tag) => tag.name.toLowerCase().includes(query)) || false;
 
         return titleMatch || tagsMatch;
     });
 });
 
-// Enhanced search input handler
 const onSearchInput = () => {
     isSearching.value = true;
     setTimeout(() => {
@@ -37,21 +45,18 @@ const onSearchInput = () => {
     }, 300);
 };
 
-// Clear search function
 const clearSearch = () => {
     searchQuery.value = '';
 };
 
-// Enhanced date formatting
 const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString(props.lang, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
 };
 
-// Animation on mount
 onMounted(() => {
     const cards = document.querySelectorAll('.article-card');
     cards.forEach((card, index) => {
@@ -63,14 +68,13 @@ onMounted(() => {
 
 <template>
     <div class="space-y-8 md:space-y-12">
-        <!-- Enhanced Search Bar -->
         <div class="search-container animate-fade-in-up">
             <div class="relative w-full max-w-2xl mx-auto">
                 <div class="relative group">
                     <input
                         type="text"
                         v-model="searchQuery"
-                        placeholder="Search blogs by title or tags..."
+                        :placeholder="props.translations?.blogContent?.search?.placeholder"
                         class="w-full px-6 py-4 pr-14 text-base md:text-lg text-gray-300 bg-gray-800/80 backdrop-blur-sm border-2 border-purple-600/50 rounded-2xl focus:outline-none focus:ring-4 focus:ring-purple-500/30 focus:border-purple-400 transition-all duration-500 placeholder-gray-500 hover:border-purple-500/70 hover:bg-gray-800/90 font-mono"
                         :class="{
                             'border-purple-400 ring-4 ring-purple-500/30': searchQuery.length > 0,
@@ -79,7 +83,6 @@ onMounted(() => {
                         @input="onSearchInput"
                     />
 
-                    <!-- Search Icon -->
                     <div
                         class="absolute right-5 top-1/2 -translate-y-1/2 transition-all duration-300"
                         :class="{
@@ -103,25 +106,28 @@ onMounted(() => {
                         </svg>
                     </div>
 
-                    <!-- Search Results Counter -->
                     <transition name="slide-down">
                         <div
                             v-if="searchQuery.length > 0"
                             class="absolute -bottom-8 left-0 text-sm text-purple-300 font-mono"
                         >
-                            {{ filteredArticles.length }} result{{ filteredArticles.length !== 1 ? 's' : '' }} found
+                            {{ filteredArticles.length }}
+                            {{
+                                filteredArticles.length > 1
+                                    ? translations?.blogContent?.search?.results
+                                    : translations?.blogContent?.search?.result
+                            }}
+                            {{ translations?.blogContent?.search?.found }}
                         </div>
                     </transition>
                 </div>
 
-                <!-- Decorative Elements -->
                 <div
                     class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200 animate-tilt pointer-events-none"
                 ></div>
             </div>
         </div>
 
-        <!-- Enhanced Articles Grid -->
         <div class="font-mono">
             <transition-group name="article-list" tag="ul" class="grid grid-cols-1 gap-6 md:gap-8 lg:gap-10">
                 <li
@@ -131,10 +137,9 @@ onMounted(() => {
                     :style="`animation-delay: ${index * 100}ms`"
                 >
                     <a
-                        :href="`/blog/${article.slug}/`"
+                        :href="`/${lang}/blog/${article.slug}/`"
                         class="flex flex-col lg:flex-row items-start lg:items-center gap-4 md:gap-6 lg:gap-8"
                     >
-                        <!-- Enhanced Image -->
                         <div
                             v-if="article.image"
                             class="image-container flex-shrink-0 overflow-hidden rounded-xl relative"
@@ -143,20 +148,17 @@ onMounted(() => {
                                 class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             ></div>
                             <img
-                                :src="`${strapiUrl}${article.image.formats?.medium?.url || article.image.url}`"
+                                :src="`${props.strapiUrl}${article.image.formats?.medium?.url || article.image.url}`"
                                 :alt="article.title"
                                 class="w-full lg:w-40 xl:w-48 h-32 md:h-36 lg:h-32 xl:h-36 object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
                                 loading="lazy"
                             />
-                            <!-- Image Overlay -->
                             <div
                                 class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                             ></div>
                         </div>
 
-                        <!-- Content Section -->
                         <div class="flex-1 min-w-0 space-y-3 md:space-y-4">
-                            <!-- Date -->
                             <div class="flex items-center gap-2 text-xs sm:text-sm text-gray-500 font-medium">
                                 <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path
@@ -168,7 +170,6 @@ onMounted(() => {
                                 {{ formatDate(article.publish_date) }}
                             </div>
 
-                            <!-- Title with Arrow -->
                             <div class="flex items-start gap-3 md:gap-4">
                                 <h3
                                     class="text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl text-white font-bold transition-all duration-300 ease-in-out group-hover:text-purple-400 leading-tight flex-1 line-clamp-2"
@@ -191,10 +192,12 @@ onMounted(() => {
                                 </svg>
                             </div>
 
-                            <!-- Tags -->
-                            <div v-if="article.Article && article.Article.length > 0" class="flex flex-wrap gap-2 mt-3">
+                            <div
+                                v-if="article.category && article.category.length > 0"
+                                class="flex flex-wrap gap-2 mt-3"
+                            >
                                 <span
-                                    v-for="(tag, tagIndex) in article.Article"
+                                    v-for="(tag, tagIndex) in article.category"
                                     :key="tag.id"
                                     class="tag-item px-3 py-1.5 text-xs sm:text-sm text-purple-200 rounded-full bg-purple-900/50 border border-purple-700/50 backdrop-blur-sm transition-all duration-300 hover:bg-purple-800/60 hover:border-purple-600/70 hover:scale-105 hover:-translate-y-0.5"
                                     :style="`animation-delay: ${index * 100 + tagIndex * 50}ms`"
@@ -205,14 +208,12 @@ onMounted(() => {
                         </div>
                     </a>
 
-                    <!-- Shimmer Effect -->
                     <div
                         class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transform transition-transform duration-1000 ease-out pointer-events-none"
                     ></div>
                 </li>
             </transition-group>
 
-            <!-- Enhanced No Results -->
             <transition name="fade">
                 <div v-if="filteredArticles.length === 0 && searchQuery.length > 0" class="text-center py-16 md:py-20">
                     <div class="space-y-4 md:space-y-6">
@@ -233,14 +234,16 @@ onMounted(() => {
                                 />
                             </svg>
                         </div>
-                        <h3 class="text-xl md:text-2xl text-white font-bold">No articles found</h3>
+                        <h3 class="text-xl md:text-2xl text-white font-bold">
+                            {{ props.translations?.blogContent?.search?.noArticlesFoundTitle }}
+                        </h3>
                         <p class="text-gray-400 text-base md:text-lg max-w-md mx-auto">
-                            Try searching with different keywords or
+                            {{ props.translations?.blogContent?.search?.noArticlesFoundDescription }}
                             <button
                                 @click="clearSearch"
                                 class="text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors duration-200"
                             >
-                                clear your search
+                                {{ props.translations?.blogContent?.search?.clearSearch }}
                             </button>
                         </p>
                     </div>

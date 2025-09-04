@@ -1,7 +1,9 @@
 ---
 import ExperienceCard from './ExperienceCard.astro';
 import { getCollection } from 'astro:content';
-const experiences = await getCollection('experience');
+
+const { translations, currentLang } = Astro.props;
+const experiences = await getCollection('experience', ({ data }) => data.lang === currentLang);
 ---
 
 <section id="experience" class="text-gray-300 body-font relative overflow-hidden">
@@ -41,7 +43,9 @@ const experiences = await getCollection('experience');
                 </svg>
             </div>
             <div class="relative overflow-hidden">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-mono ml-2">experience</h1>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-mono ml-2">
+                    {translations?.experience?.title}
+                </h1>
             </div>
         </div>
 

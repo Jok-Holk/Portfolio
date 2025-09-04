@@ -1,3 +1,14 @@
+---
+const { translations, currentLang } = Astro.props;
+
+const copyrightText = translations.footer.copyright;
+const updatedText = translations.footer.updatedText;
+const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
+    month: 'short',
+    day: 'numeric',
+});
+---
+
 <!-- Footer -->
 <footer class="text-gray-400 font-mono footer-gradient relative overflow-hidden" data-animate data-direction="bottom">
     <!-- Background decoration -->
@@ -15,17 +26,35 @@
             <div class="animate-slide-in-left stagger-1">
                 <div class="flex items-center gap-2 mb-6">
                     <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse-custom"></div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">Quick Links</h3>
+                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">
+                        {translations?.footer?.quickLinksTitle}
+                    </h3>
                 </div>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm sm:text-base">
-                    <a href="/#home" class="link-hover-effect text-gray-400">Home</a>
-                    <a href="/#about" class="link-hover-effect text-gray-400">About</a>
-                    <a href="/#education" class="link-hover-effect text-gray-400">Education</a>
-                    <a href="/#experience" class="link-hover-effect text-gray-400">Experience</a>
-                    <a href="/#projects" class="link-hover-effect text-gray-400">Projects</a>
-                    <a href="/#blogs" class="link-hover-effect text-gray-400">Blogs</a>
-                    <a href="/#portfolios" class="link-hover-effect text-gray-400">Portfolios</a>
-                    <a href="/#contact" class="link-hover-effect text-gray-400">Contact</a>
+                    <a href={`/${currentLang}#home`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[0]?.name}</a
+                    >
+                    <a href={`/${currentLang}#about`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[1]?.name}</a
+                    >
+                    <a href={`/${currentLang}#education`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[2]?.name}</a
+                    >
+                    <a href={`/${currentLang}#experience`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[3]?.name}</a
+                    >
+                    <a href={`/${currentLang}#projects`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[4]?.name}</a
+                    >
+                    <a href={`/${currentLang}#blogs`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[5]?.name}
+                    </a>
+                    <a href={`/${currentLang}#portfolios`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[6]?.name}</a
+                    >
+                    <a href={`/${currentLang}#contact`} class="link-hover-effect text-gray-400"
+                        >{translations?.footer?.quickLinks[7]?.name}</a
+                    >
                 </div>
             </div>
 
@@ -33,7 +62,9 @@
             <div class="animate-fade-in-up stagger-2">
                 <div class="flex items-center gap-2 mb-6">
                     <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse-custom"></div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">Connect</h3>
+                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">
+                        {translations?.footer?.connectTitle}
+                    </h3>
                 </div>
                 <div class="flex flex-col gap-4">
                     <a
@@ -142,12 +173,13 @@
 
                     <div class="space-y-2 text-sm sm:text-base">
                         <p class="text-gray-300">
-                            <span class="font-semibold">Built with</span> ❤️ using Astro & Tailwind
+                            <span class="font-semibold">{translations?.footer?.brand?.builtWith}</span>
+                            {translations?.footer?.brand?.heartAndAstroTailwind}
                         </p>
-                        <p class="text-gray-400">Crafted for performance & accessibility</p>
+                        <p class="text-gray-400">{translations?.footer?.brand?.craftedFor}</p>
                         <div class="flex items-center gap-2 mt-4">
                             <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse-custom"></div>
-                            <span class="text-xs text-green-400">Online & Available</span>
+                            <span class="text-xs text-green-400">{translations?.footer?.brand?.status}</span>
                         </div>
                     </div>
                 </div>
@@ -163,41 +195,30 @@
             </p>
 
             <div class="flex items-center gap-4 text-xs sm:text-sm text-gray-500 order-1 sm:order-2">
-                <span>Made in Vietnam 🇻🇳</span>
+                <span>{translations?.footer?.location}</span>
                 <span>•</span>
                 <span id="last-updated">Updated recently</span>
             </div>
         </div>
     </div>
 </footer>
-<script>
+<script define:vars={{ copyrightText, updatedText, formattedDate }}>
     // 1. Typed DOM references
-    const copyrightElement = document.getElementById('copyright') as HTMLElement | null;
-
-    const lastUpdatedElement = document.getElementById('last-updated') as HTMLElement | null;
+    const copyrightElement = document.getElementById('copyright');
+    const lastUpdatedElement = document.getElementById('last-updated');
 
     // 2. Update copyright year
     const currentYear = new Date().getFullYear();
     if (copyrightElement) {
-        copyrightElement.textContent = `© ${currentYear} Jok Holk. All rights reserved.`;
+        copyrightElement.textContent = `© ${currentYear} ${copyrightText}`;
     }
 
     // 3. Update last updated time
     if (lastUpdatedElement) {
-        const now = new Date();
-        const options: Intl.DateTimeFormatOptions = {
-            month: 'short',
-            day: 'numeric',
-        };
-        // only include year field if it differs
-        if (now.getFullYear() !== currentYear) {
-            options.year = 'numeric';
-        }
-        lastUpdatedElement.textContent = `Updated ${now.toLocaleDateString('en-US', options)}`;
+        lastUpdatedElement.textContent = `${updatedText} ${formattedDate}`;
     }
-
-    // 4. Intersection Observer for animations
-    const observerOptions: IntersectionObserverInit = {
+    // 4. Intersection Observer cho animations
+    const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px',
     };
@@ -205,7 +226,7 @@
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                const el = entry.target as HTMLElement;
+                const el = entry.target;
                 el.style.opacity = '1';
                 el.style.transform = 'translateY(0) translateX(0)';
             }
@@ -213,19 +234,21 @@
     }, observerOptions);
 
     document
-        .querySelectorAll<HTMLElement>('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right')
+        .querySelectorAll('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right')
         .forEach((el) => observer.observe(el));
 
-    // 6. Smooth scroll for anchor links
-    document.querySelectorAll<HTMLAnchorElement>('a[href^="/#"]').forEach((anchor) => {
+    document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
         anchor.addEventListener(
             'click',
-            function (e: MouseEvent) {
+            function (e) {
                 e.preventDefault();
-                const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+                const href = e.currentTarget.getAttribute('href');
                 if (!href) return;
 
-                const targetId = href.slice(2);
+                const hashIndex = href.indexOf('#');
+                if (hashIndex === -1) return;
+
+                const targetId = href.slice(hashIndex + 1);
                 const targetElement = document.getElementById(targetId);
 
                 if (targetElement) {
@@ -234,16 +257,13 @@
                         block: 'start',
                     });
                 } else {
-                    // fallback to normal navigation
                     window.location.href = href;
                 }
             },
             false,
         );
     });
-
-    // 7. Keyboard navigation & ESC key
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
             document.body.classList.add('keyboard-navigation');
         }

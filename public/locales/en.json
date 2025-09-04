@@ -1,0 +1,203 @@
+{
+    "title": "JokHolk Realm",
+    "description": "JokHolk's personal portfolio website showcasing software development, game projects, and cybersecurity journey.",
+    "titleBlog": "JokHolk Blogs",
+    "blogContent": {
+        "goback": "Go back",
+        "myJournals": "My Journals",
+        "search": {
+            "placeholder": "Search blogs by title or tags...",
+            "result": "result",
+            "results": "results",
+            "found": "found",
+            "noArticlesFoundTitle": "No articles found",
+            "noArticlesFoundDescription": "Try searching with different keywords or",
+            "clearSearch": "clear your search"
+        }
+    },
+    "slugBlog": {
+        "backToBlogs": "Back to blogs",
+        "publishedOn": "Published on:",
+        "readmore": "Read more articles",
+        "thanksforreading": "Thanks for reading! ✨"
+    },
+    "header": {
+        "home": "Home",
+        "about": "About",
+        "education": "Education",
+        "experience": "Experience",
+        "projects": "Projects",
+        "blogs": "Blogs",
+        "portfolios": "Portfolios",
+        "contact": "Contact"
+    },
+    "home": {
+        "hello": "Hello,",
+        "Iam": "I'm",
+        "name": "Jok",
+        "description-0": "Welcome to my digital realm — built with passion. I'm a student of",
+        "description-1": "software",
+        "description-2": "and",
+        "description-3": "game development",
+        "description-4": "creating",
+        "description-5": "web",
+        "description-6": "apps",
+        "description-7": "indie games",
+        "description-8": "with a goal to become a",
+        "description-9": "cybersecurity expert",
+        "type-strings": [
+            "A Software Engineer",
+            "An Indie Game Developer",
+            "A Web Freelancer",
+            "A Cybersecurity Apprentice"
+        ]
+    },
+    "about": {
+        "title": "About Me",
+        "description-0": "I'm a student studying",
+        "description-1": "software and game development",
+        "description-2": "constantly learning through building",
+        "description-3": "apps",
+        "description-4": "websites",
+        "description-5": "and",
+        "description-6": "indie games",
+        "description-7": "These projects not only fuel my creativity but also strengthen my foundation in",
+        "description-8": "programming",
+        "description-9": "and",
+        "description-10": "software design",
+        "description-11": "which I see as essential steps toward my long-term goals.",
+        "description-12": "My main direction is",
+        "description-13": "cybersecurity",
+        "description-14": "I aim to dive into system protection, ethical hacking, and defensive strategies to better understand how technology can be safeguarded.",
+        "description-15": "At the same time, I take on freelance",
+        "description-16": "web projects",
+        "description-17": "with modern tools like",
+        "description-18": "Astro",
+        "description-19": "and explore building an",
+        "description-20": "indie game studio",
+        "description-21": "These experiences aren't my final destination, but they provide valuable programming practice and broaden my perspective, making me stronger as I move toward a career in cybersecurity."
+    },
+    "education": {
+        "title": "education",
+        "items": [
+            {
+                "institution": "FUNiX Online University",
+                "program": "Software Engineer Program",
+                "dates": "October 2023 - Present",
+                "status": "Current",
+                "details": ["Online Learning", "Software Development"]
+            },
+            {
+                "institution": "FPT Polytechnic College",
+                "program": "Game Programming",
+                "dates": "January 2025 - Present",
+                "status": "New",
+                "details": ["Game Development", "Traditional Learning"]
+            }
+        ]
+    },
+    "experience": {
+        "title": "experience"
+    },
+    "projects": {
+        "title": "projects"
+    },
+    "blogs": {
+        "title": "blogs",
+        "viewAllButton": "View Blogs Archive"
+    },
+    "portfolio": {
+        "title": "portfolios",
+        "socials": {
+            "tryhackme": {
+                "title": "TryHackMe Profile",
+                "description": "View my cybersecurity journey and achievements on TryHackMe.",
+                "cta": "Click to explore →"
+            },
+            "facebook": {
+                "title": "Facebook Profile",
+                "description": "Let's connect! Follow my latest projects, insights, and everything I'm passionate about",
+                "cta": "Connect with me →"
+            },
+            "github": {
+                "title": "GitHub Profile",
+                "description": "Explore my open-source contributions and personal projects.",
+                "cta": "View projects →"
+            },
+            "discord": {
+                "title": "Discord Profile",
+                "description": "Feel free to connect with me on Discord to chat about tech, projects, or anything else.",
+                "cta": "Let's chat →"
+            }
+        }
+    },
+    "contact": {
+        "title": "contact",
+        "form": {
+            "name": {
+                "label": "Name",
+                "firstNamePlaceholder": "First Name",
+                "lastNamePlaceholder": "Last Name"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "your.email@example.com"
+            },
+            "phone": {
+                "label": "Phone",
+                "optional": "(Optional)",
+                "placeholder": "e.g. +84 123 456 789"
+            },
+            "message": {
+                "label": "Message",
+                "placeholder": "Tell me about your project, your ideas, or just say hello! I'd love to hear from you...",
+                "charCount": "0 / 500 characters"
+            },
+            "submitButton": "Send Message"
+        },
+        "successMessage": {
+            "title": "Thank you!",
+            "text": "Your message has been sent successfully. I will get back to you within 24 hours.",
+            "sendAnotherButton": "Send another message"
+        }
+    },
+    "footer": {
+        "quickLinksTitle": "Quick Links",
+        "connectTitle": "Connect",
+        "quickLinks": [
+            {
+                "name": "Home"
+            },
+            {
+                "name": "About"
+            },
+            {
+                "name": "Education"
+            },
+            {
+                "name": "Experience"
+            },
+            {
+                "name": "Projects"
+            },
+            {
+                "name": "Blogs"
+            },
+            {
+                "name": "Portfolios"
+            },
+            {
+                "name": "Contact"
+            }
+        ],
+        "brand": {
+            "builtWith": "Built with ",
+            "heartAndAstroTailwind": "❤️ using Astro & Tailwind",
+            "craftedFor": "Crafted for performance & accessibility",
+            "status": "Online & Available"
+        },
+        "copyright": "Jok Holk. All rights reserved.",
+        "location": "Made in Vietnam 🇻🇳",
+        "updatedText": "Updated"
+    }
+}

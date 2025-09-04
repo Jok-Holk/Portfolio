@@ -1,23 +1,37 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import fetchApi from '../../lib/strapi';
-import type Article from '../../interfaces/article';
+import Layout from '../../../layouts/Layout.astro';
+import fetchApi from '../../../lib/strapi';
+import type Article from '../../../interfaces/article';
+
+import { getTranslations } from '../../../locales';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-    const articles = await fetchApi<Article[]>({
-        endpoint: '/articles?populate=*',
-        wrappedByKey: 'data',
-    });
-    return articles.map((article) => ({
-        params: { slug: article.slug },
-        props: article,
-    }));
+    const supportedLangs = ['en', 'vi'];
+    const paths = [];
+
+    for (const lang of supportedLangs) {
+        const articles = await fetchApi<Article[]>({
+            endpoint: `articles?populate=*&locale=${lang}`,
+            wrappedByKey: 'data',
+        });
+
+        for (const article of articles) {
+            paths.push({
+                params: { lang, slug: article.slug },
+                props: { article },
+            });
+        }
+    }
+    return paths;
 }
 
-type Props = Article;
-const article = Astro.props;
+const { lang, slug } = Astro.params;
+
+const translations = await getTranslations(lang);
+
+const { article } = Astro.props;
 ---
 
 <Layout title={article.title}>
@@ -28,7 +42,7 @@ const article = Astro.props;
             <!-- Back Navigation -->
             <div class="animate-fade-in-left mb-8 md:mb-12">
                 <a
-                    href="/blog/"
+                    href=`/${lang}/blog/`
                     class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg text-purple-400 font-mono transition-all duration-300 hover:text-purple-300 hover:scale-105"
                 >
                     <svg
@@ -42,7 +56,7 @@ const article = Astro.props;
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
                         ></path>
                     </svg>
-                    <span class="underline-on-hover">Back to blogs</span>
+                    <span class="underline-on-hover">{translations?.slugBlog?.backToBlogs}</span>
                 </a>
             </div>
 
@@ -98,8 +112,9 @@ const article = Astro.props;
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="font-medium">
-                                    Published on: {
-                                        new Date(article.publish_date).toLocaleDateString('en-US', {
+                                    {translations?.slugBlog?.publishedOn}
+                                    {
+                                        new Date(article.publish_date).toLocaleDateString(lang, {
                                             year: 'numeric',
                                             month: 'long',
                                             day: 'numeric',
@@ -128,7 +143,7 @@ const article = Astro.props;
                 <div class="h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent mb-8"></div>
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-4">
                     <a
-                        href="/blog/"
+                        href=`/${lang}/blog/`
                         class="group inline-flex items-center gap-3 text-base sm:text-lg text-purple-400 font-mono transition-all duration-300 hover:text-purple-300 hover:scale-105"
                     >
                         <svg
@@ -141,10 +156,10 @@ const article = Astro.props;
                                 d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        <span class="underline-on-hover">Read more articles</span>
+                        <span class="underline-on-hover">{translations?.slugBlog?.readmore}</span>
                     </a>
 
-                    <div class="text-sm text-gray-500 font-mono">Thanks for reading! ✨</div>
+                    <div class="text-sm text-gray-500 font-mono">{translations?.slugBlog?.thanksforreading}</div>
                 </div>
             </footer>
         </div>

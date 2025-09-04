@@ -1,3 +1,7 @@
+---
+const { translations, currentLang } = Astro.props;
+---
+
 <section id="education" class="text-gray-300 body-font py-20 md:py-40">
     <div class="container px-5 md:px-20 lg:px-32 pt-16 md:pt-24 lg:pt-32 mx-auto">
         <!-- Header with animation -->
@@ -17,7 +21,9 @@
                     d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
                 ></path>
             </svg>
-            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-mono ml-2">education</h1>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-mono ml-2">
+                {translations?.education?.title}
+            </h1>
         </div>
 
         <!-- Timeline -->
@@ -62,19 +68,19 @@
                             class="block mb-2 text-sm md:text-base font-normal leading-none text-purple-500 dark:text-purple-400
                                    transform transition-colors duration-300 hover:text-purple-300"
                         >
-                            October 2023 - Present
+                            {translations?.education?.items[0]?.dates}
                         </time>
 
                         <h3
                             class="flex items-center mb-1 text-lg md:text-xl font-semibold text-gray-900 dark:text-white
                                  transform transition-colors duration-300 hover:text-purple-300"
                         >
-                            FUNiX Online University
+                            {translations?.education?.items[0]?.institution}
                             <span
                                 class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded
                      dark:bg-purple-900 dark:text-purple-300 ml-3 hover:scale-105"
                             >
-                                Current
+                                {translations?.education?.items[0]?.status}
                             </span>
                         </h3>
 
@@ -82,7 +88,7 @@
                             class="mb-2 md:mb-4 text-base md:text-lg font-normal text-gray-500 dark:text-gray-400
                                  transform transition-colors duration-300 hover:text-gray-300"
                         >
-                            Software Engineer Program
+                            {translations?.education?.items[0]?.program}
                         </p>
 
                         <!-- Additional details with stagger animation -->
@@ -91,13 +97,13 @@
                                 class="inline-flex items-center px-2 py-1 text-xs font-medium text-purple-800 bg-purple-100 rounded-full
                                        dark:bg-purple-900 dark:text-purple-300 transform transition-all duration-300 hover:scale-105"
                             >
-                                🎓 Online Learning
+                                🎓 {translations?.education?.items[0]?.details[0]}
                             </span>
                             <span
                                 class="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-full
                                        dark:bg-blue-900 dark:text-blue-300 transform transition-all duration-300 hover:scale-105"
                             >
-                                💻 Software Development
+                                💻 {translations?.education?.items[0]?.details[1]}
                             </span>
                         </div>
                     </li>
@@ -134,19 +140,19 @@
                             class="block mb-2 text-sm md:text-base font-normal leading-none text-purple-500 dark:text-purple-400
                                    transform transition-colors duration-300 hover:text-purple-300"
                         >
-                            January 2025 - Present
+                            {translations?.education?.items[1]?.dates}
                         </time>
 
                         <h3
                             class="mb-1 text-lg md:text-xl font-semibold text-gray-900 dark:text-white
            transform transition-colors duration-300 hover:text-purple-300 flex flex-wrap items-center gap-2"
                         >
-                            FPT Polytechnic College
+                            {translations?.education?.items[1]?.institution}
                             <span
                                 class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded
                dark:bg-green-900 dark:text-green-300 hover:scale-105 ml-3 me-2"
                             >
-                                New
+                                {translations?.education?.items[1]?.status}
                             </span>
                         </h3>
 
@@ -154,7 +160,7 @@
                             class="text-base md:text-lg font-normal text-gray-500 dark:text-gray-400
                                  transform transition-colors duration-300 hover:text-gray-300 mb-2 md:mb-4"
                         >
-                            Game Programming
+                            {translations?.education?.items[1]?.program}
                         </p>
 
                         <!-- Additional details with stagger animation -->
@@ -163,13 +169,13 @@
                                 class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full
                                        dark:bg-green-900 dark:text-green-300 transform transition-all duration-300 hover:scale-105"
                             >
-                                🎮 Game Development
+                                🎮 {translations?.education?.items[1]?.details[0]}
                             </span>
                             <span
                                 class="inline-flex items-center px-2 py-1 text-xs font-medium text-orange-800 bg-orange-100 rounded-full
                                        dark:bg-orange-900 dark:text-orange-300 transform transition-all duration-300 hover:scale-105"
                             >
-                                🏫 Traditional Learning
+                                🏫 {translations?.education?.items[1]?.details[1]}
                             </span>
                         </div>
                     </li>

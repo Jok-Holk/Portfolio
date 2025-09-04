@@ -1,7 +1,9 @@
 ---
 import ProjectCard from './ProjectCard.astro';
 import { getCollection } from 'astro:content';
-const projects = await getCollection('projects');
+
+const { translations, currentLang } = Astro.props;
+const projects = await getCollection('projects', ({ data }) => data.lang === currentLang);
 ---
 
 <section id="projects" class="text-gray-300 font-mono pb-20 md:pb-40">
@@ -21,7 +23,9 @@ const projects = await getCollection('projects');
                     stroke-linejoin="round"
                     d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"></path>
             </svg>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white ml-1 md:ml-2">projects</h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white ml-1 md:ml-2">
+                {translations?.projects?.title}
+            </h1>
         </div>
 
         <!-- Projects Grid with AOS -->

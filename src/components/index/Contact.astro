@@ -1,3 +1,7 @@
+---
+const { translations } = Astro.props;
+---
+
 <section id="contact" class="text-gray-300 font-mono min-h-screen py-8 sm:py-16">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32">
         <!-- Header with improved responsive spacing -->
@@ -16,7 +20,9 @@
                     d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.903l-11.25 6.75a2.25 2.25 0 01-2.108 0L2.25 9.196V6.75"
                 ></path>
             </svg>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold tracking-wider">contact</h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold tracking-wider">
+                {translations?.contact?.title}
+            </h1>
         </div>
 
         <!-- Contact Form -->
@@ -31,7 +37,7 @@
                             class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold"
                         >
                             <span class="inline-block w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></span>
-                            Name
+                            {translations?.contact?.form?.name?.label}
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="relative">
@@ -40,7 +46,7 @@
                                     name="firstName"
                                     id="firstName"
                                     class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                                    placeholder="First Name"
+                                    placeholder={translations?.contact?.form?.name?.firstNamePlaceholder}
                                     required
                                 />
                                 <div class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -53,7 +59,7 @@
                                     name="lastName"
                                     id="lastName"
                                     class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                                    placeholder="Last Name"
+                                    placeholder={translations?.contact?.form?.name?.lastNamePlaceholder}
                                     required
                                 />
                                 <div class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -67,7 +73,7 @@
                     <div class="group">
                         <label for="email" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
                             <span class="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-                            Email
+                            {translations?.contact?.form?.email?.label}
                         </label>
                         <div class="relative">
                             <input
@@ -75,7 +81,7 @@
                                 name="email"
                                 id="email"
                                 class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                                placeholder="your.email@example.com"
+                                placeholder={translations?.contact?.form?.email?.placeholder}
                                 required
                             />
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -88,7 +94,10 @@
                     <div class="group">
                         <label for="phone" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
                             <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                            Phone <span class="text-sm text-gray-400 font-normal">(Optional)</span>
+                            {translations?.contact?.form?.phone?.label}
+                            <span class="text-sm text-gray-400 font-normal"
+                                >{translations?.contact?.form?.phone?.optional}</span
+                            >
                         </label>
                         <div class="relative">
                             <input
@@ -96,7 +105,7 @@
                                 name="phone"
                                 id="phone"
                                 class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                                placeholder="e.g. +84 123 456 789"
+                                placeholder={translations?.contact?.form?.phone?.placeholder}
                             />
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3">
                                 <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
@@ -109,7 +118,7 @@
                 <div class="flex flex-col" data-animate data-direction="right">
                     <label for="message" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
                         <span class="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse"></span>
-                        Message
+                        {translations?.contact?.form?.message?.label}
                     </label>
                     <div class="relative flex-1">
                         <textarea
@@ -117,13 +126,13 @@
                             id="message"
                             rows="8"
                             class="w-full h-full min-h-[200px] lg:min-h-[300px] bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg p-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 resize-none"
-                            placeholder="Tell me about your project, ideas, or just say hello! I'd love to hear from you..."
+                            placeholder={translations?.contact?.form?.message?.placeholder}
                             required></textarea>
                         <div class="absolute top-4 right-4">
                             <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
                         </div>
                         <div class="absolute bottom-4 right-4 text-xs text-gray-500" id="char-count">
-                            0 / 500 characters
+                            {translations?.contact?.form?.message?.charCount}
                         </div>
                     </div>
                 </div>
@@ -144,7 +153,7 @@
                                 stroke-width="2"
                                 d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                         </svg>
-                        Send Message
+                        {translations?.contact?.form?.submitButton}
                     </span>
                 </button>
             </div>
@@ -164,15 +173,15 @@
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Thank you!</h2>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">{translations?.contact?.successMessage?.title}</h2>
                 <p class="text-lg sm:text-xl text-gray-300 leading-relaxed">
-                    Your message has been sent successfully. I will get back to you within 24 hours.
+                    {translations?.contact?.successMessage?.text}
                 </p>
                 <button
                     id="send-another-btn"
                     class="mt-6 text-purple-400 hover:text-purple-300 transition-colors duration-300 underline"
                 >
-                    Send another message
+                    {translations?.contact?.successMessage?.sendAnotherButton}
                 </button>
             </div>
         </div>
