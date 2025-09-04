@@ -23,6 +23,16 @@ const { title } = Astro.props;
             href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
             rel="stylesheet"
         />
+        <meta name="description" content={translations.description} />
+        <meta property="og:title" content={translations.title} />
+        <meta property="og:description" content={translations.description} />
+        <meta property="og:image" content="/avatar.png" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:locale" content={currentLang} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={translations.title} />
+        <meta name="twitter:description" content={translations.description} />
+        <meta name="twitter:image" content="/avatar.png" />
     </head>
     <body class="bg-black text-gray-300">
         <div id="loader" class="loader">

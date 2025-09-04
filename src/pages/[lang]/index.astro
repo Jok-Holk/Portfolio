@@ -21,18 +21,6 @@ const translations = await getTranslations(lang);
 ---
 
 <Layout title={translations?.title}>
-    <head>
-        <meta name="description" content={translations.description} />
-        <meta property="og:title" content={translations.title} />
-        <meta property="og:description" content={translations.description} />
-        <meta property="og:image" content="/avatar.png" />
-        <meta property="og:url" content={Astro.url} />
-        <meta property="og:locale" content={lang} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={translations.title} />
-        <meta name="twitter:description" content={translations.description} />
-        <meta name="twitter:image" content="/avatar.png" />
-    </head>
     <Firefly />
     <Home translations={translations} currentLang={lang} />
     <About translations={translations} currentLang={lang} />
