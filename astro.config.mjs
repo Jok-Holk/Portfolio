@@ -7,5 +7,18 @@ export default defineConfig({
     integrations: [vue(), tailwind()],
     site: 'https://jokholk.dev',
     output: 'static',
-    adapter: vercel(),
+    adapter: vercel({
+        redirects: [
+            {
+                source: '/en',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/en/:path*',
+                destination: '/:path*',
+                permanent: true,
+            },
+        ],
+    }),
 });
