@@ -8,4 +8,7 @@ export default defineConfig({
     site: 'https://jokholk.dev',
     output: 'static',
     adapter: vercel(),
+    redirects: {
+        '/': '/en',
+    },
 });
