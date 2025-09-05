@@ -52,37 +52,60 @@
 </style>
 
 <script>
-    const fireflies = document.querySelectorAll('.firefly');
-    const gridRows = 2;
-    const gridCols = 5;
+    window.addEventListener('DOMContentLoaded', () => {
+        const fireflies = document.querySelectorAll('.firefly');
+        const gridRows = 2;
+        const gridCols = 5;
+        const maxMove = 200;
+        const minDuration = 3;
+        const maxDuration = 8;
 
-    fireflies.forEach((el, index) => {
-        const firefly = el as HTMLElement;
+        fireflies.forEach((el, index) => {
+            const firefly = el as HTMLElement;
 
-        const col = index % gridCols;
-        const row = Math.floor(index / gridCols);
+            const col = index % gridCols;
+            const row = Math.floor(index / gridCols);
 
-        const cellWidth = 100 / gridCols;
-        const cellHeight = 100 / gridRows;
-        const x = col * cellWidth + Math.random() * cellWidth;
-        const y = row * cellHeight + Math.random() * cellHeight;
+            const cellWidth = window.innerWidth / gridCols;
+            const cellHeight = window.innerHeight / gridRows;
 
-        const delay = Math.random() * 5;
-        const duration = 6 + Math.random() * 7.5;
+            let x = col * cellWidth + Math.random() * cellWidth;
+            let y = row * cellHeight + Math.random() * cellHeight;
 
-        firefly.style.left = `${x}%`;
-        firefly.style.top = `${y}%`;
-        firefly.style.animationDelay = `${delay}s`;
-        firefly.style.animationDuration = `${duration}s`;
+            firefly.style.left = `${x}px`;
+            firefly.style.top = `${y}px`;
 
-        const setRandomDirection = () => {
-            for (let i = 1; i <= 5; i++) {
-                firefly.style.setProperty(`--random-x${i}`, Math.random().toString());
-                firefly.style.setProperty(`--random-y${i}`, Math.random().toString());
-            }
-        };
+            let duration = minDuration + Math.random() * (maxDuration - minDuration);
+            let delay = Math.random() * 5;
+            firefly.style.animationDuration = `${duration}s`;
+            firefly.style.animationDelay = `${delay}s`;
 
-        setRandomDirection();
-        firefly.addEventListener('animationiteration', setRandomDirection);
+            const moveFirefly = () => {
+                x += (Math.random() - 0.5) * maxMove;
+                y += (Math.random() - 0.5) * maxMove;
+
+                // Giới hạn firefly không ra ngoài màn hình
+                x = Math.max(0, Math.min(window.innerWidth - 6, x));
+                y = Math.max(0, Math.min(window.innerHeight - 6, y));
+
+                firefly.animate(
+                    [
+                        { transform: `translate(0,0)`, opacity: 0.9 },
+                        {
+                            transform: `translate(${x - parseFloat(firefly.style.left)}px, ${y - parseFloat(firefly.style.top)}px)`,
+                            opacity: 0.6,
+                        },
+                        { transform: `translate(0,0)`, opacity: 0.9 },
+                    ],
+                    {
+                        duration: duration * 1000,
+                        iterations: 1,
+                        easing: 'linear',
+                    },
+                ).onfinish = moveFirefly;
+            };
+
+            requestAnimationFrame(moveFirefly);
+        });
     });
 </script>
