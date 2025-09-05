@@ -8,6 +8,23 @@ const currentLang = getLangFromUrl(Astro.url);
 const translations = await getTranslations(currentLang);
 
 const { title } = Astro.props;
+const langMap: Record<'en' | 'vi', string> = {
+    en: 'en_US',
+    vi: 'vi_VN',
+};
+const lang = langMap[(currentLang as 'en' | 'vi') || 'en'];
+
+const websiteJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://jokholk.dev",
+  "name": "JokHolk Portfolio",
+  "inLanguage": currentLang,
+  "author": {
+    "@type": "Person",
+    "@id": "https://jokholk.dev/#person"
+  }
+});
 ---
 
 <html lang={currentLang}>
@@ -24,15 +41,69 @@ const { title } = Astro.props;
             rel="stylesheet"
         />
         <meta name="description" content={translations.description} />
+        <meta
+            name="keywords"
+            content="JokHolk, software development, game projects, cybersecurity, portfolio, programming, developer, indie game, personal website, Jok Holk, Thai Nguyen, Nguyen Bui Phuc Thai, Thái Nguyễn, Nguyễn Bùi Phúc Thái"
+        />
+        <meta name="author" content="JokHolk" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={Astro.url} />
         <meta property="og:title" content={translations.title} />
         <meta property="og:description" content={translations.description} />
-        <meta property="og:image" content="/avatar.webp" />
+        <meta property="og:image" content="https://jokholk.dev/avatar.webp" />
         <meta property="og:url" content={Astro.url} />
-        <meta property="og:locale" content={currentLang} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={translations.title} />
-        <meta name="twitter:description" content={translations.description} />
-        <meta name="twitter:image" content="/avatar.webp" />
+        <meta property="og:locale" content={lang} />
+
+        <meta property="og:type" content="website" />
+        <meta name="theme-color" content="#000000" />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "@id": "https://jokholk.dev/#person",
+                "name": "JokHolk",
+                "alternateName": [
+                    "Jok Holk",
+                    "jokholk",
+                    "Jok-Holk",
+                    "jok-holk",
+                    "Jok_Holk",
+                    "jok_holk",
+                    "Thai Nguyen",
+                    "Thái Nguyễn",
+                    "Nguyen Bui Phuc Thai",
+                    "Nguyễn Bùi Phúc Thái"
+                ],
+                "url": "https://jokholk.dev",
+                "image": "https://jokholk.dev/avatar.webp",
+                "description": "Personal portfolio showcasing my journey in cybersecurity, web development, and game development.",
+                "jobTitle": "Cybersecurity Student",
+                "knowsAbout": ["Cybersecurity", "Web Development", "Game Development"],
+                "memberOf": [
+                    {
+                        "@type": "CollegeOrUniversity",
+                        "name": "FPT Polytechnic",
+                        "alternateName": "FPT Polytechnic College",
+                        "description": "A vocational college under FPT Education, focused on hands-on training."
+                    },
+                    {
+                        "@type": "CollegeOrUniversity",
+                        "name": "FUNiX",
+                        "alternateName": "FUNiX Online University",
+                        "description": "An online education institution under FPT Education, specializing in IT distance learning."
+                    }
+                ],
+                "sameAs": [
+                    "https://github.com/Jok-Holk",
+                    "https://facebook.com/jokholk.real",
+                    "https://tryhackme.com/p/JokHolk"
+                ]
+            }
+        </script>
+        <script type="application/ld+json" is:inline>
+           {websiteJsonLd}
+        </script>
     </head>
     <body class="bg-black text-gray-300">
         <div id="loader" class="loader">
