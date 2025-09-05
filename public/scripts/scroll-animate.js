@@ -5,13 +5,13 @@ function initScrollAnimations() {
         top: { y: [-50, 0] },
         bottom: { y: [50, 0] },
     };
-
     Motion.inView('[data-animate]', ({ target }) => {
         const dir = target.dataset.direction || 'bottom';
-        Motion.animate(target, { opacity: [0, 1], ...map[dir] }, { duration: 2, easing: 'ease-in-out' });
+        const isMobile = window.innerWidth < 830;
+        const animationProps = isMobile ? { opacity: [0, 1] } : { opacity: [0, 1], ...map[dir] };
+        Motion.animate(target, animationProps, { duration: 2, easing: 'ease-in-out' });
     });
 }
-
 function waitForLoader() {
     const loader = document.getElementById('loader');
 
