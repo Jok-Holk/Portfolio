@@ -1,9 +1,9 @@
 function initScrollAnimations() {
     const map = {
-        left: { x: [-65, 0] },
-        right: { x: [65, 0] },
-        top: { y: [-65, 0] },
-        bottom: { y: [65, 0] },
+        left: { x: [-50, 0] },
+        right: { x: [50, 0] },
+        top: { y: [-50, 0] },
+        bottom: { y: [50, 0] },
     };
 
     Motion.inView('[data-animate]', ({ target }) => {
