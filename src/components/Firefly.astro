@@ -29,35 +29,36 @@
             opacity: 0.9;
         }
         16% {
-            transform: translate(calc(-9vw + 18vw * var(--random-x1)), calc(-9vh + 18vh * var(--random-y1)));
+            transform: translate(calc(-50px + 100px * var(--random-x1)), calc(-50px + 100px * var(--random-y1)));
             opacity: 0.8;
         }
         32% {
-            transform: translate(calc(-9vw + 18vw * var(--random-x2)), calc(-9vh + 18vh * var(--random-y2)));
+            transform: translate(calc(-50px + 100px * var(--random-x2)), calc(-50px + 100px * var(--random-y2)));
             opacity: 0.7;
         }
         48% {
-            transform: translate(calc(-9vw + 18vw * var(--random-x3)), calc(-9vh + 18vh * var(--random-y3)));
+            transform: translate(calc(-50px + 100px * var(--random-x3)), calc(-50px + 100px * var(--random-y3)));
             opacity: 0.6;
         }
         64% {
-            transform: translate(calc(-9vw + 18vw * var(--random-x4)), calc(-9vh + 18vh * var(--random-y4)));
+            transform: translate(calc(-50px + 100px * var(--random-x4)), calc(-50px + 100px * var(--random-y4)));
             opacity: 0.7;
         }
         80% {
-            transform: translate(calc(-9vw + 18vw * var(--random-x5)), calc(-9vh + 18vh * var(--random-y5)));
+            transform: translate(calc(-50px + 100px * var(--random-x5)), calc(-50px + 100px * var(--random-y5)));
             opacity: 0.8;
         }
     }
 </style>
 
 <script>
-    const fireflies = document.querySelectorAll<HTMLElement>('.firefly');
-
+    const fireflies = document.querySelectorAll('.firefly');
     const gridRows = 2;
     const gridCols = 5;
 
     fireflies.forEach((el, index) => {
+        const firefly = el as HTMLElement;
+
         const col = index % gridCols;
         const row = Math.floor(index / gridCols);
 
@@ -69,21 +70,19 @@
         const delay = Math.random() * 5;
         const duration = 6 + Math.random() * 7.5;
 
-        el.style.left = `${x}%`;
-        el.style.top = `${y}%`;
-        el.style.animationDelay = `${delay}s`;
-        el.style.animationDuration = `${duration}s`;
+        firefly.style.left = `${x}%`;
+        firefly.style.top = `${y}%`;
+        firefly.style.animationDelay = `${delay}s`;
+        firefly.style.animationDuration = `${duration}s`;
 
         const setRandomDirection = () => {
             for (let i = 1; i <= 5; i++) {
-                el.style.setProperty(`--random-x${i}`, Math.random().toString());
-                el.style.setProperty(`--random-y${i}`, Math.random().toString());
+                firefly.style.setProperty(`--random-x${i}`, Math.random().toString());
+                firefly.style.setProperty(`--random-y${i}`, Math.random().toString());
             }
         };
 
         setRandomDirection();
-
-        // Khi hết 1 vòng animation -> đổi waypoint mới
-        el.addEventListener('animationiteration', setRandomDirection);
+        firefly.addEventListener('animationiteration', setRandomDirection);
     });
 </script>
