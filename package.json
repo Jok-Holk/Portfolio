@@ -11,15 +11,16 @@
     "dependencies": {
         "@astrojs/sitemap": "^3.5.1",
         "@astrojs/tailwind": "^6.0.2",
-        "@astrojs/vercel": "^8.0.4",
+        "@astrojs/vercel": "^8.2.7",
         "@astrojs/vue": "^5.1.0",
-        "astro": "^5.13.4",
+        "astro": "^5.13.5",
         "flowbite": "^3.1.2",
         "motion": "^12.23.12",
         "typed.js": "^2.1.0",
         "vue": "^3.5.21"
     },
     "devDependencies": {
+        "@tailwindcss/typography": "^0.5.16",
         "@types/ms": "^2.1.0",
         "@types/unist": "^3.0.3"
     }

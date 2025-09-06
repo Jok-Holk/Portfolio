@@ -2,7 +2,6 @@
 import Layout from '../../../layouts/Layout.astro';
 import fetchApi from '../../../lib/strapi';
 import type Article from '../../../interfaces/article';
-
 import { getTranslations } from '../../../locales';
 
 export const prerender = true;
@@ -28,14 +27,149 @@ export async function getStaticPaths() {
 }
 
 const { lang, slug } = Astro.params;
-
 const translations = await getTranslations(lang);
-
 const { article } = Astro.props;
+
+function parseMarkdown(md: string): string {
+    const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const escapeAttr = (s: string) => escapeHtml(s).replace(/"/g, '&quot;');
+
+    function inlineParser(s: string): string {
+        const pattern = /`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)|\*\*(.+?)\*\*|\*(?!\*)([^*]+)\*(?!\*)/g;
+        let out = '';
+        let lastIndex = 0;
+        let m: RegExpExecArray | null;
+        while ((m = pattern.exec(s)) !== null) {
+            out += escapeHtml(s.slice(lastIndex, m.index));
+            if (m[1] !== undefined) {
+                out += `<code>${escapeHtml(m[1])}</code>`;
+            } else if (m[2] !== undefined) {
+                out += `<a href="${escapeAttr(m[3])}" target="_blank" rel="noopener noreferrer">${inlineParser(
+                    m[2],
+                )}</a>`;
+            } else if (m[4] !== undefined) {
+                out += `<strong>${inlineParser(m[4])}</strong>`;
+            } else if (m[5] !== undefined) {
+                out += `<em>${inlineParser(m[5])}</em>`;
+            }
+            lastIndex = pattern.lastIndex;
+        }
+        out += escapeHtml(s.slice(lastIndex));
+        return out;
+    }
+
+    const lines = md.split(/\r?\n/);
+    const result: string[] = [];
+    const listStack: { type: 'ul' | 'ol'; indent: number }[] = [];
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        const leadingSpaces = line.length - trimmed.length;
+
+        if (trimmed === '') {
+            while (listStack.length > 0) {
+                const last = listStack.pop();
+                if (last) result.push(`</${last.type}>`);
+            }
+            result.push('');
+            continue;
+        }
+
+        if (trimmed.startsWith('```')) {
+            const codeLines: string[] = [];
+            let j = i + 1;
+            while (j < lines.length && !lines[j].trim().startsWith('```')) {
+                codeLines.push(lines[j]);
+                j++;
+            }
+            result.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`);
+            i = j;
+            continue;
+        }
+
+        if (trimmed.startsWith('>')) {
+            const bLines: string[] = [];
+            let j = i;
+            while (j < lines.length && lines[j].trim().startsWith('>')) {
+                bLines.push(lines[j].replace(/^\s*>\s?/, ''));
+                j++;
+            }
+            const innerHtml = parseMarkdown(bLines.join('\n'));
+            result.push(`<blockquote>${innerHtml}</blockquote>`);
+            i = j - 1;
+            continue;
+        }
+
+        const headerMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
+        if (headerMatch) {
+            const level = headerMatch[1].length;
+            result.push(`<h${level}>${inlineParser(headerMatch[2])}</h${level}>`);
+            continue;
+        }
+
+        if (trimmed === '---') {
+            result.push('<hr>');
+            continue;
+        }
+
+        const listMatch = trimmed.match(/^([*+-]|\d+\.)\s+(.*)$/);
+        if (listMatch) {
+            const marker = listMatch[1];
+            const contentRaw = listMatch[2];
+            const isOrdered = /^\d+\.$/.test(marker);
+            const listType: 'ul' | 'ol' = isOrdered ? 'ol' : 'ul';
+            const currentIndent = Math.floor(leadingSpaces / 2);
+            const last = listStack[listStack.length - 1];
+
+            if (!last) {
+                result.push(`<${listType}>`);
+                listStack.push({ type: listType, indent: currentIndent });
+            } else if (currentIndent > last.indent) {
+                result.push(`<${listType}>`);
+                listStack.push({ type: listType, indent: currentIndent });
+            } else if (currentIndent < last.indent) {
+                while (listStack.length > 0 && currentIndent < (listStack[listStack.length - 1]?.indent ?? 0)) {
+                    const popped = listStack.pop();
+                    if (popped) result.push(`</${popped.type}>`);
+                }
+                const top = listStack[listStack.length - 1];
+                if (top && top.type !== listType) {
+                    listStack.pop();
+                    result.push(`<${listType}>`);
+                    listStack.push({ type: listType, indent: currentIndent });
+                }
+            } else if (last && last.type !== listType) {
+                listStack.pop();
+                result.push(`<${listType}>`);
+                listStack.push({ type: listType, indent: currentIndent });
+            }
+
+            result.push(`<li>${inlineParser(contentRaw)}</li>`);
+            continue;
+        }
+
+        while (listStack.length > 0) {
+            const last = listStack.pop();
+            if (last) result.push(`</${last.type}>`);
+        }
+
+        result.push(`<p>${inlineParser(trimmed)}</p>`);
+    }
+
+    while (listStack.length > 0) {
+        const last = listStack.pop();
+        if (last) result.push(`</${last.type}>`);
+    }
+
+    return result.join('\n');
+}
+
+const htmlContent = parseMarkdown(article.content);
 ---
 
 <Layout title={article.title}>
-    <article class="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-black">
+    <article class="min-h-screen bg-black">
         <div
             class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 py-16 sm:py-20 md:py-24 lg:py-32 mx-auto text-gray-300 font-mono"
         >
@@ -43,7 +177,7 @@ const { article } = Astro.props;
             <div class="animate-fade-in-left mb-8 md:mb-12">
                 <a
                     href=`/${lang}/blog/`
-                    class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg text-purple-400 font-mono transition-all duration-300 hover:text-purple-300 hover:scale-105"
+                    class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg text-purple-400 transition-all duration-300 hover:text-purple-300 hover:scale-105"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -130,9 +264,7 @@ const { article } = Astro.props;
 
             <!-- Article Content -->
             <main class="animate-fade-in-up opacity-0" style="animation-delay: 800ms; animation-fill-mode: forwards;">
-                <div class="prose prose-lg sm:prose-xl prose-invert max-w-none prose-purple">
-                    <Fragment set:html={article.content} />
-                </div>
+                <div class="markdown-content" set:html={htmlContent} />
             </main>
 
             <!-- Article Footer -->
@@ -144,7 +276,7 @@ const { article } = Astro.props;
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-4">
                     <a
                         href=`/${lang}/blog/`
-                        class="group inline-flex items-center gap-3 text-base sm:text-lg text-purple-400 font-mono transition-all duration-300 hover:text-purple-300 hover:scale-105"
+                        class="group inline-flex items-center gap-3 text-base sm:text-lg text-purple-400 transition-all duration-300 hover:text-purple-300 hover:scale-105"
                     >
                         <svg
                             class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300 group-hover:-translate-x-1"
@@ -158,8 +290,7 @@ const { article } = Astro.props;
                         </svg>
                         <span class="underline-on-hover">{translations?.slugBlog?.readmore}</span>
                     </a>
-
-                    <div class="text-sm text-gray-500 font-mono">{translations?.slugBlog?.thanksforreading}</div>
+                    <div class="text-sm text-gray-500">{translations?.slugBlog?.thanksforreading}</div>
                 </div>
             </footer>
         </div>
@@ -167,6 +298,7 @@ const { article } = Astro.props;
 </Layout>
 
 <style>
+    /* Animations */
     @keyframes fade-in-up {
         from {
             opacity: 0;
@@ -220,173 +352,390 @@ const { article } = Astro.props;
         transform: scaleX(1);
     }
 
-    /* Enhanced Prose Styles */
-    .prose-purple h1,
-    .prose-purple h2,
-    .prose-purple h3,
-    .prose-purple h4,
-    .prose-purple h5,
-    .prose-purple h6 {
-        color: #ffffff;
-        font-weight: 700;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        line-height: 1.3;
-        letter-spacing: -0.025em;
-    }
-
-    .prose-purple h1 {
-        font-size: 2.5rem;
-        margin-top: 0;
-    }
-
-    .prose-purple h2 {
-        font-size: 2rem;
-        border-bottom: 2px solid #8b5cf6;
-        padding-bottom: 0.5rem;
-    }
-
-    .prose-purple h3 {
-        font-size: 1.5rem;
-        color: #c084fc;
-    }
-
-    .prose-purple p {
+    /* Markdown Content Styles - IMPORTANT: Using :global() to ensure styles apply */
+    :global(.markdown-content) {
+        font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        line-height: 1.7;
         color: #d1d5db;
-        line-height: 1.8;
-        margin-bottom: 1.5rem;
-        font-size: 1.125rem;
+        max-width: none;
     }
 
-    .prose-purple a {
-        color: #a855f7;
-        text-decoration: underline;
-        text-decoration-color: #8b5cf6;
-        text-underline-offset: 4px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Typography Scale */
+    :global(.markdown-content h1) {
+        font-size: 2.5rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        margin: 3rem 0 2rem 0 !important;
+        line-height: 1.1 !important;
+        background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%) !important;
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        position: relative !important;
     }
 
-    .prose-purple a:hover {
-        color: #c084fc;
-        text-decoration-color: #c084fc;
-        text-decoration-thickness: 2px;
+    :global(.markdown-content h1::after) {
+        content: '' !important;
+        position: absolute !important;
+        left: 0 !important;
+        bottom: -12px !important;
+        width: 80px !important;
+        height: 4px !important;
+        background: linear-gradient(90deg, #8b5cf6, #a855f7) !important;
+        border-radius: 2px !important;
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.5) !important;
     }
 
-    .prose-purple blockquote {
-        border-left: 4px solid #8b5cf6;
-        background: linear-gradient(135deg, #1f2937, #374151);
-        margin: 2rem 0;
-        padding: 1.5rem 2rem;
-        border-radius: 0 0.75rem 0.75rem 0;
-        font-style: italic;
-        position: relative;
+    :global(.markdown-content h2) {
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        margin: 2.5rem 0 1.5rem 0 !important;
+        line-height: 1.2 !important;
+        position: relative !important;
+        padding-left: 1.5rem !important;
     }
 
-    .prose-purple blockquote::before {
-        content: '"';
-        position: absolute;
-        top: -0.5rem;
-        left: 1rem;
-        font-size: 4rem;
-        color: #8b5cf6;
-        font-family: serif;
+    :global(.markdown-content h2::before) {
+        content: '' !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 5px !important;
+        height: 100% !important;
+        background: linear-gradient(180deg, #8b5cf6, #a855f7) !important;
+        border-radius: 3px !important;
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.4) !important;
     }
 
-    .prose-purple code {
-        background: #374151;
-        color: #f3f4f6;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.375rem;
-        font-size: 0.875rem;
-        border: 1px solid #4b5563;
+    :global(.markdown-content h3) {
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
+        color: #e2e8f0 !important;
+        margin: 2rem 0 1rem 0 !important;
+        line-height: 1.3 !important;
     }
 
-    .prose-purple pre {
-        background: #1f2937;
-        border: 1px solid #374151;
-        border-radius: 0.75rem;
-        padding: 1.5rem;
-        overflow-x: auto;
-        margin: 2rem 0;
+    :global(.markdown-content h4) {
+        font-size: 1.25rem !important;
+        font-weight: 600 !important;
+        color: #cbd5e1 !important;
+        margin: 1.5rem 0 0.75rem 0 !important;
+        line-height: 1.4 !important;
     }
 
-    .prose-purple pre code {
-        background: transparent;
-        padding: 0;
-        border: none;
-        font-size: 0.875rem;
+    :global(.markdown-content p) {
+        margin: 1.5rem 0 !important;
+        font-size: 1.125rem !important;
+        line-height: 1.8 !important;
+        color: #d1d5db !important;
     }
 
-    .prose-purple ul,
-    .prose-purple ol {
-        margin: 1.5rem 0;
-        padding-left: 2rem;
+    :global(.markdown-content p:first-child) {
+        margin-top: 0 !important;
     }
 
-    .prose-purple li {
-        margin: 0.75rem 0;
-        color: #d1d5db;
+    /* Links */
+    :global(.markdown-content a) {
+        color: #a855f7 !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+        position: relative !important;
+        transition: all 0.3s ease !important;
     }
 
-    .prose-purple img {
-        border-radius: 0.75rem;
-        box-shadow:
-            0 20px 25px -5px rgba(0, 0, 0, 0.1),
-            0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        margin: 2rem auto;
-        max-width: 100%;
-        height: auto;
+    :global(.markdown-content a::after) {
+        content: '' !important;
+        position: absolute !important;
+        width: 100% !important;
+        height: 2px !important;
+        bottom: -2px !important;
+        left: 0 !important;
+        background: linear-gradient(90deg, #a855f7, #c084fc) !important;
+        transform: scaleX(0) !important;
+        transform-origin: bottom left !important;
+        transition: transform 0.3s ease !important;
     }
 
-    .prose-purple table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 2rem 0;
-        background: #1f2937;
-        border-radius: 0.75rem;
-        overflow: hidden;
-        border: 1px solid #374151;
+    :global(.markdown-content a:hover) {
+        color: #c084fc !important;
+        text-shadow: 0 0 8px rgba(192, 132, 252, 0.4) !important;
     }
 
-    .prose-purple th,
-    .prose-purple td {
-        padding: 1rem;
-        text-align: left;
-        border-bottom: 1px solid #374151;
+    :global(.markdown-content a:hover::after) {
+        transform: scaleX(1) !important;
     }
 
-    .prose-purple th {
-        background: #374151;
-        color: #ffffff;
-        font-weight: 600;
+    /* Lists */
+    :global(.markdown-content ul),
+    :global(.markdown-content ol) {
+        margin: 1.5rem 0 !important;
+        padding-left: 2rem !important;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 640px) {
-        .prose-purple h1 {
+    :global(.markdown-content ul) {
+        list-style-type: none !important;
+        position: relative !important;
+    }
+
+    :global(.markdown-content ul li) {
+        margin: 0.75rem 0 !important;
+        line-height: 1.8 !important;
+        color: #d1d5db !important;
+        position: relative !important;
+        padding-left: 1.5rem !important;
+    }
+
+    :global(.markdown-content ul li:before) {
+        content: '' !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0.7rem !important;
+        width: 8px !important;
+        height: 8px !important;
+        background: #8b5cf6 !important;
+        border-radius: 50% !important;
+        box-shadow: 0 0 10px rgba(139, 92, 246, 0.6) !important;
+    }
+
+    :global(.markdown-content ol) {
+        list-style-type: none !important;
+        counter-reset: list-counter !important;
+        position: relative !important;
+    }
+
+    :global(.markdown-content ol li) {
+        margin: 0.75rem 0 !important;
+        line-height: 1.8 !important;
+        color: #d1d5db !important;
+        position: relative !important;
+        padding-left: 2rem !important;
+        counter-increment: list-counter !important;
+    }
+
+    :global(.markdown-content ol li:before) {
+        content: counter(list-counter) '.' !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        color: #8b5cf6 !important;
+        font-weight: bold !important;
+        font-size: 1rem !important;
+    }
+
+    /* Code */
+    :global(.markdown-content code) {
+        background: rgba(139, 92, 246, 0.15) !important;
+        color: #c084fc !important;
+        padding: 0.25rem 0.25rem !important;
+        border-radius: 6px !important;
+        font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace !important;
+        font-size: 0.9em !important;
+        border: 1px solid rgba(139, 92, 246, 0.3) !important;
+        box-shadow: 0 0 10px rgba(139, 92, 246, 0.1) !important;
+    }
+
+    :global(.markdown-content pre) {
+        background: #1a202c !important;
+        color: #e2e8f0 !important;
+        padding: 2rem !important;
+        border-radius: 12px !important;
+        margin: 2rem 0 !important;
+        overflow-x: auto !important;
+        border: 1px solid rgba(139, 92, 246, 0.2) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+        position: relative !important;
+    }
+
+    :global(.markdown-content pre::before) {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 1px !important;
+        background: linear-gradient(90deg, transparent, #8b5cf6, transparent) !important;
+    }
+
+    :global(.markdown-content pre code) {
+        background: none !important;
+        color: inherit !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Blockquotes */
+    :global(.markdown-content blockquote) {
+        margin: 2.5rem 0 !important;
+        padding: 1.5rem 2rem 1.5rem 3rem !important;
+        background: rgba(139, 92, 246, 0.08) !important;
+        border-left: 4px solid #8b5cf6 !important;
+        border-radius: 0 12px 12px 0 !important;
+        position: relative !important;
+        backdrop-filter: blur(10px) !important;
+        box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1) !important;
+        font-style: italic !important;
+        color: #c084fc !important;
+    }
+
+    :global(.markdown-content blockquote::before) {
+        content: '"' !important;
+        position: absolute !important;
+        top: 0.5rem !important;
+        left: 0.5rem !important;
+        font-size: 3rem !important;
+        color: #8b5cf6 !important;
+        opacity: 0.3 !important;
+        font-family: serif !important;
+        line-height: 1 !important;
+    }
+
+    :global(.markdown-content blockquote p) {
+        color: #c084fc !important;
+        font-style: italic !important;
+        font-size: 1.2rem !important;
+        margin: 0 !important;
+        position: relative !important;
+        z-index: 1 !important;
+        font-weight: 500 !important;
+    }
+
+    /* Text Styling */
+    :global(.markdown-content strong) {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.1) !important;
+    }
+
+    :global(.markdown-content em) {
+        color: #c084fc !important;
+        font-style: italic !important;
+    }
+
+    /* Horizontal Rules */
+    :global(.markdown-content hr) {
+        margin: 4rem 0 !important;
+        border: none !important;
+        height: 1px !important;
+        background: linear-gradient(90deg, transparent, #8b5cf6, transparent) !important;
+        position: relative !important;
+    }
+
+    :global(.markdown-content hr::after) {
+        content: '◆' !important;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        background: #111827 !important;
+        color: #8b5cf6 !important;
+        padding: 0 1.5rem !important;
+        font-size: 1.5rem !important;
+    } /* Nested lists styling */
+    :global(.markdown-content ul),
+    :global(.markdown-content ol) {
+        margin: 1rem 0 !important;
+        padding-left: 2rem !important;
+    }
+
+    :global(.markdown-content ul) {
+        list-style-type: none !important;
+    }
+
+    :global(.markdown-content ul li) {
+        margin: 0.5rem 0 !important;
+        position: relative !important;
+        padding-left: 1.5rem !important;
+    }
+
+    :global(.markdown-content ul li:before) {
+        content: '' !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0.7rem !important;
+        width: 8px !important;
+        height: 8px !important;
+        background: #8b5cf6 !important;
+        border-radius: 50% !important;
+        box-shadow: 0 0 10px rgba(139, 92, 246, 0.6) !important;
+    }
+
+    :global(.markdown-content ul ul li:before) {
+        background: #a855f7 !important;
+        width: 6px !important;
+        height: 6px !important;
+    }
+
+    :global(.markdown-content ul ul ul li:before) {
+        background: #c084fc !important;
+        width: 4px !important;
+        height: 4px !important;
+    }
+
+    :global(.markdown-content ol) {
+        list-style-type: none !important;
+        counter-reset: list-counter !important;
+    }
+
+    :global(.markdown-content ol li) {
+        margin: 0.5rem 0 !important;
+        position: relative !important;
+        padding-left: 2rem !important;
+        counter-increment: list-counter !important;
+    }
+
+    :global(.markdown-content ol li:before) {
+        content: counter(list-counter) '.' !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        color: #8b5cf6 !important;
+        font-weight: bold !important;
+    }
+
+    :global(.markdown-content ol ol li:before) {
+        color: #a855f7 !important;
+    }
+
+    :global(.markdown-content ol ol ol li:before) {
+        color: #c084fc !important;
+    }
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .markdown-content h1 {
             font-size: 2rem;
+            margin: 2rem 0 1.5rem 0;
         }
 
-        .prose-purple h2 {
-            font-size: 1.75rem;
+        .markdown-content h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
         }
 
-        .prose-purple p {
+        .markdown-content h3 {
+            font-size: 1.25rem;
+        }
+
+        .markdown-content p {
             font-size: 1rem;
         }
 
-        .prose-purple blockquote {
-            margin: 1.5rem 0;
-            padding: 1rem 1.5rem;
+        .markdown-content blockquote {
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
         }
 
-        .prose-purple pre {
-            padding: 1rem;
-            margin: 1.5rem 0;
+        .markdown-content pre {
+            padding: 1.5rem;
+        }
+
+        .markdown-content ul li,
+        .markdown-content ol li {
+            padding-left: 2rem;
         }
     }
-
-    /* Smooth scroll behavior */
     html {
         scroll-behavior: smooth;
     }
