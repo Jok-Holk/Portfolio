@@ -219,50 +219,65 @@ const { translations, currentLang } = Astro.props;
 </script>
 
 <style>
-    .education-item.animate-visible {
-        opacity: 1 !important;
-        -webkit-opacity: 1 !important;
+    /* ========= BASIC RESET & FIXES ========= */
+    html,
+    body {
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        color-scheme: light;
+        background: #000;
+        color: #fff;
     }
 
-    .education-item {
-        -webkit-transition: all 0.5s ease;
-        transition: all 0.5s ease;
+    /* ========= TEXT GRADIENT ========= */
+    .text-gradient {
+        background: -webkit-linear-gradient(90deg, #a855f7, #c084fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
     }
 
+    /* ========= NEON EFFECT ========= */
+    .neon-text {
+        color: #c084fc;
+        text-shadow:
+            0 0 5px #c084fc,
+            0 0 10px #c084fc,
+            0 0 20px #c084fc;
+        -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.05);
+    }
+
+    /* ========= HOVER TIMELINE DOTS ========= */
     .education-item:hover {
-        -webkit-transform: translateY(-2px);
         transform: translateY(-2px);
     }
-
     .education-item:hover span[class*='bg-purple-100'] {
-        -webkit-box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
         box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
     }
 
+    /* ========= MOBILE RESPONSIVENESS ========= */
     @media (max-width: 640px) {
         .container {
             padding-left: 1rem;
             padding-right: 1rem;
         }
-        .education-item {
-            margin-left: 1rem;
-            padding: 1rem;
-        }
+
         .education-item h3 {
             flex-direction: column;
             align-items: flex-start;
             gap: 0.5rem;
         }
+
         .education-item span[class*='ml-3'] {
             margin-left: 0;
             margin-top: 0.25rem;
         }
     }
 
-    @media (min-width: 641px) and (max-width: 768px) {
-        .container {
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
+    /* ========= FILTER TO PREVENT LOW SATURATION ========= */
+    body {
+        -webkit-filter: brightness(1) contrast(1) saturate(1);
+        filter: brightness(1) contrast(1) saturate(1);
     }
 </style>
