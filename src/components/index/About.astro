@@ -4,7 +4,6 @@ const { translations, currentLang } = Astro.props;
 
 <section id="about" class="text-gray-300 body-font py-16 sm:py-20 md:py-32 lg:py-40">
     <div class="container px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-12 sm:pt-16 md:pt-24 lg:pt-32 mx-auto">
-        <!-- Section Header -->
         <div
             class="flex items-center text-purple-600 gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12"
             data-animate
@@ -182,9 +181,8 @@ const { translations, currentLang } = Astro.props;
         }
     }
 
-    /* Portfolio gallery optimized for portrait photos */
     .portrait-gallery {
-        aspect-ratio: 3/4; /* Perfect for portrait photos */
+        aspect-ratio: 3/4;
         background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
         backdrop-filter: blur(10px);
         border: 1px solid rgba(168, 85, 247, 0.2);
@@ -216,7 +214,6 @@ const { translations, currentLang } = Astro.props;
         animation: slideIn 0.5s ease-out forwards;
     }
 
-    /* Professional portrait image styling */
     .portrait-image {
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         filter: brightness(0.95) contrast(1.05) saturate(1.1);
@@ -226,8 +223,6 @@ const { translations, currentLang } = Astro.props;
         filter: brightness(1) contrast(1.1) saturate(1.15);
         transform: scale(1.02);
     }
-
-    /* Enhanced indicators */
     .carousel-indicator {
         width: 8px;
         height: 8px;
@@ -265,7 +260,6 @@ const { translations, currentLang } = Astro.props;
         transform: scale(1.1);
     }
 
-    /* Text enhancements */
     .highlight-text {
         background: linear-gradient(135deg, #a855f7, #ec4899);
         -webkit-background-clip: text;
@@ -280,7 +274,6 @@ const { translations, currentLang } = Astro.props;
         filter: brightness(1.2);
     }
 
-    /* Icon animation */
     .icon-bounce {
         animation: iconBounce 2s ease-in-out infinite;
     }
@@ -295,7 +288,6 @@ const { translations, currentLang } = Astro.props;
         }
     }
 
-    /* Loading placeholder for images */
     .image-placeholder {
         background: linear-gradient(
             90deg,
@@ -316,7 +308,6 @@ const { translations, currentLang } = Astro.props;
         }
     }
 
-    /* Responsive improvements */
     @media (max-width: 768px) {
         .portrait-gallery {
             aspect-ratio: 4/5;
@@ -331,7 +322,6 @@ const { translations, currentLang } = Astro.props;
         }
     }
 
-    /* Progressive image loading */
     .portrait-image {
         background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
         object-fit: cover;

@@ -2,6 +2,7 @@
     "title": "JokHolk Realm",
     "description": "JokHolk's personal portfolio website showcasing software development, game projects, and cybersecurity journey.",
     "titleBlog": "JokHolk Blogs",
+    "descriptionBlog": "Where I share insights, projects, and my journey through software development, indie games, and cybersecurity.",
     "blogContent": {
         "goback": "Go back",
         "myJournals": "My Journals",

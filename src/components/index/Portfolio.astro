@@ -4,7 +4,6 @@ const { translations, currentLang } = Astro.props;
 
 <section id="portfolio" class="text-gray-300 font-mono min-h-screen py-20 md:py-40">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32">
-        <!-- Header with improved responsive spacing -->
         <div class="flex items-center text-purple-600 gap-3 sm:gap-4 mb-8 sm:mb-12" data-animate data-direction="left">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +23,6 @@ const { translations, currentLang } = Astro.props;
                 {translations?.portfolio?.title}
             </h1>
         </div>
-
-        <!-- Grid with improved responsive breakpoints -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
             <!-- TryHackMe Card -->
             <a
@@ -247,7 +244,6 @@ const { translations, currentLang } = Astro.props;
         transform: rotate(15deg) scale(1.1);
     }
 
-    /* Custom scrollbar for better UX */
     ::-webkit-scrollbar {
         width: 8px;
     }
@@ -261,13 +257,10 @@ const { translations, currentLang } = Astro.props;
         border-radius: 4px;
     }
 
-    /* Focus styles for keyboard navigation */
     .keyboard-navigation a:focus {
         outline: 2px solid #a855f7;
         outline-offset: 2px;
     }
-
-    /* Improved mobile touch targets */
     @media (max-width: 640px) {
         a {
             min-height: 44px;
@@ -277,10 +270,8 @@ const { translations, currentLang } = Astro.props;
     }
 </style>
 <script>
-    // Add smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    // Add keyboard navigation support
     document.querySelectorAll('a[href]').forEach((link) => {
         (link as HTMLElement).addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -289,14 +280,11 @@ const { translations, currentLang } = Astro.props;
             }
         });
     });
-
-    // Add focus management for accessibility
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
             document.body.classList.add('keyboard-navigation');
         }
     });
-
     document.addEventListener('mousedown', () => {
         document.body.classList.remove('keyboard-navigation');
     });

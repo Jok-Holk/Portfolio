@@ -138,7 +138,6 @@ const { title, company, time, description, techs, url } = Astro.props;
         transform: translateY(-2px) scale(1.05);
     }
 
-    /* Mobile optimizations */
     @media (max-width: 1024px) {
         .timeline-line {
             background: linear-gradient(to bottom, #7c3aed, #2563eb);
@@ -149,7 +148,6 @@ const { title, company, time, description, techs, url } = Astro.props;
         }
     }
 
-    /* Enhanced prose styling */
     .description-content :global(p) {
         margin-bottom: 0.75rem;
         line-height: 1.6;
@@ -174,7 +172,6 @@ const { title, company, time, description, techs, url } = Astro.props;
         font-size: 0.75rem;
     }
 
-    /* Stagger animation for tech tags */
     .tech-stack .tech-tag {
         opacity: 0;
         transform: translateY(10px);
@@ -188,7 +185,6 @@ const { title, company, time, description, techs, url } = Astro.props;
         }
     }
 
-    /* Responsive font sizes */
     @media (max-width: 640px) {
         .job-title {
             font-size: 1.125rem;
