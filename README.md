@@ -33,7 +33,7 @@ Feel free to reference this project's structure to build your own portfolio.
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/your-username/my-portfolio.git](https://github.com/Jok-Holk/Portfolio/)
+git clone https://github.com/Jok-Holk/Portfolio
 cd Portfolio
 ```
 
