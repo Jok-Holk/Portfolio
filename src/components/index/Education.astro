@@ -220,60 +220,83 @@ const { translations, currentLang } = Astro.props;
 
 <style>
     html,
-    body {
-        -webkit-text-size-adjust: 100%;
-        -webkit-font-smoothing: antialiased;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        color-scheme: dark;
-        background: #000;
-        color: #fff;
+body {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+    -ms-tap-highlight-color: rgba(0, 0, 0, 0);
+    tap-highlight-color: rgba(0, 0, 0, 0);
+    color-scheme: dark;
+    background: #000;
+    color: #fff;
+}
+.text-gradient {
+    background: -webkit-linear-gradient(90deg, #a855f7, #c084fc);
+    background: -moz-linear-gradient(90deg, #a855f7, #c084fc);
+    background: -ms-linear-gradient(90deg, #a855f7, #c084fc);
+    background: linear-gradient(90deg, #a855f7, #c084fc);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -ms-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    -ms-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+.neon-text {
+    color: #c084fc;
+    text-shadow:
+        0 0 5px #c084fc,
+        0 0 10px #c084fc,
+        0 0 20px #c084fc;
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.05);
+    -moz-text-stroke: 0.5px rgba(255, 255, 255, 0.05);
+    -ms-text-stroke: 0.5px rgba(255, 255, 255, 0.05);
+    text-stroke: 0.5px rgba(255, 255, 255, 0.05);
+}
+.education-item:hover {
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    transform: translateY(-2px);
+}
+.education-item:hover span[class*='bg-purple-100'] {
+    -webkit-box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+    -moz-box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+    -ms-box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+}
+@media (max-width: 640px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
-
-    .text-gradient {
-        background: -webkit-linear-gradient(90deg, #a855f7, #c084fc);
-        background: linear-gradient(90deg, #a855f7, #c084fc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-fill-color: transparent;
+    .education-item h3 {
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-align-items: flex-start;
+        -moz-align-items: flex-start;
+        -ms-align-items: flex-start;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
-
-    .neon-text {
-        color: #c084fc;
-        text-shadow:
-            0 0 5px #c084fc,
-            0 0 10px #c084fc,
-            0 0 20px #c084fc;
-        -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.05);
+    .education-item span[class*='ml-3'] {
+        margin-left: 0;
+        margin-top: 0.25rem;
     }
-
-    .education-item:hover {
-        transform: translateY(-2px);
-    }
-
-    .education-item:hover span[class*='bg-purple-100'] {
-        box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
-    }
-
-    @media (max-width: 640px) {
-        .container {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        .education-item h3 {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .education-item span[class*='ml-3'] {
-            margin-left: 0;
-            margin-top: 0.25rem;
-        }
-    }
-
-    body {
-        -webkit-filter: brightness(1) contrast(1) saturate(1);
-        filter: brightness(1) contrast(1) saturate(1);
-    }
+}
+body {
+    -webkit-filter: brightness(1) contrast(1) saturate(1);
+    -moz-filter: brightness(1) contrast(1) saturate(1);
+    -ms-filter: brightness(1) contrast(1) saturate(1);
+    filter: brightness(1) contrast(1) saturate(1);
+}
 </style>
