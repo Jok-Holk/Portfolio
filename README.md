@@ -33,8 +33,8 @@ Feel free to reference this project's structure to build your own portfolio.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/my-portfolio.git
-cd my-portfolio
+git clone [https://github.com/your-username/my-portfolio.git](https://github.com/Jok-Holk/Portfolio/)
+cd Portfolio
 ```
 
 ## 2. Install Dependencies
@@ -50,6 +50,7 @@ Create a `.env` file in the root directory and add the following line:
 ```bash
 STRAPI_API_URL=https://strapi.jokholk.dev
 ```
+> You can replace the URL with your own Strapi instance if self-hosting.
 
 ## 4. Run the Project Locally
 
