@@ -3,7 +3,6 @@ import Layout from '../../../layouts/blogLayout.astro';
 import fetchApi from '../../../lib/strapi';
 import type Article from '../../../interfaces/article';
 import BlogListWithSearch from '../../../components/BlogListWithSearch.vue';
-import Firefly from '../../../components/Firefly.astro';
 
 import { getTranslations } from '../../../locales';
 export async function getStaticPaths() {
@@ -20,7 +19,6 @@ const strapiUrl = import.meta.env.STRAPI_URL;
 ---
 
 <Layout title={translations?.titleBlog}>
-    <Firefly />
     <section
         class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 mx-auto my-16 sm:my-20 md:my-24 lg:my-32 text-gray-300 font-mono min-h-screen"
     >
