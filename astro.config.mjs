@@ -25,4 +25,5 @@ export default defineConfig({
     redirects: {
         '/': '/en',
     },
+    trailingSlash: 'never',
 });
