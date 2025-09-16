@@ -17,6 +17,7 @@ export default defineConfig({
                     vi: 'vi-VN',
                 },
             },
+            filter: (page) => !page.includes('/404'),
         }),
     ],
     site: 'https://jokholk.dev',
