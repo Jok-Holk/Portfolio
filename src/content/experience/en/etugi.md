@@ -2,7 +2,7 @@
 title: 'Frontend Website Freelancer'
 company: 'Etugi'
 time: '9/2024 — 10/2024'
-url: 'https://etugibinhduong.com'
+url: 'https://etugi-after-contact.vercel.app/'
 techs: ['HTML', 'CSS', 'JavaScript']
 lang: 'en'
 ---
