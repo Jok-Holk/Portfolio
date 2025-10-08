@@ -1,0 +1,115 @@
+---
+
+---
+
+<button
+    type="button"
+    class="back-to-top-btn opacity-0 scale-0 pointer-events-none transition-all duration-500 ease-out group"
+    id="btn-back-to-top"
+    aria-label="Back to top"
+>
+    <!-- Glow Effect -->
+    <div
+        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 blur-xl opacity-0 group-hover:opacity-75 transition-opacity duration-500"
+    >
+    </div>
+
+    <!-- Button Container -->
+    <div
+        class="relative bg-[#0a0e1a] rounded-2xl p-[2px] border border-purple-500/30 group-hover:border-purple-500/60 transition-all duration-300"
+    >
+        <div
+            class="relative bg-gradient-to-br from-purple-600/90 to-pink-600/90 hover:from-purple-500 hover:to-pink-500 rounded-2xl p-4 transition-all duration-300 overflow-hidden"
+        >
+            <!-- Shine Effect on Hover -->
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-transparent via-white/20 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-700"
+            >
+            </div>
+
+            <!-- Arrow Icon -->
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-6 h-6 text-white relative z-10 transform group-hover:-translate-y-1 transition-transform duration-300"
+            >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path>
+            </svg>
+        </div>
+    </div>
+</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const button = document.getElementById('btn-back-to-top');
+        if (!button) return;
+
+        // CRITICAL: Remove from current parent and append directly to documentElement
+        // This bypasses any parent with transform/perspective/filter
+        if (button.parentElement) {
+            button.remove();
+        }
+        document.documentElement.appendChild(button);
+
+        // Force fixed positioning via JavaScript as backup
+        button.style.setProperty('position', 'fixed', 'important');
+        button.style.setProperty('bottom', '2rem', 'important');
+        button.style.setProperty('right', '2rem', 'important');
+        button.style.setProperty('z-index', '9999', 'important');
+
+        const toggleButton = () => {
+            const scrolled = window.scrollY || document.documentElement.scrollTop;
+
+            if (scrolled > 300) {
+                button.classList.remove('opacity-0', 'scale-0', 'pointer-events-none');
+                button.classList.add('opacity-100', 'scale-100');
+            } else {
+                button.classList.remove('opacity-100', 'scale-100');
+                button.classList.add('opacity-0', 'scale-0', 'pointer-events-none');
+            }
+        };
+
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        };
+
+        // Event listeners
+        button.addEventListener('click', scrollToTop);
+        window.addEventListener('scroll', toggleButton, { passive: true });
+
+        // Initial check
+        toggleButton();
+    });
+</script>
+
+<style>
+    .back-to-top-btn {
+        position: fixed !important;
+        bottom: 2rem !important;
+        right: 2rem !important;
+        z-index: 9999 !important;
+    }
+
+    .back-to-top-btn:active {
+        transform: scale(0.95) !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+        .back-to-top-btn {
+            bottom: 1.5rem !important;
+            right: 1.5rem !important;
+        }
+    }
+
+    /* Ensure no parent can affect positioning */
+    body {
+        position: relative;
+    }
+</style>

@@ -137,7 +137,7 @@ onMounted(() => {
                     :style="`animation-delay: ${index * 100}ms`"
                 >
                     <a
-                        :href="`/${lang}/blog/${article.slug}/`"
+                        :href="`/${lang}/blog/${article.slug}`"
                         class="flex flex-col lg:flex-row items-start lg:items-center gap-4 md:gap-6 lg:gap-8"
                     >
                         <div

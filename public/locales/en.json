@@ -51,7 +51,11 @@
             "An Indie Game Developer",
             "A Web Freelancer",
             "A Cybersecurity Apprentice"
-        ]
+        ],
+        "OverlayName": "Jok Holk",
+        "OverlayTitle": "Software & Game Student",
+        "OverlayFocus": "Offensive Security Focus",
+        "OverlayContact": "Contact via Email"
     },
     "about": {
         "title": "About Me",
@@ -76,7 +80,17 @@
         "description-18": "Astro",
         "description-19": "and explore building an",
         "description-20": "indie game studio",
-        "description-21": "These experiences aren't my final destination, but they provide valuable programming practice and broaden my perspective, making me stronger as I move toward a career in cybersecurity."
+        "description-21": "These experiences aren't my final destination, but they provide valuable programming practice and broaden my perspective, making me stronger as I move toward a career in cybersecurity.",
+        "card-1-title": "Alias",
+        "card-1-content": "Joker, Jok.",
+        "card-2-title": "Focus",
+        "card-2-content": "Software Development, Game Development, Cybersecurity, Offensive Security.",
+        "card-3-title": "Toolset",
+        "card-3-content": "VS Code, Git, GitHub, Unity, Kali Linux.",
+        "card-4-title": "Languages",
+        "card-4-content": "HTML, CSS, JavaScript, Python, Bash, PowerShell, React, Astro, Node.js, Next.js.",
+        "card-5-title": "Specialty",
+        "card-5-content": "Full stack web development with Next.js SSR and Astro for static sites; Unity indie game development; Penetration testing and ethical hacking with Kali Linux."
     },
     "education": {
         "title": "education",
