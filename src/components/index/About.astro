@@ -82,22 +82,18 @@ const { translations, currentLang } = Astro.props;
                         <!-- ASCII Cat Section -->
                         <div class="relative my-8">
                             <div class="animate-circle-loop relative text-center">
-                                <!-- Heh Box -->
+                                <!-- Meh Box -->
                                 <div
-                                    class="heh-box absolute -top-12 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600/90 to-pink-600/90 rounded-full px-4 py-2 opacity-0 scale-95 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100 z-20 border-2 border-purple-400/30"
+                                    class="meh-box absolute -top-12 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600/90 to-pink-600/90 rounded-full px-4 py-2 opacity-0 scale-95 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100 z-20"
                                 >
-                                    <span class="text-white text-xs sm:text-sm font-mono font-bold">Meh!😼</span>
+                                    <span id="meh-text" class="text-white text-xs sm:text-sm font-mono font-bold"
+                                        >Meh!😼</span
+                                    >
                                 </div>
 
                                 <!-- ASCII Cat -->
-                                <div class="relative inline-block">
-                                    <!-- Glow behind cat -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 blur-xl rounded-lg"
-                                    >
-                                    </div>
-                                    <pre
-                                        class="text-gradient whitespace-pre relative z-10 text-xs sm:text-sm leading-tight hover:scale-105 transition-transform duration-300">{`⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠀⠀⠀
+                                <pre
+                                    class="text-gradient whitespace-pre relative z-10 text-xs sm:text-sm leading-tight hover:scale-105 transition-transform duration-300">{`⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⣾⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⢀⠀⠈⡇⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⣿⠀⠁⠀⠘⠁⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠈⠀⠀⡇⠀⠀⠀⠀
 ⣀⣀⣀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠄⠀⠀⠸⢰⡏⠉⠳⣄⠰⠀⠀⢰⣷⠶⠛⣧⠀
@@ -107,172 +103,171 @@ const { translations, currentLang } = Astro.props;
 ⠀⠀⠀⠀⠀⠉⣿⠀⠀⠀⢠⠀⠀⢠⠀⠹⣆⠀⠀⠀⠢⢤⠠⠞⠤⡠⠄⠀⢀⡾
 ⠀⠀⠀⠀⠀⢀⡿⠦⢤⣤⣤⣤⣤⣤⣤⣤⡼⣷⠶⠤⢤⣤⣤⡤⢤⡤⠶⠖⠋⠀
 ⠀⠀⠀⠀⠀⠸⣤⡴⠋⠸⣇⣠⠼⠁⠀⠀⠀⠹⣄⣠⠞⠀⢾⡀⣠⠃⠀⠀⠀⠀⠀⠀⠀⠀`}</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Cards -->
+                    <div class="space-y-4 my-4">
+                        <!-- Alias Card -->
+                        <div
+                            class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
+                        >
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <svg
+                                        class="w-5 h-5 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-400 text-xs font-mono mb-1">
+                                        {translations?.about?.['card-1-title']}
+                                    </p>
+                                    <p class="text-white font-mono font-semibold">
+                                        {translations?.about?.['card-1-content']}
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Info Cards -->
-                        <div class="space-y-4 my-4">
-                            <!-- Alias Card -->
-                            <div
-                                class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
-                            >
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                        <!-- Focus Card -->
+                        <div
+                            class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
+                        >
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <svg
+                                        class="w-5 h-5 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
                                     >
-                                        <svg
-                                            class="w-5 h-5 text-white"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="text-gray-400 text-xs font-mono mb-1">
-                                            {translations?.about?.['card-1-title']}
-                                        </p>
-                                        <p class="text-white font-mono font-semibold">
-                                            {translations?.about?.['card-1-content']}
-                                        </p>
-                                    </div>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-400 text-xs font-mono mb-1">
+                                        {translations?.about?.['card-2-title']}
+                                    </p>
+                                    <p class="text-white font-mono font-semibold">
+                                        {translations?.about?.['card-2-content']}
+                                    </p>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Focus Card -->
-                            <div
-                                class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
-                            >
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                        <!-- Toolset Card -->
+                        <div
+                            class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
+                        >
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <svg
+                                        class="w-5 h-5 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
                                     >
-                                        <svg
-                                            class="w-5 h-5 text-white"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="text-gray-400 text-xs font-mono mb-1">
-                                            {translations?.about?.['card-2-title']}
-                                        </p>
-                                        <p class="text-white font-mono font-semibold">
-                                            {translations?.about?.['card-2-content']}
-                                        </p>
-                                    </div>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-400 text-xs font-mono mb-1">
+                                        {translations?.about?.['card-3-title']}
+                                    </p>
+                                    <p class="text-white font-mono font-semibold">
+                                        {translations?.about?.['card-3-content']}
+                                    </p>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Toolset Card -->
-                            <div
-                                class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
-                            >
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                        <!-- Languages Card -->
+                        <div
+                            class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
+                        >
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <svg
+                                        class="w-5 h-5 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
                                     >
-                                        <svg
-                                            class="w-5 h-5 text-white"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="text-gray-400 text-xs font-mono mb-1">
-                                            {translations?.about?.['card-3-title']}
-                                        </p>
-                                        <p class="text-white font-mono font-semibold">
-                                            {translations?.about?.['card-3-content']}
-                                        </p>
-                                    </div>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-400 text-xs font-mono mb-1">
+                                        {translations?.about?.['card-4-title']}
+                                    </p>
+                                    <p class="text-white font-mono text-sm leading-relaxed">
+                                        {translations?.about?.['card-4-content']}
+                                    </p>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Languages Card -->
-                            <div
-                                class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
-                            >
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                        <!-- Specialty Card -->
+                        <div
+                            class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
+                        >
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <svg
+                                        class="w-5 h-5 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
                                     >
-                                        <svg
-                                            class="w-5 h-5 text-white"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="text-gray-400 text-xs font-mono mb-1">
-                                            {translations?.about?.['card-4-title']}
-                                        </p>
-                                        <p class="text-white font-mono text-sm leading-relaxed">
-                                            {translations?.about?.['card-4-content']}
-                                        </p>
-                                    </div>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
                                 </div>
-                            </div>
-
-                            <!-- Specialty Card -->
-                            <div
-                                class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
-                            >
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
-                                    >
-                                        <svg
-                                            class="w-5 h-5 text-white"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="text-gray-400 text-xs font-mono mb-1">
-                                            {translations?.about?.['card-5-title']}
-                                        </p>
-                                        <p class="text-white font-mono text-sm leading-relaxed">
-                                            {translations?.about?.['card-5-content']}
-                                        </p>
-                                    </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-400 text-xs font-mono mb-1">
+                                        {translations?.about?.['card-5-title']}
+                                    </p>
+                                    <p class="text-white font-mono text-sm leading-relaxed">
+                                        {translations?.about?.['card-5-content']}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -282,6 +277,7 @@ const { translations, currentLang } = Astro.props;
         </div>
     </div>
 </section>
+
 <style>
     .text-gradient {
         background: linear-gradient(135deg, #a855f7, #ec4899);
@@ -360,7 +356,47 @@ const { translations, currentLang } = Astro.props;
             transform: translateY(-8px) translateX(-50%);
         }
     }
-    .heh-box {
+    .meh-box {
         animation: bob 2s ease-in-out infinite;
     }
 </style>
+<script>
+    const texts = [
+        'Meh!😼',
+        'Meowww?',
+        'Meow ʘᆽʘ',
+        '(˃ᆺ˂)',
+        'Purrr~ 😻',
+        'Hiss! >.<',
+        'Nya! 🐾',
+        'Zzz... 😸',
+        'Rawr! 🐱',
+        'Mlem! 🐈‍👅',
+    ];
+    const span = document.getElementById('meh-text');
+    if (span === null) {
+        throw new Error('Span "Meh" element not found');
+    }
+    const group = span.closest('.group');
+    if (group === null) {
+        throw new Error('Group "Meh" element not found');
+    }
+    let shuffledTexts = [...texts].sort(() => Math.random() - 0.5);
+    let currentIndex = 0;
+    let lastShown: string | null = null;
+
+    group.addEventListener('mouseenter', () => {
+        if (currentIndex >= shuffledTexts.length) {
+            let newShuffled = [...texts].sort(() => Math.random() - 0.5);
+            if (newShuffled[0] === lastShown && texts.length > 1) {
+                let swapIdx = Math.floor(Math.random() * (newShuffled.length - 1)) + 1;
+                [newShuffled[0], newShuffled[swapIdx]] = [newShuffled[swapIdx], newShuffled[0]];
+            }
+            shuffledTexts = newShuffled;
+            currentIndex = 0;
+        }
+        span.textContent = shuffledTexts[currentIndex];
+        lastShown = shuffledTexts[currentIndex];
+        currentIndex++;
+    });
+</script>
