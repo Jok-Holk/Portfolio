@@ -53,7 +53,7 @@
         "OverlayContact": "Liên hệ qua Email"
     },
     "about": {
-        "title": "Về tôi",
+        "title": "về tôi",
         "description-0": "Tôi là một sinh viên đang học",
         "description-1": "phát triển phần mềm và trò chơi",
         "description-2": "không ngừng học hỏi thông qua việc xây dựng",
@@ -89,7 +89,7 @@
         "card-5-content": "Phát triển web full stack với Next.js SSR và Astro cho trang tĩnh; Phát triển game indie Unity; Kiểm tra thâm nhập và hack đạo đức với Kali Linux."
     },
     "education": {
-        "title": "Học vấn",
+        "title": "học vấn",
         "items": [
             {
                 "institution": "Đại học trực tuyến FUNiX",
