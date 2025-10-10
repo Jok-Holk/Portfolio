@@ -4,20 +4,22 @@ const { translations, currentLang } = Astro.props;
 
 <section id="about" class="text-gray-300 body-font py-16 sm:py-20 md:py-32 lg:py-40">
     <div class="container px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-12 sm:pt-16 md:pt-24 lg:pt-32 mx-auto">
-        <div
-            class="flex items-center text-purple-600 gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12"
-            data-animate
-            data-direction="left"
-        >
+        <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-12" data-animate data-direction="left">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
+                class="w-10 h-10 md:w-12 md:h-12"
             >
+                <defs>
+                    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
+                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
+                    </linearGradient>
+                </defs>
                 <path
+                    stroke="url(#titleGradient)"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
@@ -67,7 +69,6 @@ const { translations, currentLang } = Astro.props;
                     class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-700"
                 >
                 </div>
-
                 <!-- Main Card -->
                 <div
                     class="relative bg-[#0a0e1a] rounded-3xl border border-purple-500/20 group-hover:border-purple-500/40 transition-all duration-500 overflow-hidden"
@@ -77,7 +78,6 @@ const { translations, currentLang } = Astro.props;
                         class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none"
                     >
                     </div>
-
                     <div class="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12">
                         <!-- ASCII Cat Section -->
                         <div class="relative my-8">
@@ -90,7 +90,6 @@ const { translations, currentLang } = Astro.props;
                                         >Meh!😼</span
                                     >
                                 </div>
-
                                 <!-- ASCII Cat -->
                                 <pre
                                     class="text-gradient whitespace-pre relative z-10 text-xs sm:text-sm leading-tight hover:scale-105 transition-transform duration-300">{`⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠀⠀⠀
@@ -106,7 +105,6 @@ const { translations, currentLang } = Astro.props;
                             </div>
                         </div>
                     </div>
-
                     <!-- Info Cards -->
                     <div class="space-y-4 my-4">
                         <!-- Alias Card -->
@@ -141,7 +139,6 @@ const { translations, currentLang } = Astro.props;
                                 </div>
                             </div>
                         </div>
-
                         <!-- Focus Card -->
                         <div
                             class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
@@ -174,7 +171,6 @@ const { translations, currentLang } = Astro.props;
                                 </div>
                             </div>
                         </div>
-
                         <!-- Toolset Card -->
                         <div
                             class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
@@ -207,7 +203,6 @@ const { translations, currentLang } = Astro.props;
                                 </div>
                             </div>
                         </div>
-
                         <!-- Languages Card -->
                         <div
                             class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
@@ -239,7 +234,6 @@ const { translations, currentLang } = Astro.props;
                                 </div>
                             </div>
                         </div>
-
                         <!-- Specialty Card -->
                         <div
                             class="group/item bg-[#090d17]/50 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10 hover:border-purple-500/30 hover:bg-[#090d17]/80 transition-all duration-300"
@@ -277,7 +271,6 @@ const { translations, currentLang } = Astro.props;
         </div>
     </div>
 </section>
-
 <style>
     .text-gradient {
         background: linear-gradient(135deg, #a855f7, #ec4899);
@@ -384,7 +377,6 @@ const { translations, currentLang } = Astro.props;
     let shuffledTexts = [...texts].sort(() => Math.random() - 0.5);
     let currentIndex = 0;
     let lastShown: string | null = null;
-
     group.addEventListener('mouseenter', () => {
         if (currentIndex >= shuffledTexts.length) {
             let newShuffled = [...texts].sort(() => Math.random() - 0.5);
