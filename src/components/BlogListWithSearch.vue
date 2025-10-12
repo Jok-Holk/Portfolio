@@ -75,20 +75,28 @@ onMounted(() => {
                         type="text"
                         v-model="searchQuery"
                         :placeholder="props.translations?.blogContent?.search?.placeholder"
-                        class="w-full px-6 py-4 pr-14 text-base md:text-lg text-gray-300 bg-gray-800/80 backdrop-blur-sm border-2 border-purple-600/50 rounded-2xl focus:outline-none focus:ring-4 focus:ring-purple-500/30 focus:border-purple-400 transition-all duration-500 placeholder-gray-500 hover:border-purple-500/70 hover:bg-gray-800/90 font-mono"
+                        class="w-full px-6 py-4 pr-14 text-base md:text-lg text-gray-300 bg-gray-800/80 backdrop-blur-sm border-2 rounded-2xl focus:outline-none focus:ring-4 transition-all duration-500 placeholder-gray-500 hover:bg-gray-800/90 font-mono"
                         :class="{
-                            'border-purple-400 ring-4 ring-purple-500/30': searchQuery.length > 0,
                             'animate-pulse-border': isSearching,
                         }"
+                        style="
+                            border-image: linear-gradient(135deg, #a855f7, #ec4899) 1;
+                            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.3);
+                        "
                         @input="onSearchInput"
                     />
 
                     <div
                         class="absolute right-5 top-1/2 -translate-y-1/2 transition-all duration-300"
                         :class="{
-                            'scale-110 text-purple-400': searchQuery.length > 0,
+                            'scale-110': searchQuery.length > 0,
                             'text-gray-500': !searchQuery.length,
                         }"
+                        :style="
+                            searchQuery.length > 0
+                                ? 'background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;'
+                                : ''
+                        "
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +117,13 @@ onMounted(() => {
                     <transition name="slide-down">
                         <div
                             v-if="searchQuery.length > 0"
-                            class="absolute -bottom-8 left-0 text-sm text-purple-300 font-mono"
+                            class="absolute -bottom-8 left-0 text-sm font-mono"
+                            style="
+                                background: linear-gradient(135deg, #a855f7, #ec4899);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                background-clip: text;
+                            "
                         >
                             {{ filteredArticles.length }}
                             {{
@@ -123,7 +137,7 @@ onMounted(() => {
                 </div>
 
                 <div
-                    class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200 animate-tilt pointer-events-none"
+                    class="absolute -inset-1 bg-gradient-to-r from-[#a855f7] to-[#ec4899] rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200 animate-tilt pointer-events-none"
                 ></div>
             </div>
         </div>
@@ -133,8 +147,10 @@ onMounted(() => {
                 <li
                     v-for="(article, index) in filteredArticles"
                     :key="article.slug"
-                    class="article-card border-2 border-purple-600/30 rounded-2xl p-6 md:p-8 transition-all duration-500 ease-out hover:border-purple-500/60 hover:bg-gradient-to-br hover:from-purple-900/10 hover:via-blue-900/5 hover:to-pink-900/10 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-3 hover:scale-[1.02] group cursor-pointer overflow-hidden"
-                    :style="`animation-delay: ${index * 100}ms`"
+                    class="article-card border-2 rounded-2xl p-6 md:p-8 transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-3 hover:scale-[1.02] group cursor-pointer overflow-hidden"
+                    :style="`animation-delay: ${
+                        index * 100
+                    }ms; border-image: linear-gradient(135deg, #a855f7, #ec4899) 1;`"
                 >
                     <a
                         :href="`/${lang}/blog/${article.slug}`"
@@ -154,14 +170,21 @@ onMounted(() => {
                                 loading="lazy"
                             />
                             <div
-                                class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                class="absolute inset-0 bg-gradient-to-br from-[#a855f7]/20 to-[#ec4899]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                             ></div>
                         </div>
 
                         <div class="flex-1 min-w-0 space-y-3 md:space-y-4">
                             <div class="flex items-center gap-2 text-xs sm:text-sm text-gray-500 font-medium">
-                                <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-4 h-4 calendar-icon" viewBox="0 0 20 20">
+                                    <defs>
+                                        <linearGradient id="calendarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color: #a855f7; stop-opacity: 1" />
+                                            <stop offset="100%" style="stop-color: #ec4899; stop-opacity: 1" />
+                                        </linearGradient>
+                                    </defs>
                                     <path
+                                        fill="url(#calendarGradient)"
                                         fill-rule="evenodd"
                                         d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                         clip-rule="evenodd"
@@ -172,7 +195,7 @@ onMounted(() => {
 
                             <div class="flex items-start gap-3 md:gap-4">
                                 <h3
-                                    class="text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl text-white font-bold transition-all duration-300 ease-in-out group-hover:text-purple-400 leading-tight flex-1 line-clamp-2"
+                                    class="article-title text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl text-white font-bold transition-all duration-300 ease-in-out leading-tight flex-1 line-clamp-2"
                                 >
                                     {{ article.title }}
                                 </h3>
@@ -181,10 +204,16 @@ onMounted(() => {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
-                                    stroke="currentColor"
-                                    class="w-5 h-5 md:w-6 md:h-6 text-gray-500 transition-all duration-500 ease-out group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:text-purple-400 group-hover:scale-110 flex-shrink-0 mt-1"
+                                    class="w-5 h-5 md:w-6 md:h-6 arrow-icon text-gray-500 transition-all duration-500 ease-out group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:scale-110 flex-shrink-0 mt-1"
                                 >
+                                    <defs>
+                                        <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color: #a855f7; stop-opacity: 1" />
+                                            <stop offset="100%" style="stop-color: #ec4899; stop-opacity: 1" />
+                                        </linearGradient>
+                                    </defs>
                                     <path
+                                        stroke="currentColor"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
@@ -199,8 +228,10 @@ onMounted(() => {
                                 <span
                                     v-for="(tag, tagIndex) in article.category"
                                     :key="tag.id"
-                                    class="tag-item px-3 py-1.5 text-xs sm:text-sm text-purple-200 rounded-full bg-purple-900/50 border border-purple-700/50 backdrop-blur-sm transition-all duration-300 hover:bg-purple-800/60 hover:border-purple-600/70 hover:scale-105 hover:-translate-y-0.5"
-                                    :style="`animation-delay: ${index * 100 + tagIndex * 50}ms`"
+                                    class="tag-item px-3 py-1.5 text-xs sm:text-sm text-white rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+                                    :style="`animation-delay: ${
+                                        index * 100 + tagIndex * 50
+                                    }ms; background: linear-gradient(135deg, #a855f7, #ec4899); `"
                                 >
                                     {{ tag.name }}
                                 </span>
@@ -209,7 +240,7 @@ onMounted(() => {
                     </a>
 
                     <div
-                        class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transform transition-transform duration-1000 ease-out pointer-events-none"
+                        class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transform pointer-events-none transition-all duration-1000 ease-out"
                     ></div>
                 </li>
             </transition-group>
@@ -218,14 +249,27 @@ onMounted(() => {
                 <div v-if="filteredArticles.length === 0 && searchQuery.length > 0" class="text-center py-16 md:py-20">
                     <div class="space-y-4 md:space-y-6">
                         <div
-                            class="w-20 h-20 md:w-24 md:h-24 mx-auto rounded-full bg-gradient-to-br from-purple-900/20 to-pink-900/20 flex items-center justify-center"
+                            class="w-20 h-20 md:w-24 md:h-24 mx-auto rounded-full bg-gradient-to-br from-[#a855f7]/20 to-[#ec4899]/20 flex items-center justify-center"
                         >
                             <svg
-                                class="w-8 h-8 md:w-10 md:h-10 text-purple-400"
+                                class="w-8 h-8 md:w-10 md:h-10"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
+                                style="
+                                    background: linear-gradient(135deg, #a855f7, #ec4899);
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color: transparent;
+                                    background-clip: text;
+                                    stroke: url(#gradient);
+                                "
                             >
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color: #a855f7; stop-opacity: 1" />
+                                        <stop offset="100%" style="stop-color: #ec4899; stop-opacity: 1" />
+                                    </linearGradient>
+                                </defs>
                                 <path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -241,7 +285,13 @@ onMounted(() => {
                             {{ props.translations?.blogContent?.search?.noArticlesFoundDescription }}
                             <button
                                 @click="clearSearch"
-                                class="text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors duration-200"
+                                class="underline underline-offset-2 transition-colors duration-200"
+                                style="
+                                    background: linear-gradient(135deg, #a855f7, #ec4899);
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color: transparent;
+                                    background-clip: text;
+                                "
                             >
                                 {{ props.translations?.blogContent?.search?.clearSearch }}
                             </button>
@@ -282,10 +332,10 @@ onMounted(() => {
 @keyframes pulse-border {
     0%,
     100% {
-        border-color: rgb(147 51 234 / 0.5);
+        box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5);
     }
     50% {
-        border-color: rgb(147 51 234 / 0.8);
+        box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.8);
     }
 }
 
@@ -302,10 +352,35 @@ onMounted(() => {
     animation: pulse-border 1.5s ease-in-out infinite;
 }
 
+/* Gradient text effect */
+.gradient-text {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.group:hover .article-title {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.group:hover .arrow-icon path {
+    stroke: url(#arrowGradient);
+}
+
+.article-card:hover {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+    box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25);
+}
+
 /* Line clamp utility */
 .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -371,7 +446,7 @@ onMounted(() => {
 /* Image container enhancements */
 .image-container {
     position: relative;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #a855f7, #ec4899);
 }
 
 /* Tag hover effects */
@@ -397,12 +472,13 @@ onMounted(() => {
 
 /* Enhanced focus states for accessibility */
 input:focus {
-    box-shadow: 0 0 0 4px rgb(147 51 234 / 0.3);
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.3);
 }
 
 button:focus {
-    outline: 2px solid rgb(147 51 234);
+    outline: 2px solid transparent;
     outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5);
 }
 
 /* Responsive adjustments */
@@ -421,7 +497,7 @@ button:focus {
 /* Dark mode optimizations */
 @media (prefers-color-scheme: dark) {
     .article-card {
-        border-color: rgb(147 51 234 / 0.4);
+        border-image: linear-gradient(135deg, #a855f7, #ec4899) 1;
     }
 }
 

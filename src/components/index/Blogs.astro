@@ -10,16 +10,16 @@ const articles = await fetchApi<Article[]>({
 });
 ---
 
-<section id="blogs" class="text-gray-300 body-font py-16 md:py-20 lg:py-24">
-    <div class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 mx-auto">
-        <div class="flex items-center text-purple-600 gap-3 md:gap-4 mb-12 md:mb-16" data-animate data-direction="left">
+<section id="blogs" class="text-gray-300 my-16 sm:my-20 md:my-32 lg:my-40">
+    <div class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 my-12 sm:my-16 md:my-24 lg:my-32 mx-auto">
+        <div class="flex items-center gap-3 md:gap-4 mb-12 md:mb-16" data-animate data-direction="left">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 md:w-10 md:h-10 animate-pulse"
+                class="w-8 h-8 md:w-10 md:h-10 neon-icon"
             >
                 <path
                     stroke-linecap="round"
@@ -32,31 +32,26 @@ const articles = await fetchApi<Article[]>({
             </h1>
         </div>
 
-        <!-- Blog Grid -->
         <ul class="grid grid-cols-1 gap-6 md:gap-8 font-mono">
             {
                 articles.slice(0, 3).map((article) => (
-                    <li
-                        class="blog-card border-2 border-purple-600/30 rounded-xl p-6 md:p-8 transition-all duration-500 ease-out hover:border-purple-500/60 hover:bg-gradient-to-br hover:from-purple-900/10 hover:via-blue-900/5 hover:to-pink-900/10 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2"
-                        data-animate
-                        data-direction="bottom"
-                    >
+                    <li class="blog-card" data-animate data-direction="bottom">
                         <a
                             href={`/${currentLang}/blog/${article.slug}`}
-                            class="group flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6 transition-all duration-300 ease-in-out hover:text-purple-400"
+                            class="group flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6"
                         >
                             {article.image && (
                                 <div class="image-container flex-shrink-0 overflow-hidden rounded-lg">
                                     <img
                                         src={`${import.meta.env.STRAPI_URL}${article.image.url}`}
                                         alt={article.title}
-                                        class="w-full lg:w-32 xl:w-40 h-24 lg:h-24 xl:h-28 object-cover rounded-lg transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
+                                        class="w-full lg:w-32 xl:w-40 h-24 lg:h-24 xl:h-28 object-cover rounded-lg transition-all duration-500 group-hover:scale-110"
                                         loading="lazy"
                                     />
                                 </div>
                             )}
                             <div class="flex-1 min-w-0 space-y-2 md:space-y-3">
-                                <div class="text-xs sm:text-sm text-gray-500 font-medium">
+                                <div class="text-xs sm:text-sm text-gray-400 font-medium">
                                     {new Date(article.publish_date).toLocaleDateString(currentLang, {
                                         year: 'numeric',
                                         month: 'long',
@@ -64,7 +59,7 @@ const articles = await fetchApi<Article[]>({
                                     })}
                                 </div>
                                 <div class="flex items-start lg:items-center gap-3 lg:gap-4">
-                                    <h3 class="text-lg sm:text-xl lg:text-2xl text-white font-bold transition-all duration-300 ease-in-out group-hover:text-purple-400 leading-tight flex-1">
+                                    <h3 class="blog-title text-lg sm:text-xl lg:text-2xl text-white font-bold leading-tight flex-1">
                                         {article.title}
                                     </h3>
                                     <svg
@@ -73,7 +68,7 @@ const articles = await fetchApi<Article[]>({
                                         viewBox="0 0 24 24"
                                         stroke-width="1.5"
                                         stroke="currentColor"
-                                        class="w-5 h-5 lg:w-6 lg:h-6 text-gray-500 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-purple-400 group-hover:scale-110 flex-shrink-0 mt-1 lg:mt-0"
+                                        class="blog-arrow w-5 h-5 lg:w-6 lg:h-6 text-gray-400 flex-shrink-0 mt-1 lg:mt-0"
                                     >
                                         <path
                                             stroke-linecap="round"
@@ -89,20 +84,19 @@ const articles = await fetchApi<Article[]>({
             }
         </ul>
 
-        <!-- View More -->
         <div class="mt-12 md:mt-16" data-animate data-direction="right">
             <a
                 href={`/${currentLang}/blog`}
-                class="group relative inline-flex items-center gap-3 text-lg lg:text-xl text-white no-underline transition-all duration-300 hover:text-purple-400 hover:scale-105"
+                class="view-more group relative inline-flex items-center gap-3 text-lg lg:text-xl text-white no-underline"
             >
-                <span class="underline-on-hover font-mono">{translations?.blogs?.viewAllButton}</span>
+                <span class="view-more-text font-mono">{translations?.blogs?.viewAllButton}</span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="w-6 h-6 lg:w-7 lg:h-7 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110"
+                    class="view-more-arrow w-6 h-6 lg:w-7 lg:h-7"
                 >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
                     ></path>
@@ -113,53 +107,112 @@ const articles = await fetchApi<Article[]>({
 </section>
 
 <style>
-    .underline-on-hover {
-        position: relative;
-        display: inline-block;
+    .neon-icon {
+        stroke: url(#neon-grad);
     }
 
-    .underline-on-hover::after {
+    .group:hover .neon-icon {
+        stroke: url(#neon-grad);
+    }
+
+    .blog-title {
+        transition: all 0.3s ease;
+    }
+
+    .group:hover .blog-title {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .blog-arrow {
+        transition: all 0.3s ease;
+    }
+
+    .group:hover .blog-arrow {
+        stroke: url(#neon-grad);
+        transform: translate(4px, -4px);
+    }
+
+    .view-more-text {
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+    }
+
+    .view-more-text::after {
         content: '';
         position: absolute;
         width: 100%;
         height: 2px;
         bottom: -2px;
         left: 0;
-        background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         transform: scaleX(0);
         transform-origin: bottom left;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         border-radius: 1px;
+        box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
     }
 
-    .group:hover .underline-on-hover::after {
+    .view-more:hover .view-more-text {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .view-more:hover .view-more-text::after {
         transform: scaleX(1);
+    }
+
+    .view-more-arrow {
+        transition: all 0.3s ease;
+    }
+
+    .view-more:hover .view-more-arrow {
+        stroke: url(#neon-grad);
+        transform: translateX(8px);
     }
 
     .blog-card {
         position: relative;
         overflow: hidden;
+        border: 2px solid transparent;
+        background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3)) border-box;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        transition: all 0.5s ease-out;
     }
 
-    .blog-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-        transition: left 0.6s ease-in-out;
-        z-index: 1;
-    }
-
-    .blog-card:hover::before {
-        left: 100%;
+    .blog-card:hover {
+        background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(236, 72, 153, 0.6)) border-box;
+        box-shadow:
+            0 0 30px rgba(168, 85, 247, 0.3),
+            0 0 60px rgba(236, 72, 153, 0.2);
+        transform: translateY(-8px);
     }
 
     .image-container {
         position: relative;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        transition: box-shadow 0.3s;
+    }
+
+    .image-container:hover {
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+    }
+
+    @media (min-width: 768px) {
+        .blog-card {
+            padding: 2rem;
+        }
     }
 
     html {
@@ -176,3 +229,12 @@ const articles = await fetchApi<Article[]>({
         }
     }
 </style>
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
+            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
+        </linearGradient>
+    </defs>
+</svg>

@@ -668,6 +668,11 @@ const { translations, currentLang } = Astro.props;
     }
     /* Mobile menu animations */
     .mobile-menu {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        z-index: 40;
         max-height: 0;
         overflow: hidden;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -675,12 +680,14 @@ const { translations, currentLang } = Astro.props;
         visibility: hidden;
         transform: translateY(-10px);
     }
+
     .mobile-menu.active {
-        max-height: 500px;
+        max-height: calc(100vh - 64px);
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
+
     /* Hamburger animations */
     .hamburger-line {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -772,8 +779,13 @@ const { translations, currentLang } = Astro.props;
         background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
         transition: none;
     }
+    /* Header z-index */
+    #main-header {
+        z-index: 50;
+    }
+
     /* Body padding for fixed header */
     body {
-        padding-top: 80px;
+        padding-top: 64px;
     }
 </style>

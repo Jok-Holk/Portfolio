@@ -2,16 +2,16 @@
 const { translations, currentLang } = Astro.props;
 ---
 
-<section id="portfolio" class="text-gray-300 font-mono min-h-screen py-20 md:py-40">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32">
-        <div class="flex items-center text-purple-600 gap-3 sm:gap-4 mb-8 sm:mb-12" data-animate data-direction="left">
+<section id="portfolio" class="text-gray-300 font-mono my-16 sm:my-20 md:my-32 lg:my-40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32 my-12 sm:my-16 md:my-24 lg:my-32">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12" data-animate data-direction="left">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 sm:w-10 sm:h-10"
+                class="w-8 h-8 sm:w-10 sm:h-10 neon-icon"
             >
                 <path
                     stroke-linecap="round"
@@ -27,30 +27,24 @@ const { translations, currentLang } = Astro.props;
             <!-- TryHackMe Card -->
             <a
                 href="https://tryhackme.com/p/JokHolk"
-                class="group card-hover-effect border-2 border-purple-900/50 rounded-xl p-4 sm:p-6 flex flex-col justify-between backdrop-blur-sm bg-gray-800/30 hover:animate-glow"
+                class="group portfolio-card"
                 target="_blank"
                 data-animate
                 data-direction="left"
             >
                 <div class="flex-grow">
                     <div class="flex items-center gap-3 mb-3">
-                        <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                        <h3
-                            class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
-                        >
+                        <div class="dot-indicator dot-purple"></div>
+                        <h3 class="card-title">
                             {translations?.portfolio?.socials?.tryhackme?.title}
                         </h3>
                     </div>
-                    <p
-                        class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
-                    >
+                    <p class="card-description">
                         {translations?.portfolio?.socials?.tryhackme?.description}
                     </p>
                 </div>
-                <div class="mt-4 sm:mt-6 flex justify-between items-center">
-                    <span
-                        class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
+                <div class="card-footer">
+                    <span class="card-cta">
                         {translations?.portfolio?.socials?.tryhackme?.cta}
                     </span>
                     <svg
@@ -59,7 +53,7 @@ const { translations, currentLang } = Astro.props;
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="w-6 h-6 sm:w-8 sm:h-8 text-purple-500 icon-bounce group-hover:text-purple-300"
+                        class="card-icon"
                     >
                         <path
                             stroke-linecap="round"
@@ -73,30 +67,24 @@ const { translations, currentLang } = Astro.props;
             <!-- Facebook Card -->
             <a
                 href="https://facebook.com/jokholk.real"
-                class="group card-hover-effect border-2 border-purple-900/50 rounded-xl p-4 sm:p-6 flex flex-col justify-between backdrop-blur-sm bg-gray-800/30 hover:animate-glow"
+                class="group portfolio-card"
                 target="_blank"
                 data-animate
                 data-direction="right"
             >
                 <div class="flex-grow">
                     <div class="flex items-center gap-3 mb-3">
-                        <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                        <h3
-                            class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
-                        >
+                        <div class="dot-indicator dot-blue"></div>
+                        <h3 class="card-title">
                             {translations?.portfolio?.socials?.facebook?.title}
                         </h3>
                     </div>
-                    <p
-                        class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
-                    >
+                    <p class="card-description">
                         {translations?.portfolio?.socials?.facebook?.description}
                     </p>
                 </div>
-                <div class="mt-4 sm:mt-6 flex justify-between items-center">
-                    <span
-                        class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
+                <div class="card-footer">
+                    <span class="card-cta">
                         {translations?.portfolio?.socials?.facebook?.cta}
                     </span>
                     <svg
@@ -105,7 +93,7 @@ const { translations, currentLang } = Astro.props;
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="w-6 h-6 sm:w-8 sm:h-8 text-purple-500 icon-bounce group-hover:text-purple-300"
+                        class="card-icon"
                     >
                         <path
                             stroke-linecap="round"
@@ -119,30 +107,24 @@ const { translations, currentLang } = Astro.props;
             <!-- GitHub Card -->
             <a
                 href="https://github.com/Jok-Holk"
-                class="group card-hover-effect border-2 border-purple-900/50 rounded-xl p-4 sm:p-6 flex flex-col justify-between backdrop-blur-sm bg-gray-800/30 hover:animate-glow"
+                class="group portfolio-card"
                 target="_blank"
                 data-animate
                 data-direction="left"
             >
                 <div class="flex-grow">
                     <div class="flex items-center gap-3 mb-3">
-                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <h3
-                            class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
-                        >
+                        <div class="dot-indicator dot-green"></div>
+                        <h3 class="card-title">
                             {translations?.portfolio?.socials?.github?.title}
                         </h3>
                     </div>
-                    <p
-                        class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
-                    >
+                    <p class="card-description">
                         {translations?.portfolio?.socials?.github?.description}
                     </p>
                 </div>
-                <div class="mt-4 sm:mt-6 flex justify-between items-center">
-                    <span
-                        class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
+                <div class="card-footer">
+                    <span class="card-cta">
                         {translations?.portfolio?.socials?.github?.cta}
                     </span>
                     <svg
@@ -151,7 +133,7 @@ const { translations, currentLang } = Astro.props;
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="w-6 h-6 sm:w-8 sm:h-8 text-purple-500 icon-bounce group-hover:text-purple-300"
+                        class="card-icon"
                     >
                         <path
                             stroke-linecap="round"
@@ -165,30 +147,24 @@ const { translations, currentLang } = Astro.props;
             <!-- Discord Card -->
             <a
                 href="https://discord.com/users/586394957158547456"
-                class="group card-hover-effect border-2 border-purple-900/50 rounded-xl p-4 sm:p-6 flex flex-col justify-between backdrop-blur-sm bg-gray-800/30 hover:animate-glow"
+                class="group portfolio-card"
                 target="_blank"
                 data-animate
                 data-direction="right"
             >
                 <div class="flex-grow">
                     <div class="flex items-center gap-3 mb-3">
-                        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
-                        <h3
-                            class="text-lg sm:text-xl font-semibold text-purple-400 transition-all duration-500 group-hover:text-purple-200"
-                        >
+                        <div class="dot-indicator dot-cyan"></div>
+                        <h3 class="card-title">
                             {translations?.portfolio?.socials?.discord?.title}
                         </h3>
                     </div>
-                    <p
-                        class="text-sm sm:text-base text-gray-300 leading-relaxed transition-colors duration-500 group-hover:text-gray-100"
-                    >
+                    <p class="card-description">
                         {translations?.portfolio?.socials?.discord?.description}
                     </p>
                 </div>
-                <div class="mt-4 sm:mt-6 flex justify-between items-center">
-                    <span
-                        class="text-xs text-purple-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
+                <div class="card-footer">
+                    <span class="card-cta">
                         {translations?.portfolio?.socials?.discord?.cta}
                     </span>
                     <svg
@@ -197,7 +173,7 @@ const { translations, currentLang } = Astro.props;
                         viewBox="0 0 24 24"
                         stroke-width="2"
                         stroke="currentColor"
-                        class="w-6 h-6 sm:w-8 sm:h-8 text-purple-500 icon-bounce group-hover:text-purple-300"
+                        class="card-icon"
                     >
                         <path
                             stroke-linecap="round"
@@ -212,36 +188,185 @@ const { translations, currentLang } = Astro.props;
 </section>
 
 <style>
-    @keyframes glow {
-        0%,
-        100% {
-            box-shadow: 0 0 5px rgba(168, 85, 247, 0.4);
-        }
-        50% {
-            box-shadow:
-                0 0 20px rgba(168, 85, 247, 0.6),
-                0 0 30px rgba(168, 85, 247, 0.4);
-        }
+    .neon-icon {
+        stroke: url(#neon-grad);
     }
 
-    .animate-glow {
-        animation: glow 2s ease-in-out infinite;
+    .portfolio-card {
+        position: relative;
+        border: 2px solid transparent;
+        background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3)) border-box;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        backdrop-filter: blur(4px);
+        transition: all 0.4s ease;
     }
 
-    .card-hover-effect {
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    .portfolio-card:hover {
+        background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(236, 72, 153, 0.6)) border-box;
+        box-shadow:
+            0 0 30px rgba(168, 85, 247, 0.3),
+            0 0 60px rgba(236, 72, 153, 0.2);
+        transform: translateY(-8px);
     }
 
-    .card-hover-effect:hover {
-        transform: translateY(-8px) scale(1.02);
+    .dot-indicator {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
     }
 
-    .icon-bounce {
-        transition: transform 0.3s ease;
+    .dot-purple {
+        background: #a855f7;
+        box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
     }
 
-    .card-hover-effect:hover .icon-bounce {
+    .dot-blue {
+        background: #3b82f6;
+        box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+    }
+
+    .dot-green {
+        background: #10b981;
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    }
+
+    .dot-cyan {
+        background: #06b6d4;
+        box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+    }
+
+    .card-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transition: all 0.3s ease;
+    }
+
+    .card-description {
+        font-size: 0.875rem;
+        color: rgb(209, 213, 219);
+        line-height: 1.625;
+        transition: all 0.3s ease;
+    }
+
+    .group:hover .card-description {
+        color: rgb(243, 244, 246);
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .card-cta {
+        font-size: 0.875rem;
+        font-weight: 500;
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .group:hover .card-cta {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .card-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke: url(#neon-grad);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .group:hover .card-icon {
         transform: rotate(15deg) scale(1.1);
+        filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+    }
+
+    @media (min-width: 640px) {
+        .portfolio-card {
+            padding: 1.5rem;
+        }
+        .card-title {
+            font-size: 1.25rem;
+        }
+        .card-description {
+            font-size: 1rem;
+        }
+        .card-footer {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+        }
+        .card-cta {
+            font-size: 1rem;
+        }
+        .card-icon {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+    @media (max-width: 639px) {
+        .portfolio-card {
+            padding: 1.25rem;
+            min-height: 180px;
+        }
+        .card-title {
+            font-size: 1rem;
+        }
+        .card-description {
+            font-size: 0.8125rem;
+            line-height: 1.5;
+        }
+        .card-footer {
+            margin-top: 0.875rem;
+            padding-top: 0.875rem;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+        .card-cta {
+            font-size: 0.75rem;
+            opacity: 1;
+            transform: translateX(0);
+            text-align: left;
+        }
+        .card-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-left: auto;
+        }
+        .dot-indicator {
+            width: 0.4rem;
+            height: 0.4rem;
+        }
+        a {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
     }
 
     ::-webkit-scrollbar {
@@ -253,7 +378,7 @@ const { translations, currentLang } = Astro.props;
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #7c3aed;
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         border-radius: 4px;
     }
 
@@ -261,14 +386,17 @@ const { translations, currentLang } = Astro.props;
         outline: 2px solid #a855f7;
         outline-offset: 2px;
     }
-    @media (max-width: 640px) {
-        a {
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-        }
-    }
 </style>
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
+            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
+        </linearGradient>
+    </defs>
+</svg>
+
 <script>
     document.documentElement.style.scrollBehavior = 'smooth';
 

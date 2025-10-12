@@ -14,7 +14,7 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
     <!-- Background decoration -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute top-0 left-1/4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-1/4 w-24 h-24 bg-blue-500 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-24 h-24 bg-pink-500 rounded-full blur-3xl"></div>
     </div>
 
     <!-- Section divider -->
@@ -26,7 +26,7 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
             <div class="animate-slide-in-left stagger-1">
                 <div class="flex items-center gap-2 mb-6">
                     <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse-custom"></div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">
+                    <h3 class="text-lg sm:text-xl font-semibold neon-gradient-text">
                         {translations?.footer?.quickLinksTitle}
                     </h3>
                 </div>
@@ -62,7 +62,7 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
             <div class="animate-fade-in-up stagger-2">
                 <div class="flex items-center gap-2 mb-6">
                     <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse-custom"></div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-purple-400">
+                    <h3 class="text-lg sm:text-xl font-semibold neon-gradient-text">
                         {translations?.footer?.connectTitle}
                     </h3>
                 </div>
@@ -160,7 +160,7 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-8 h-8 sm:w-10 sm:h-10 text-purple-600 animate-glow"
+                            class="w-8 h-8 sm:w-10 sm:h-10 neon-gradient-stroke animate-glow"
                         >
                             <path
                                 stroke-linecap="round"
@@ -168,7 +168,7 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
                                 d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"
                             ></path>
                         </svg>
-                        <span class="text-2xl sm:text-3xl font-bold text-purple-600 animate-glow">v2.0</span>
+                        <span class="text-2xl sm:text-3xl font-bold neon-gradient-text animate-glow">v2.0</span>
                     </div>
 
                     <div class="space-y-2 text-sm sm:text-base">
@@ -202,22 +202,20 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
         </div>
     </div>
 </footer>
+
 <script define:vars={{ copyrightText, updatedText, formattedDate }}>
-    // 1. Typed DOM references
     const copyrightElement = document.getElementById('copyright');
     const lastUpdatedElement = document.getElementById('last-updated');
 
-    // 2. Update copyright year
     const currentYear = new Date().getFullYear();
     if (copyrightElement) {
         copyrightElement.textContent = `© ${currentYear} ${copyrightText}`;
     }
 
-    // 3. Update last updated time
     if (lastUpdatedElement) {
         lastUpdatedElement.textContent = `${updatedText} ${formattedDate}`;
     }
-    // 4. Intersection Observer cho animations
+
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px',
@@ -276,7 +274,19 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
         document.body.classList.remove('keyboard-navigation');
     });
 </script>
+
 <style>
+    .neon-gradient-text {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .neon-gradient-stroke {
+        stroke: url(#neon-grad);
+    }
+
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -323,10 +333,10 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
     @keyframes glow {
         0%,
         100% {
-            text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+            filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.5));
         }
         50% {
-            text-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+            filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.8));
         }
     }
 
@@ -365,7 +375,7 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
         left: 0;
         width: 0;
         height: 2px;
-        background: linear-gradient(90deg, #a855f7, #8b5cf6);
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         transition: width 0.3s ease;
     }
 
@@ -375,7 +385,10 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
 
     .link-hover-effect:hover {
         transform: translateY(-2px);
-        color: #c084fc;
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     .social-link-effect {
@@ -384,14 +397,20 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
         border-radius: 8px;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         background: rgba(17, 24, 39, 0.3);
-        border: 1px solid rgba(168, 85, 247, 0.2);
+        border: 2px solid transparent;
+        background:
+            linear-gradient(#111827, #111827) padding-box,
+            linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2)) border-box;
     }
 
     .social-link-effect:hover {
         transform: translateY(-3px) scale(1.02);
-        background: rgba(168, 85, 247, 0.1);
-        border-color: rgba(168, 85, 247, 0.4);
-        box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+        background:
+            linear-gradient(rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.1)) padding-box,
+            linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(236, 72, 153, 0.6)) border-box;
+        box-shadow:
+            0 10px 25px rgba(168, 85, 247, 0.2),
+            0 0 30px rgba(236, 72, 153, 0.15);
     }
 
     .social-link-effect svg {
@@ -417,7 +436,7 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
 
     .section-divider {
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+        background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5), transparent);
         margin: 2rem 0;
     }
 
@@ -443,14 +462,13 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
         animation-delay: 0.4s;
     }
 
-    /* Back to top button */
     .back-to-top {
         position: fixed;
         bottom: 20px;
         right: 20px;
         width: 50px;
         height: 50px;
-        background: linear-gradient(135deg, #7c3aed, #a855f7);
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -481,7 +499,6 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
         transform: translateY(-2px);
     }
 
-    /* Scrollbar styling */
     ::-webkit-scrollbar {
         width: 8px;
     }
@@ -491,11 +508,20 @@ const formattedDate = new Date().toLocaleDateString(currentLang.toString(), {
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #7c3aed;
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #8b5cf6;
+        background: linear-gradient(135deg, #9333ea, #db2777);
     }
 </style>
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
+            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
+        </linearGradient>
+    </defs>
+</svg>

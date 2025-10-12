@@ -2,16 +2,16 @@
 const { translations } = Astro.props;
 ---
 
-<section id="contact" class="text-gray-300 font-mono min-h-screen py-8 sm:py-16">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32">
-        <div class="flex items-center text-purple-600 gap-3 sm:gap-4 mb-8 sm:mb-12" data-animate data-direction="top">
+<section id="contact" class="text-gray-300 font-mono my-16 sm:my-20 md:my-32 lg:my-40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32 my-12 sm:my-16 md:my-24 lg:my-32">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12" data-animate data-direction="top">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 sm:w-10 sm:h-10"
+                class="w-8 h-8 sm:w-10 sm:h-10 neon-gradient-stroke"
             >
                 <path
                     stroke-linecap="round"
@@ -44,7 +44,7 @@ const { translations } = Astro.props;
                                     type="text"
                                     name="firstName"
                                     id="firstName"
-                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
                                     placeholder={translations?.contact?.form?.name?.firstNamePlaceholder}
                                     required
                                 />
@@ -57,7 +57,7 @@ const { translations } = Astro.props;
                                     type="text"
                                     name="lastName"
                                     id="lastName"
-                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
                                     placeholder={translations?.contact?.form?.name?.lastNamePlaceholder}
                                     required
                                 />
@@ -79,7 +79,7 @@ const { translations } = Astro.props;
                                 type="email"
                                 name="email"
                                 id="email"
-                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
                                 placeholder={translations?.contact?.form?.email?.placeholder}
                                 required
                             />
@@ -103,7 +103,7 @@ const { translations } = Astro.props;
                                 type="tel"
                                 name="phone"
                                 id="phone"
-                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
                                 placeholder={translations?.contact?.form?.phone?.placeholder}
                             />
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -124,7 +124,7 @@ const { translations } = Astro.props;
                             name="message"
                             id="message"
                             rows="8"
-                            class="w-full h-full min-h-[200px] lg:min-h-[300px] bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg p-4 input-focus-effect focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 resize-none"
+                            class="w-full h-full min-h-[200px] lg:min-h-[300px] bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg p-4 input-focus-effect focus:outline-none resize-none"
                             placeholder={translations?.contact?.form?.message?.placeholder}
                             required></textarea>
                         <div class="absolute top-4 right-4">
@@ -142,7 +142,7 @@ const { translations } = Astro.props;
                 <button
                     type="submit"
                     id="submit-btn"
-                    class="button-hover-effect bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg transition-all duration-300 text-lg relative group"
+                    class="button-hover-effect neon-gradient-bg text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg transition-all duration-300 text-lg relative group"
                 >
                     <span class="relative z-10 flex items-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +161,7 @@ const { translations } = Astro.props;
         <!-- Success Message -->
         <div id="contact-success-message" class="hidden text-center text-white mt-12 sm:mt-16" data-aos="fade-up">
             <div
-                class="success-message max-w-lg mx-auto p-6 sm:p-8 bg-gray-800/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl"
+                class="success-message max-w-lg mx-auto p-6 sm:p-8 bg-gray-800/50 backdrop-blur-sm border neon-gradient-border rounded-2xl"
             >
                 <div class="mb-4">
                     <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,7 +178,7 @@ const { translations } = Astro.props;
                 </p>
                 <button
                     id="send-another-btn"
-                    class="mt-6 text-purple-400 hover:text-purple-300 transition-colors duration-300 underline"
+                    class="mt-6 neon-gradient-text hover:opacity-80 transition-opacity duration-300 underline"
                 >
                     {translations?.contact?.successMessage?.sendAnotherButton}
                 </button>
@@ -188,7 +188,6 @@ const { translations } = Astro.props;
 </section>
 
 <script>
-    // 1. Typed references to DOM elements
     const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
     const successMessage = document.getElementById('contact-success-message') as HTMLElement | null;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
@@ -196,11 +195,9 @@ const { translations } = Astro.props;
     const messageTextarea = document.getElementById('message') as HTMLTextAreaElement | null;
     const charCount = document.getElementById('char-count') as HTMLElement | null;
 
-    // Only these IDs exist, so we can strongly type them
     type FieldId = 'firstName' | 'lastName' | 'email' | 'phone' | 'message';
     const formFields: FieldId[] = ['firstName', 'lastName', 'email', 'phone', 'message'];
 
-    // 2. Field validation with proper types
     function validateField(field: HTMLInputElement | HTMLTextAreaElement): boolean {
         const parent = field.parentElement as HTMLElement | null;
         const indicator = parent?.querySelector('.validation-indicator') as HTMLElement | null;
@@ -210,13 +207,11 @@ const { translations } = Astro.props;
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             isValid = emailRegex.test(field.value);
         } else if (field.type === 'tel') {
-            // allow empty phone or at least 10 digits
             isValid = field.value === '' || field.value.replace(/\D/g, '').length >= 10;
         } else {
             isValid = field.value.trim().length > 0;
         }
 
-        // toggle classes & indicator color
         if (isValid) {
             field.classList.remove('input-error');
             field.classList.add('input-success');
@@ -239,7 +234,6 @@ const { translations } = Astro.props;
         return isValid || (field.type === 'tel' && field.value === '');
     }
 
-    // 3. Character count on message textarea
     if (messageTextarea && charCount) {
         messageTextarea.addEventListener('input', () => {
             const length = messageTextarea.value.length;
@@ -257,7 +251,6 @@ const { translations } = Astro.props;
         });
     }
 
-    // 4. Attach blur/input listeners to each field
     formFields.forEach((fieldId) => {
         const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
         if (!field) return;
@@ -270,12 +263,10 @@ const { translations } = Astro.props;
         });
     });
 
-    // 5. Form submission with Fetch and TypeScript-safe DOM usage
     if (contactForm && submitBtn && successMessage) {
         contactForm.addEventListener('submit', (event: SubmitEvent) => {
             event.preventDefault();
 
-            // Validate required fields
             let isFormValid = true;
             formFields.forEach((fieldId) => {
                 const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
@@ -293,13 +284,11 @@ const { translations } = Astro.props;
                 return;
             }
 
-            // Show loading state
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span class="opacity-0">Send Message</span>';
 
-            // Safe cast for FormData
             const formEl = event.target as HTMLFormElement;
             const data = new FormData(formEl);
             const url = formEl.action;
@@ -311,7 +300,6 @@ const { translations } = Astro.props;
             })
                 .then((response) => {
                     if (!response.ok) throw new Error('Form submission failed');
-                    // Animate out, then hide form and reveal success banner
                     contactForm.style.animation = 'fadeInUp 0.5s ease-out reverse';
                     setTimeout(() => {
                         contactForm.classList.add('hidden');
@@ -331,12 +319,11 @@ const { translations } = Astro.props;
         });
     }
 
-    // 6. “Send another” resets everything
     if (sendAnotherBtn && contactForm && successMessage) {
         sendAnotherBtn.addEventListener('click', () => {
             successMessage.classList.add('hidden');
             contactForm.classList.remove('hidden');
-            contactForm.reset(); // now valid on HTMLFormElement
+            contactForm.reset();
 
             formFields.forEach((fieldId) => {
                 const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
@@ -358,7 +345,6 @@ const { translations } = Astro.props;
         });
     }
 
-    // 7. Smooth scroll & keyboard-focus styles
     document.documentElement.style.scrollBehavior = 'smooth';
     document.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Tab') document.body.classList.add('keyboard-navigation');
@@ -369,6 +355,29 @@ const { translations } = Astro.props;
 </script>
 
 <style>
+    .neon-gradient-stroke {
+        stroke: url(#neon-grad);
+    }
+
+    .neon-gradient-bg {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+    }
+
+    .neon-gradient-border {
+        border-color: transparent;
+        border-width: 2px;
+        background:
+            linear-gradient(#1f2937, #1f2937) padding-box,
+            linear-gradient(135deg, #a855f7, #ec4899) border-box;
+    }
+
+    .neon-gradient-text {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -380,33 +389,15 @@ const { translations } = Astro.props;
         }
     }
 
-    @keyframes pulse {
-        0%,
-        100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.02);
-        }
-    }
-
-    @keyframes glow {
-        0%,
-        100% {
-            box-shadow: 0 0 5px rgba(168, 85, 247, 0.3);
-        }
-        50% {
-            box-shadow:
-                0 0 20px rgba(168, 85, 247, 0.6),
-                0 0 30px rgba(168, 85, 247, 0.4);
-        }
-    }
-
     .input-focus-effect {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .input-focus-effect:focus {
+        border: 2px solid transparent;
+        background:
+            linear-gradient(#1f2937, #1f2937) padding-box,
+            linear-gradient(135deg, #a855f7, #ec4899) border-box;
         transform: translateY(-2px);
         box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
     }
@@ -434,14 +425,15 @@ const { translations } = Astro.props;
 
     .button-hover-effect:hover {
         transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+        box-shadow:
+            0 15px 30px rgba(168, 85, 247, 0.4),
+            0 0 40px rgba(236, 72, 153, 0.3);
     }
 
     .success-message {
         animation: fadeInUp 0.8s ease-out forwards;
     }
 
-    /* Loading animation for form submission */
     .loading {
         position: relative;
         pointer-events: none;
@@ -471,18 +463,19 @@ const { translations } = Astro.props;
         }
     }
 
-    /* Form validation styles */
     .input-error {
         border-color: #ef4444 !important;
         box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
     }
 
     .input-success {
-        border-color: #10b981 !important;
+        border: 2px solid transparent;
+        background:
+            linear-gradient(#1f2937, #1f2937) padding-box,
+            linear-gradient(135deg, #10b981, #10b981) border-box;
         box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
         width: 8px;
     }
@@ -492,7 +485,16 @@ const { translations } = Astro.props;
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #7c3aed;
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         border-radius: 4px;
     }
 </style>
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
+            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
+        </linearGradient>
+    </defs>
+</svg>

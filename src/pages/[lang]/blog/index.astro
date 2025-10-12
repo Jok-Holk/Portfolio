@@ -25,7 +25,7 @@ const strapiUrl = import.meta.env.STRAPI_URL;
         <div class="animate-fade-in-left mb-8 md:mb-12">
             <a
                 href={`/${lang}`}
-                class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg text-purple-400 font-mono transition-all duration-300 hover:text-purple-300 hover:scale-105"
+                class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg neon-gradient-text font-mono transition-all duration-300 hover:opacity-80 hover:scale-105"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ const strapiUrl = import.meta.env.STRAPI_URL;
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300 group-hover:-translate-x-2 group-hover:scale-110"
+                    class="w-5 h-5 sm:w-6 sm:h-6 neon-gradient-stroke transition-all duration-300 group-hover:-translate-x-2 group-hover:scale-110"
                 >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
                 </svg>
@@ -46,10 +46,7 @@ const strapiUrl = import.meta.env.STRAPI_URL;
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
                 {translations?.blogContent?.myJournals}
             </h1>
-            <div
-                class="h-1 w-20 sm:w-24 md:w-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-gradient"
-            >
-            </div>
+            <div class="h-1 w-20 sm:w-24 md:w-32 neon-gradient-bg rounded-full animate-gradient"></div>
         </div>
 
         <!-- Blog List Component -->
@@ -66,6 +63,21 @@ const strapiUrl = import.meta.env.STRAPI_URL;
 </Layout>
 
 <style>
+    .neon-gradient-text {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .neon-gradient-stroke {
+        stroke: url(#neon-grad);
+    }
+
+    .neon-gradient-bg {
+        background: linear-gradient(135deg, #a855f7, #ec4899);
+    }
+
     @keyframes fade-in-up {
         from {
             opacity: 0;
@@ -123,7 +135,7 @@ const strapiUrl = import.meta.env.STRAPI_URL;
         height: 2px;
         bottom: -2px;
         left: 0;
-        background: linear-gradient(90deg, #8b5cf6, #a855f7);
+        background: linear-gradient(135deg, #a855f7, #ec4899);
         transform: scaleX(0);
         transform-origin: bottom left;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -134,15 +146,22 @@ const strapiUrl = import.meta.env.STRAPI_URL;
         transform: scaleX(1);
     }
 
-    /* Responsive typography adjustments */
     @media (max-width: 640px) {
         h1 {
             line-height: 1.2;
         }
     }
 
-    /* Smooth scroll behavior */
     html {
         scroll-behavior: smooth;
     }
 </style>
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
+            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
+        </linearGradient>
+    </defs>
+</svg>
