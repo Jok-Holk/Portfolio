@@ -14,18 +14,6 @@ const langMap: Record<'en' | 'vi', string> = {
     vi: 'vi_VN',
 };
 const lang = langMap[(currentLang as 'en' | 'vi') || 'en'];
-
-const websiteJsonLd = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "url": "https://jokholk.dev",
-  "name": "JokHolk Portfolio",
-  "inLanguage": currentLang,
-  "author": {
-    "@type": "Person",
-    "@id": "https://jokholk.dev/#person"
-  }
-});
 ---
 
 <html lang={currentLang}>
@@ -103,9 +91,6 @@ const websiteJsonLd = JSON.stringify({
                     "https://tryhackme.com/p/JokHolk"
                 ]
             }
-        </script>
-        <script type="application/ld+json" is:inline>
-           {websiteJsonLd}
         </script>
     </head>
     <body class="bg-black text-gray-300 pt-0">
