@@ -49,9 +49,10 @@
         "type-strings": [
             "A Software Engineer",
             "An Indie Game Developer",
-            "A Web Freelancer",
+            "A Fullstack Web Freelancer",
             "A Cybersecurity Novice"
         ],
+        "downloadCV": "Download My Resume",
         "OverlayName": "Jok Holk",
         "OverlayTitle": "Software & Game Student",
         "OverlayFocus": "Offensive Security Focus",

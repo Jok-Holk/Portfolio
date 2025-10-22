@@ -1,0 +1,106 @@
+@page {
+    size: A4;
+    margin: 0.5cm 1cm 1cm 1cm;
+}
+
+@font-face {
+    font-family: 'Cascadia Code';
+    src: url('fonts/CascadiaCode.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #2c3e50;
+    width: 210mm;
+    padding: 0.5cm 1cm 1cm 1cm;
+    background: white;
+}
+
+h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    text-align: left;
+    color: #2c3e50;
+    margin-bottom: 0.8cm;
+    border-bottom: 1pt solid #6a0dad;
+    padding-bottom: 0.3cm;
+    padding-top: 0;
+}
+
+h2 {
+    font-size: 13pt;
+    font-weight: bold;
+    color: #6a0dad;
+    margin-top: 1cm;
+    margin-bottom: 0.4cm;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    border-bottom: 0.5pt solid #bdc3c7;
+    padding-bottom: 0.2cm;
+}
+
+h3 {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 0.6cm;
+    margin-bottom: 0.2cm;
+}
+
+ul,
+ol {
+    margin-left: 1cm;
+    margin-bottom: 0.4cm;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 0.2cm;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.4cm;
+}
+
+th,
+td {
+    border: 0.5pt solid #ecf0f1;
+    padding: 0.3cm;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+a {
+    color: #6a0dad;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    font-size: 9pt;
+    color: #7f8c8d;
+    margin-top: 1cm;
+    border-top: 0.5pt solid #bdc3c7;
+    padding-top: 0.4cm;
+}

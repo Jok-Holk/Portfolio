@@ -19,7 +19,7 @@ const { translations } = Astro.props;
                     d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.903l-11.25 6.75a2.25 2.25 0 01-2.108 0L2.25 9.196V6.75"
                 ></path>
             </svg>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold tracking-wider">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white tracking-wider">
                 {translations?.contact?.title}
             </h1>
         </div>
@@ -31,10 +31,7 @@ const { translations } = Astro.props;
                 <div class="flex flex-col gap-6 sm:gap-8" data-animate data-direction="left">
                     <!-- Name Fields -->
                     <div class="group">
-                        <label
-                            for="firstName"
-                            class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold"
-                        >
+                        <label for="firstName" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
                             <span class="inline-block w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></span>
                             {translations?.contact?.form?.name?.label}
                         </label>
@@ -70,7 +67,7 @@ const { translations } = Astro.props;
 
                     <!-- Email Field -->
                     <div class="group">
-                        <label for="email" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
+                        <label for="email" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
                             <span class="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
                             {translations?.contact?.form?.email?.label}
                         </label>
@@ -91,7 +88,7 @@ const { translations } = Astro.props;
 
                     <!-- Phone Field -->
                     <div class="group">
-                        <label for="phone" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
+                        <label for="phone" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
                             <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
                             {translations?.contact?.form?.phone?.label}
                             <span class="text-sm text-gray-400 font-normal"
@@ -115,7 +112,7 @@ const { translations } = Astro.props;
 
                 <!-- Right Column - Message -->
                 <div class="flex flex-col" data-animate data-direction="right">
-                    <label for="message" class="block text-lg sm:text-xl md:text-2xl text-white mb-3 font-semibold">
+                    <label for="message" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
                         <span class="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse"></span>
                         {translations?.contact?.form?.message?.label}
                     </label>
@@ -142,7 +139,7 @@ const { translations } = Astro.props;
                 <button
                     type="submit"
                     id="submit-btn"
-                    class="button-hover-effect neon-gradient-bg text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg transition-all duration-300 text-lg relative group"
+                    class="button-hover-effect neon-gradient-bg text-white py-4 px-8 sm:px-12 rounded-xl shadow-lg transition-all duration-300 text-lg relative group"
                 >
                     <span class="relative z-10 flex items-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +169,7 @@ const { translations } = Astro.props;
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-bold mb-4">{translations?.contact?.successMessage?.title}</h2>
+                <h2 class="text-2xl sm:text-3xl mb-4">{translations?.contact?.successMessage?.title}</h2>
                 <p class="text-lg sm:text-xl text-gray-300 leading-relaxed">
                     {translations?.contact?.successMessage?.text}
                 </p>

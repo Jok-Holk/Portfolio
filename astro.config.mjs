@@ -1,14 +1,12 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
-import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
-
+import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
     integrations: [
         vue(),
-        tailwind(),
         sitemap({
             i18n: {
                 defaultLocale: 'en',
@@ -19,6 +17,9 @@ export default defineConfig({
             },
         }),
     ],
+    vite: {
+        plugins: [tailwindcss()],
+    },
     site: 'https://jokholk.dev',
     output: 'static',
     adapter: vercel(),

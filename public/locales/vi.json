@@ -47,11 +47,12 @@
         "description-8": "với mục tiêu trở thành",
         "description-9": "chuyên gia an ninh mạng",
         "type-strings": [
-            "Kỹ sư phần mềm",
-            "Nhà phát triển game indie",
-            "Freelancer web",
-            "Người mới vào nghề an ninh mạng"
+            "Kỹ sư Phần mềm",
+            "Nhà phát triển Game Độc lập",
+            "Freelancer Web Fullstack",
+            "Người mới An ninh Mạng"
         ],
+        "downloadCV": "Tải CV của tôi",
         "OverlayName": "Thái Nguyễn",
         "OverlayTitle": "Sinh viên Phần mềm & Game",
         "OverlayFocus": "Tập trung An ninh Tấn công",

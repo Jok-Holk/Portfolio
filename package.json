@@ -4,13 +4,13 @@
     "version": "1.0.0",
     "scripts": {
         "dev": "astro dev",
-        "build": "astro build",
+        "build": "astro build && yarn generate-pdf",
+        "generate-pdf": "md-to-pdf \"public/resumes/vi/resume-vi.md\" --stylesheet \"public/resumes/styles.css\" && md-to-pdf \"public/resumes/en/resume-en.md\" --stylesheet \"public/resumes/styles.css\"",
         "preview": "astro preview",
         "astro": "astro"
     },
     "dependencies": {
         "@astrojs/sitemap": "^3.6.0",
-        "@astrojs/tailwind": "^6.0.2",
         "@astrojs/vercel": "^8.2.8",
         "@astrojs/vue": "^5.1.1",
         "astro": "^5.14.1",
@@ -20,8 +20,15 @@
         "vue": "^3.5.21"
     },
     "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.15",
         "@tailwindcss/typography": "^0.5.16",
+        "@tailwindcss/vite": "^4.1.15",
         "@types/ms": "^2.1.0",
-        "@types/unist": "^3.0.3"
+        "@types/unist": "^3.0.3",
+        "autoprefixer": "^10.4.21",
+        "md-to-pdf": "^5.2.4",
+        "postcss": "^8.5.6",
+        "puppeteer": "^24.26.0",
+        "tailwindcss": "^4.1.15"
     }
 }
