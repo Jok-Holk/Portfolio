@@ -1,6 +1,8 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+export const prerender = false; // Disable prerendering for this API route
+
 export async function GET({ params }) {
     try {
         const filePath = join(process.cwd(), 'public', 'resumes', params.lang, `resume-${params.lang}.pdf`);
