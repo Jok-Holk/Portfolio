@@ -41,7 +41,7 @@ const articles = await fetchApi<Article[]>({
                             class="group flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6"
                         >
                             {article.image && (
-                                <div class="image-container flex-shrink-0 overflow-hidden rounded-lg">
+                                <div class="image-container shrink-0 overflow-hidden rounded-lg">
                                     <img
                                         src={`${import.meta.env.STRAPI_URL}${article.image.url}`}
                                         alt={article.title}
@@ -68,7 +68,7 @@ const articles = await fetchApi<Article[]>({
                                         viewBox="0 0 24 24"
                                         stroke-width="1.5"
                                         stroke="currentColor"
-                                        class="blog-arrow w-5 h-5 lg:w-6 lg:h-6 text-gray-400 flex-shrink-0 mt-1 lg:mt-0"
+                                        class="blog-arrow w-5 h-5 lg:w-6 lg:h-6 text-gray-400 shrink-0 mt-1 lg:mt-0"
                                     >
                                         <path
                                             stroke-linecap="round"

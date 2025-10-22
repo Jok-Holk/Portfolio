@@ -13,11 +13,11 @@ const hasDemoLink = demoLink && demoLink.length > 0;
 ---
 
 <div
-    class="relative p-6 rounded-2xl bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/40 hover:border-pink-500/60 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 backdrop-blur-sm h-full flex flex-col group"
+    class="relative p-6 rounded-2xl bg-linear-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/40 hover:border-pink-500/60 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 backdrop-blur-sm h-full flex flex-col group"
 >
     <div class="flex-1 space-y-4 mb-6">
         <h3
-            class="text-xl md:text-2xl bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-700 transition-all duration-300"
+            class="text-xl md:text-2xl bg-linear-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-700 transition-all duration-300"
         >
             {title}
         </h3>
@@ -30,7 +30,7 @@ const hasDemoLink = demoLink && demoLink.length > 0;
         <div class="flex flex-wrap gap-2">
             {
                 tags.map((tag) => (
-                    <span class="px-3 py-1.5 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-lg text-xs text-purple-200 border border-purple-400/30 hover:border-purple-400/50 transition-colors">
+                    <span class="px-3 py-1.5 bg-linear-to-r from-purple-500/30 to-pink-500/30 rounded-lg text-xs text-purple-200 border border-purple-400/30 hover:border-purple-400/50 transition-colors">
                         {tag}
                     </span>
                 ))
@@ -60,7 +60,7 @@ const hasDemoLink = demoLink && demoLink.length > 0;
                     href={demoLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
+                    class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-linear-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
