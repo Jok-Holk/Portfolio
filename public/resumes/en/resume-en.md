@@ -16,7 +16,7 @@ As a developing student, I aim to apply programming knowledge and experience fro
 
 ### Web Developer (Freelance)
 
-**Period:** Sep 2025 - Present  
+**Period:** Sep 2025 - Present <br>
 **Description:**
 
 -   Built and developed a personal portfolio website using **Astro**, focusing on high performance and optimal user experience.
@@ -27,7 +27,7 @@ As a developing student, I aim to apply programming knowledge and experience fro
 
 ### Team Lead (Game Project)
 
-**Period:** Jul 2025 - Aug 2025  
+**Period:** Jul 2025 - Aug 2025 <br>
 **Description:**
 
 -   Led and managed a team of 3 programmers to develop the game **Rogue Adventure**, a 2D pixel-art platformer game.
@@ -39,7 +39,7 @@ As a developing student, I aim to apply programming knowledge and experience fro
 ### Web Freelancer
 
 **Etugi Binh Duong**  
-**Period:** Sep 2024 - Oct 2024  
+**Period:** Sep 2024 - Oct 2024 <br>
 **Description:**
 
 -   Designed and built the entire user interface (UI) for the website using HTML and CSS3.

@@ -16,7 +16,7 @@ Với tư cách là một sinh viên đang phát triển, tôi mong muốn áp d
 
 ### Web Developer (Freelance)
 
-**Thời gian:** T9 2025 - Hiện tại
+**Thời gian:** T9 2025 - Hiện tại <br>
 **Mô tả:**
 
 -   Xây dựng và phát triển trang portfolio cá nhân bằng **Astro**, tập trung vào hiệu suất cao và trải nghiệm người dùng tối ưu.
@@ -27,7 +27,7 @@ Với tư cách là một sinh viên đang phát triển, tôi mong muốn áp d
 
 ### Trưởng nhóm (Dự án game)
 
-**Thời gian:** T7 2025 - T8 2025
+**Thời gian:** T7 2025 - T8 2025 <br>
 **Mô tả:**
 
 -   Lãnh đạo và quản lý một nhóm 3 lập trình viên để phát triển game **Rogue Adventure**, một tựa game 2D platformer pixel-art.
@@ -39,7 +39,7 @@ Với tư cách là một sinh viên đang phát triển, tôi mong muốn áp d
 ### Web Freelancer
 
 **Etugi Binh Duong**  
-**Thời gian:** T9 2024 - T10 2024
+**Thời gian:** T9 2024 - T10 2024 <br>
 **Mô tả:**
 
 -   Thiết kế và xây dựng toàn bộ giao diện người dùng (UI) cho trang web bằng HTML và CSS3.
