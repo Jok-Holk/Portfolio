@@ -1,8 +1,8 @@
 {
     "title": "JokHolk Realm",
-    "description": "JokHolk's personal portfolio website showcasing software development, game projects, and cybersecurity journey.",
+    "description": "JokHolk's personal portfolio website showcasing software development, game projects journey.",
     "titleBlog": "JokHolk Blogs",
-    "descriptionBlog": "Where I share insights, projects, and my journey through software development, indie games, and cybersecurity.",
+    "descriptionBlog": "Where I share insights, projects, and my journey through software development, indie games.",
     "blogContent": {
         "goback": "Go back",
         "myJournals": "My Journals",
@@ -45,17 +45,12 @@
         "description-6": "apps",
         "description-7": "indie games",
         "description-8": "with a goal to become a",
-        "description-9": "cybersecurity expert",
-        "type-strings": [
-            "A Software Engineer",
-            "An Indie Game Developer",
-            "A Fullstack Web Freelancer",
-            "A Cybersecurity Novice"
-        ],
+        "description-9": "fullstack expert",
+        "type-strings": ["A Full Stack Web Developer", "An Indie Game Developer", "A Web Freelancer"],
         "downloadCV": "Download My Resume",
         "OverlayName": "Jok Holk",
         "OverlayTitle": "Software & Game Student",
-        "OverlayFocus": "Offensive Security Focus",
+        "OverlayFocus": "Fullstack Web Development Focus",
         "OverlayContact": "Contact via Email"
     },
     "about": {
@@ -73,25 +68,25 @@
         "description-10": "software design",
         "description-11": "which I see as essential steps toward my long-term goals.",
         "description-12": "My main direction is",
-        "description-13": "cybersecurity",
-        "description-14": "I aim to dive into system protection, ethical hacking, and defensive strategies to better understand how technology can be safeguarded.",
+        "description-13": "full stack web development",
+        "description-14": "I focus on building complete web applications, from scalable back-end systems to modern, responsive front-end experiences.",
         "description-15": "At the same time, I take on freelance",
         "description-16": "web projects",
         "description-17": "with modern tools like",
         "description-18": "Astro",
         "description-19": "and explore building an",
         "description-20": "indie game studio",
-        "description-21": "These experiences aren't my final destination, but they provide valuable programming practice and broaden my perspective, making me stronger as I move toward a career in cybersecurity.",
+        "description-21": "These experiences aren't my final destination, but they provide valuable real-world programming practice and help me grow toward a professional career as a full stack developer.",
         "card-1-title": "Alias",
         "card-1-content": "Joker, Jok.",
         "card-2-title": "Focus",
-        "card-2-content": "Software Development, Game Development, Cybersecurity, Offensive Security.",
+        "card-2-content": "Software Development, Full Stack Web Development, Game Development.",
         "card-3-title": "Toolset",
-        "card-3-content": "VS Code, Git, GitHub, Unity, Kali Linux.",
+        "card-3-content": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js.",
         "card-4-title": "Languages",
         "card-4-content": "HTML, CSS, JavaScript, Python, Bash, PowerShell, React, Astro, Node.js, Next.js.",
         "card-5-title": "Specialty",
-        "card-5-content": "Full stack web development with Next.js SSR and Astro for static sites; Unity indie game development; Penetration testing and ethical hacking with Kali Linux."
+        "card-5-content": "Full stack web development with Next.js (SSR), Astro for static sites, RESTful APIs, and modern front-end architectures; Unity indie game development."
     },
     "education": {
         "title": "education",
@@ -126,9 +121,9 @@
         "title": "portfolios",
         "socials": {
             "tryhackme": {
-                "title": "TryHackMe Profile",
-                "description": "View my cybersecurity journey and achievements on TryHackMe.",
-                "cta": "Click to explore →"
+                "title": "Learning Journey",
+                "description": "A place where I track my technical learning progress and hands-on practice.",
+                "cta": "View journey →"
             },
             "facebook": {
                 "title": "Facebook Profile",

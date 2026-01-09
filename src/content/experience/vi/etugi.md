@@ -7,7 +7,7 @@ techs: ['HTML', 'CSS', 'JavaScript']
 lang: 'vi'
 ---
 
-Đây là dự án tự do đầu tiên của tôi, giúp tôi áp dụng và cải thiện đáng kể các kỹ năng HTML, CSS và JavaScript. Tôi tập trung vào việc tạo ra một giao diện trực quan và sạch sẽ từ đầu.
+Đây là dự án freelance website đầu tiên của tôi, trong đó tôi thiết kế và xây dựng toàn bộ giao diện front-end từ đầu bằng <b>HTML</b>, <b>CSS</b> và <b>JavaScript</b>.
 <br>
 <br>
-Mặc dù giao diện người dùng được đánh giá cao, nhưng mã nguồn phần lớn được viết thủ công. Kết quả là, mã của tôi hơi "rối", thiếu đi những phương pháp tốt nhất mà tôi đã học được sau này. Dù vậy, dự án này vẫn vô cùng quý giá. Đó là kinh nghiệm then chốt giúp tôi nắm vững hoàn toàn các kiến thức nền tảng về HTML, CSS và JavaScript.
+Dự án mang lại kinh nghiệm thực tế quan trọng, giúp tôi củng cố vững chắc các kiến thức nền tảng về phát triển web và tạo tiền đề để cải thiện chất lượng mã nguồn ở các dự án sau.

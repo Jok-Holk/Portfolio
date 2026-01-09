@@ -45,7 +45,7 @@ const lang = langMap[(currentLang as 'en' | 'vi') || 'en'];
         <meta property="og:locale" content={lang} />
 
         <meta property="og:type" content="website" />
-        <meta name="color-scheme" content="dark">
+        <meta name="color-scheme" content="dark" />
         <meta name="theme-color" content="#000000" />
 
         <script type="application/ld+json">
@@ -68,9 +68,9 @@ const lang = langMap[(currentLang as 'en' | 'vi') || 'en'];
                 ],
                 "url": "https://jokholk.dev",
                 "image": "https://jokholk.dev/avatar.webp",
-                "description": "Personal portfolio showcasing my journey in cybersecurity, web development, and game development.",
-                "jobTitle": "Cybersecurity Student",
-                "knowsAbout": ["Cybersecurity", "Web Development", "Game Development"],
+                "description": "Personal portfolio showcasing my journey in web development, and game development.",
+                "jobTitle": "Fullstack Student",
+                "knowsAbout": ["Web Development", "Game Development"],
                 "memberOf": [
                     {
                         "@type": "CollegeOrUniversity",
@@ -108,22 +108,22 @@ const lang = langMap[(currentLang as 'en' | 'vi') || 'en'];
     </body>
 </html>
 <style>
-body {
-    transform: none !important;
-    perspective: none !important;
-    filter: none !important;
-}
-.loader {
-    position: fixed;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    z-index: 9999;
-}
+    body {
+        transform: none !important;
+        perspective: none !important;
+        filter: none !important;
+    }
+    .loader {
+        position: fixed;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        z-index: 9999;
+    }
 </style>
 <script>
     window.onload = () => {

@@ -7,7 +7,7 @@ techs: ['HTML', 'CSS', 'JavaScript']
 lang: 'en'
 ---
 
-This was my first freelance project, which allowed me to apply and significantly improve my skills in HTML, CSS, and JavaScript. I focused on creating a visually appealing and clean interface from scratch.
+This was my first freelance web project, where I designed and built a complete front-end interface from scratch using <b>HTML</b>, <b>CSS</b>, and <b>JavaScript</b>.
 <br>
 <br>
-While the user interface was well-received, the underlying code was largely written by hand. As a result, my code was a bit "spaghetti-like," lacking the best practices I've learned since. Despite this, the project was invaluable. It was the crucial experience that helped me completely master the fundamentals of HTML, CSS, and JavaScript.
+The project provided valuable hands-on experience, helping me strengthen my understanding of core web fundamentals and establish a solid foundation for writing cleaner and more maintainable code in later projects.

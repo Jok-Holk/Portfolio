@@ -1,11 +1,11 @@
 ---
-title: 'Rogue Adeventure'
+title: 'Rogue Adventure'
 tags: ['Unity', 'C#', 'Game Development', '2D Platformer']
 codeLink: 'https://github.com/Jok-Holk/du-an-1'
 demoLink: 'https://jok-holk.itch.io/rogue-adventure'
 lang: 'vi'
 ---
 
-Đây là một dự án game 2D pixel platformer, được tạo ra như một phần của chương trình học của tôi. Rogue Adventure là một game platformer nhỏ, giúp tôi áp dụng kiến thức và hiểu sâu hơn về quy trình phát triển game.
+Rogue Adventure là dự án game 2D pixel platformer được thực hiện trong khuôn khổ chương trình học. Dự án giúp tôi áp dụng kiến thức lập trình và làm quen với quy trình phát triển game hoàn chỉnh.
 <br>
-Dù là một dự án nhóm, tôi đã đảm nhận hơn 95% khối lượng công việc. Tôi sử dụng Unity và C# để xây dựng các tính năng cốt lõi như hệ thống điều khiển nhân vật linh hoạt, các hoạt ảnh nhân vật và quy trình thiết kế màn chơi. Dự án này là một bước khởi đầu vững chắc, cho phép tôi tự mình nghiên cứu và tối ưu hóa hiệu suất của một game 2D.
+Tôi đảm nhận phần lớn khối lượng công việc (trên 95%), sử dụng <b>Unity</b> và <b>C#</b> để xây dựng hệ thống điều khiển nhân vật, hoạt ảnh và thiết kế màn chơi, đồng thời tối ưu hiệu suất cho trải nghiệm chơi mượt mà.

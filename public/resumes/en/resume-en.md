@@ -1,75 +1,85 @@
 # Nguyen Bui Phuc Thai
 
-**Personal Information**
+## Personal Information
 
--   Phone: 0354893925
--   Email: phucthai936@gmail.com
--   Address: No. 156 GS3 Street, Tay A Ward, Dong Hoa Ward, Di An City, Binh Duong Province
--   Date of Birth: May 23, 2006
--   Website: [jokholk.dev](https://jokholk.dev)
+-   **Phone:** 0354 893 925
+-   **Email:** phucthai936@gmail.com
+-   **Address:** No. 156 GS3 Street, Tay A Quarter, Dong Hoa Ward, Di An City, Binh Duong Province, Vietnam
+-   **Date of Birth:** May 23, 2006
+-   **Website:** https://jokholk.dev
+
+---
 
 ## Career Objective
 
-As a developing student, I aim to apply programming knowledge and experience from freelance web projects and indie games to build a solid foundation. My long-term goal is to pursue a career in the field of **cybersecurity**, specializing in offensive security and **ethical hacking**.
+I am a software development student with a strong interest in **full stack web development** and **game programming**. I seek to apply both academic knowledge and hands-on experience gained from freelance web projects and personal game development to build practical, high-quality products. My long-term goal is to grow into a **professional full stack developer** with solid technical foundations and strong problem-solving skills.
+
+---
 
 ## Work Experience
 
 ### Web Developer (Freelance)
 
-**Period:** Sep 2025 - Present <br>
-**Description:**
+**Period:** September 2025 – Present
 
--   Built and developed a personal portfolio website using **Astro**, focusing on high performance and optimal user experience.
--   Integrated **Strapi** as Headless CMS for flexible and efficient blog content management.
--   Configured and deployed the application on **VPS** (virtual private server) using **Nginx** for stable and secure hosting.
--   Implemented real projects on the portfolio to showcase Front-end programming skills (HTML, CSS, JavaScript) and API integration.
--   Project Link: [https://jokholk.dev](https://jokholk.dev)
+-   Designed and developed a personal portfolio website using **Astro**, focusing on performance optimization and user experience.
+-   Integrated **Strapi Headless CMS** to enable flexible and scalable blog content management.
+-   Deployed and maintained the application on a **VPS**, configuring **Nginx** to ensure stable and reliable operation.
+-   Implemented real-world web projects to demonstrate front-end development skills and API integration capabilities.
+-   **Project:** https://jokholk.dev
 
-### Team Lead (Game Project)
+---
 
-**Period:** Jul 2025 - Aug 2025 <br>
-**Description:**
+### Team Lead – Game Project
 
--   Led and managed a team of 3 programmers to develop the game **Rogue Adventure**, a 2D pixel-art platformer game.
--   Analyzed tasks, ensured progress, and supported technical issue resolution for team members.
--   Directly developed core features of the game such as character control system, attack logic, enemy movement, and level logic.
--   Ensured project completion on schedule and quality, while maintaining close coordination among members.
--   Project Link: [https://jok-holk.itch.io/rogue-adventure](https://jok-holk.itch.io/rogue-adventure)
+**Period:** July 2025 – August 2025
+
+-   Led and coordinated a team of three programmers in developing **Rogue Adventure**, a 2D pixel-art platformer game.
+-   Analyzed project requirements, assigned tasks, and monitored development progress.
+-   Implemented core gameplay systems, including character controls, combat mechanics, enemy behavior, and level logic.
+-   Ensured timely project delivery while maintaining effective collaboration among team members.
+-   **Project:** https://jok-holk.itch.io/rogue-adventure
+
+---
 
 ### Web Freelancer
 
 **Etugi Binh Duong**  
-**Period:** Sep 2024 - Oct 2024 <br>
-**Description:**
+**Period:** September 2024 – October 2024
 
--   Designed and built the entire user interface (UI) for the website using HTML and CSS3.
--   Used JavaScript to develop interactive features like shopping cart, contact form, and visual effects to enhance user experience.
--   Built a responsive design interface, ensuring the website displays well on all devices.
--   Ensured the website has clean, maintainable code structure and good compatibility across different browsers.
--   Delivered a complete, stable product meeting customer requirements.
+-   Designed and developed the website’s user interface using **HTML** and **CSS3**, ensuring clarity and usability.
+-   Implemented interactive features with **JavaScript**, including shopping cart functionality, contact forms, and UI effects.
+-   Built a fully **responsive layout**, optimized for various screen sizes and devices.
+-   Ensured clean, maintainable code and cross-browser compatibility.
+-   Delivered a complete and stable product that met client requirements.
+
+---
 
 ## Skills
 
 ### Technical Skills
 
--   **Web:** HTML, CSS, JavaScript, Astro, VPS & Nginx Configuration, Strapi Headless CMS, ReactJS, NextJS, Medusa.js.
--   **Game Programming:** C#, Unity.
--   **Cyber Security:** Python, Bash.
--   **Project Management:** Planning, progress tracking, team management.
+-   **Web Development:** HTML, CSS, JavaScript, Astro, React, Next.js, Medusa.js, Strapi (Headless CMS), VPS & Nginx
+-   **Game Development:** C#, Unity
+-   **Project Management:** Task planning, progress tracking, teamwork and coordination
+
+---
 
 ## Education
 
 ### University
 
--   **FUNiX Online University, Hanoi**  
-    Software Engineer  
-    Oct 2023 - Present
+**FUNiX Online University, Hanoi**  
+**Program:** Software Engineering  
+**Period:** October 2023 – Present
 
 ### College
 
--   **FPT Polytechnic College, Ho Chi Minh**  
-    Game Programming  
-    Jan 2025 - Present
+**FPT Polytechnic College, Ho Chi Minh City**  
+**Program:** Game Programming  
+**Period:** January 2025 – Present
+
+---
 
 ## Languages
 
