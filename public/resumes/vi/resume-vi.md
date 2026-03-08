@@ -1,85 +1,74 @@
-# NGUYỄN BÙI PHÚC THÁI
+# Nguyễn Bùi Phúc Thái
+
+##### Lập trình viên Web Full-Stack
 
 ## Thông tin cá nhân
 
--   **Điện thoại:** 0354 893 925
--   **Email:** phucthai936@gmail.com
--   **Địa chỉ:** 156 GS3, KP Tây A, P. Đông Hòa, TP. Dĩ An, Bình Dương
--   **Ngày sinh:** 23/05/2006
--   **Website:** https://jokholk.dev
+- **Điện thoại:** 0354 893 925
+- **Email:** phucthai936@gmail.com
+- **Website:** [jokholk.dev](https://jokholk.dev/)
+- **Địa chỉ:** Khu phố Tây A, Phường Đông Hòa, TP. Hồ Chí Minh
+- **Ngày sinh:** 23/05/2006
 
 ---
 
 ## Mục tiêu nghề nghiệp
 
-Tôi là sinh viên theo định hướng phát triển phần mềm, với trọng tâm là **phát triển web full stack** và **lập trình game**. Tôi mong muốn vận dụng kiến thức học thuật cùng kinh nghiệm thực tế từ các dự án freelance và dự án cá nhân để xây dựng các sản phẩm có tính ứng dụng cao. Mục tiêu của tôi là phát triển sự nghiệp trở thành **lập trình viên full stack chuyên nghiệp**, có nền tảng kỹ thuật vững chắc và tư duy giải quyết vấn đề tốt.
-
----
-
-## Kinh nghiệm làm việc
-
-### Web Developer (Freelance)
-
-**Thời gian:** 09/2025 – Hiện tại
-
--   Thiết kế và phát triển website portfolio cá nhân bằng **Astro**, tập trung vào hiệu suất và trải nghiệm người dùng.
--   Tích hợp **Strapi Headless CMS** để quản lý nội dung blog, đảm bảo khả năng mở rộng.
--   Triển khai và vận hành ứng dụng trên **VPS**, cấu hình **Nginx** nhằm đảm bảo hệ thống hoạt động ổn định.
--   Thực hiện các dự án web thực tế để thể hiện năng lực front-end và khả năng làm việc với API.
--   **Link:** https://jokholk.dev
-
----
-
-### Trưởng nhóm – Dự án Game
-
-**Thời gian:** 07/2025 – 08/2025
-
--   Quản lý và điều phối nhóm gồm 3 lập trình viên trong quá trình phát triển game **Rogue Adventure** (2D platformer, pixel-art).
--   Phân tích yêu cầu, phân chia nhiệm vụ và theo dõi tiến độ thực hiện.
--   Trực tiếp phát triển các hệ thống cốt lõi như điều khiển nhân vật, cơ chế tấn công, hành vi kẻ địch và logic màn chơi.
--   Đảm bảo dự án hoàn thành đúng tiến độ và duy trì sự phối hợp hiệu quả trong nhóm.
--   **Link:** https://jok-holk.itch.io/rogue-adventure
-
----
-
-### Web Freelancer
-
-**Etugi Bình Dương**  
-**Thời gian:** 09/2024 – 10/2024
-
--   Thiết kế và xây dựng giao diện người dùng bằng **HTML** và **CSS3**, đảm bảo tính trực quan và dễ sử dụng.
--   Phát triển các chức năng tương tác bằng **JavaScript** nhằm nâng cao trải nghiệm người dùng.
--   Xây dựng giao diện **responsive**, tối ưu hiển thị trên nhiều thiết bị.
--   Đảm bảo mã nguồn rõ ràng, dễ bảo trì và tương thích tốt với các trình duyệt phổ biến.
-
----
-
-## Kỹ năng
-
-### Kỹ năng chuyên môn
-
--   **Phát triển Web:** HTML, CSS, JavaScript, Astro, React, Next.js, Medusa.js, Strapi (Headless CMS), VPS, Nginx
--   **Lập trình Game:** C#, Unity
--   **Quản lý dự án:** Lập kế hoạch, phân chia công việc, theo dõi tiến độ, làm việc nhóm
+Sinh viên chuyên ngành **Lập trình Game**, với trọng tâm mở rộng sang **web&nbsp;full-stack**. Mong muốn vận&nbsp;dụng kiến thức học thuật cùng kinh nghiệm từ các dự&nbsp;án freelance và cá&nbsp;nhân để xây dựng sản phẩm có&nbsp;tính ứng&nbsp;dụng thực tiễn. Mục tiêu phát triển thành lập&nbsp;trình&nbsp;viên full-stack chuyên nghiệp, làm chủ kỹ&nbsp;thuật và giải&nbsp;quyết vấn&nbsp;đề hiệu quả.
 
 ---
 
 ## Học vấn
 
-### Đại học
+#### **Trường Cao đẳng FPT Polytechnic** — TP. Hồ Chí Minh
 
-**Đại học trực tuyến FUNiX – Hà Nội**  
-**Ngành:** Kỹ sư Phần mềm  
-**Thời gian:** 10/2023 – Hiện tại
+#### Chuyên ngành: Lập trình Game · Học kỳ 5/6
 
-### Cao đẳng
-
-**Cao đẳng FPT Polytechnic – TP. Hồ Chí Minh**  
-**Ngành:** Lập trình Game  
-**Thời gian:** 01/2025 – Hiện tại
+#### GPA: ~3.5/4.0 — Xếp loại: Xuất sắc
 
 ---
 
-## Ngôn ngữ
+## Chứng chỉ
 
--   **Tiếng Anh:** Thành thạo (IELTS 6.0)
+| Chứng chỉ                            | Đơn vị cấp               | Thời gian  |
+| ------------------------------------ | ------------------------ | ---------- |
+| Foundational C# with Microsoft       | freeCodeCamp × Microsoft | 01/12/2024 |
+| Front End Development Libraries (V8) | freeCodeCamp (~300 giờ)  | 12/12/2024 |
+
+---
+
+## Kinh nghiệm làm việc
+
+### Web Developer (Freelancer) — Etugi Bình Dương · 2024
+
+Xây dựng website giới&nbsp;thiệu thương&nbsp;hiệu và bán hàng cho doanh&nbsp;nghiệp nhỏ, trực tiếp làm việc với khách&nbsp;hàng từ giai&nbsp;đoạn xác&nbsp;định yêu&nbsp;cầu đến triển khai.
+
+- Hoàn thiện website **10+&nbsp;trang**, đưa vào sử dụng thực tế.
+- Thiết kế giao diện **responsive** bằng HTML & CSS3, hiển thị tốt trên desktop và mobile.
+- Phát triển tương&nbsp;tác cơ bản bằng **JavaScript** (menu động, form liên&nbsp;hệ).
+- Hoàn thành trong **1&nbsp;tháng**, đúng tiến độ và ngân sách.
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## Dự án cá nhân
+
+### Portfolio cá nhân · 2025
+
+- Xây dựng hệ&nbsp;thống blog theo mô&nbsp;hình **headless&nbsp;CMS**, tách biệt frontend và dữ&nbsp;liệu.
+- Sử dụng **Astro** cho frontend, **Strapi** làm CMS, kết nối qua **REST&nbsp;API**.
+- Triển khai trên **VPS**, cấu hình **Nginx** để phục vụ production.
+
+### Công cụ tạo CV tự động từ Markdown · 2025
+
+- Xây dựng pipeline **Markdown&nbsp;→&nbsp;HTML&nbsp;→&nbsp;PDF**, giúp cập nhật CV nhanh và nhất quán.
+- Tích hợp với **Astro** để xây dựng layout CV linh hoạt, dễ tuỳ chỉnh.
+
+---
+
+## Kỹ năng
+
+**Kỹ thuật:** HTML, CSS3, JavaScript, Astro, Strapi, Node.js, REST&nbsp;API, Nginx, VPS, SSH, C#
+
+**Mềm:** Lập kế hoạch & quản&nbsp;lý tiến độ, làm việc nhóm, giao tiếp với khách&nbsp;hàng, trình bày giải&nbsp;pháp kỹ&nbsp;thuật
