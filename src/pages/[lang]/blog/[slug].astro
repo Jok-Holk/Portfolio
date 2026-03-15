@@ -16,7 +16,11 @@ export async function getStaticPaths() {
             wrappedByKey: 'data',
         });
 
+        console.log(`[DEBUG] lang=${lang} articles=`, JSON.stringify(articles?.slice(0, 2)));
+
         for (const article of articles) {
+            console.log(`[DEBUG] article keys=`, Object.keys(article));
+            console.log(`[DEBUG] slug=`, article.slug);
             paths.push({
                 params: { lang, slug: article.slug },
                 props: { article },
