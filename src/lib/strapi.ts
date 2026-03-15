@@ -36,5 +36,11 @@ export default async function fetchApi<T>({ endpoint, query, wrappedByKey, wrapp
         data = data[0];
     }
 
+    if (Array.isArray(data)) {
+        data = data.map((item: any) => ({ id: item.id, ...item.attributes }));
+    } else if (data?.attributes) {
+        data = { id: data.id, ...data.attributes };
+    }
+
     return data as T;
 }
