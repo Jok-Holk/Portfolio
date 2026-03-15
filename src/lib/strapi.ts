@@ -25,6 +25,7 @@ export default async function fetchApi<T>({ endpoint, query, wrappedByKey, wrapp
             url.searchParams.append(key, value);
         });
     }
+
     const res = await fetch(url.toString());
     let data = await res.json();
 
@@ -40,7 +41,6 @@ export default async function fetchApi<T>({ endpoint, query, wrappedByKey, wrapp
     if (Array.isArray(data)) {
         data = data.map((item: any) => {
             const flat = { id: item.id, ...item.attributes };
-            // Unwrap nested relations (image, categories...)
             if (flat.image?.data) {
                 flat.image = { id: flat.image.data.id, ...flat.image.data.attributes };
             }
@@ -50,7 +50,14 @@ export default async function fetchApi<T>({ endpoint, query, wrappedByKey, wrapp
             return flat;
         });
     } else if (data?.attributes) {
-        data = { id: data.id, ...data.attributes };
+        const flat = { id: data.id, ...data.attributes };
+        if (flat.image?.data) {
+            flat.image = { id: flat.image.data.id, ...flat.image.data.attributes };
+        }
+        if (flat.categories?.data) {
+            flat.categories = flat.categories.data.map((c: any) => ({ id: c.id, ...c.attributes }));
+        }
+        data = flat;
     }
 
     return data as T;

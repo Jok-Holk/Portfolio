@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 const { lang } = Astro.params;
 const translations = await getTranslations(lang);
 const articles = await fetchApi<Article[]>({
-    endpoint: `articles?populate=*&locale=${lang}`,
+    endpoint: `articles?populate=*&locale=${lang}&sort=publish_date:desc`,
     wrappedByKey: 'data',
 });
 

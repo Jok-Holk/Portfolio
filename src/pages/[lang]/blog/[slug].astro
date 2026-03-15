@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
     for (const lang of supportedLangs) {
         const articles = await fetchApi<Article[]>({
-            endpoint: `articles?populate=*&locale=${lang}`,
+            endpoint: `articles?populate=*&locale=${lang}&sort=publish_date:desc`,
             wrappedByKey: 'data',
         });
 

@@ -5,7 +5,7 @@ import type Article from '../../interfaces/article';
 const { translations, currentLang } = Astro.props;
 
 const articles = await fetchApi<Article[]>({
-    endpoint: `articles?populate=*&locale=${currentLang}`,
+    endpoint: `articles?populate=*&locale=${currentLang}&sort=publish_date:desc`,
     wrappedByKey: 'data',
 });
 ---

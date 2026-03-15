@@ -79,7 +79,7 @@ export default interface Article {
         updatedAt: string;
         publishedAt: string;
     };
-    category: {
+    categories: {
         id: number;
         documentId: string;
         name: string;

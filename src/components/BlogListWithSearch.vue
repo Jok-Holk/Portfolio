@@ -32,7 +32,7 @@ const filteredArticles = computed(() => {
 
     return props.articles.filter((article) => {
         const titleMatch = article.title.toLowerCase().includes(query);
-        const tagsMatch = article.category?.some((tag) => tag.name.toLowerCase().includes(query)) || false;
+        const tagsMatch = article.categories?.some((tag) => tag.name.toLowerCase().includes(query)) || false;
 
         return titleMatch || tagsMatch;
     });
@@ -222,11 +222,11 @@ onMounted(() => {
                             </div>
 
                             <div
-                                v-if="article.category && article.category.length > 0"
+                                v-if="article.categories && article.categories.length > 0"
                                 class="flex flex-wrap gap-2 mt-3"
                             >
                                 <span
-                                    v-for="(tag, tagIndex) in article.category"
+                                    v-for="(tag, tagIndex) in article.categories"
                                     :key="tag.id"
                                     class="tag-item px-3 py-1.5 text-xs sm:text-sm text-white rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
                                     :style="`animation-delay: ${
