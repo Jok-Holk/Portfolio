@@ -57,7 +57,9 @@ for locale in ("en", "vi"):
             all_ok = False
             continue
         b = b.get("attributes", b)  # v4 live responses are nested, v5 are flat
-        b_cats = sorted(c.get("name") or c["attributes"]["name"] for c in (b.get("categories") or {}).get("data", b.get("categories")) or [])
+        b_cats = b.get("categories") or []
+        b_cats = b_cats.get("data", []) if isinstance(b_cats, dict) else b_cats
+        b_cats = sorted(c.get("name") or c["attributes"]["name"] for c in b_cats)
         b_img = b.get("image") or {}
         b_img = b_img.get("data", {}).get("attributes", {}) if "data" in b_img else b_img
         b_loc = b.get("localizations") or []
