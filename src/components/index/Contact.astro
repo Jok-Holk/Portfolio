@@ -1,497 +1,359 @@
 ---
-const { translations } = Astro.props;
+import { getTranslations, type Lang } from '../../locales';
+import { WORK_EMAIL } from '../../lib/site';
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+// Copy that is not in the shared locale files yet (field length errors, no-JS note).
+const extra = {
+    en: {
+        errorShort: 'Please write at least 10 characters.',
+        errorLong: 'This is too long. Please shorten it.',
+        noscript: 'This form needs JavaScript. Please email me directly:',
+    },
+    vi: {
+        errorShort: 'Vui lòng nhập ít nhất 10 ký tự.',
+        errorLong: 'Nội dung quá dài, vui lòng rút gọn.',
+        noscript: 'Biểu mẫu này cần bật JavaScript. Vui lòng gửi email trực tiếp:',
+    },
+}[lang === 'vi' ? 'vi' : 'en'];
+
+const mailto = `mailto:${WORK_EMAIL}`;
+
+const inputClass =
+    'block w-full bg-surface border border-line rounded-md px-4 py-3 text-text placeholder:text-subtle focus:border-accent-soft aria-[invalid=true]:border-bad';
+const labelClass = 'block font-mono text-sm text-muted mb-2';
+const errorClass = 'mt-2 text-sm text-bad';
 ---
 
-<section id="contact" class="text-gray-300 font-mono my-16 sm:my-20 md:my-32 lg:my-40">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-32 my-12 sm:my-16 md:my-24 lg:my-32">
-        <div class="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12" data-animate data-direction="top">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-8 h-8 sm:w-10 sm:h-10 neon-gradient-stroke"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.903l-11.25 6.75a2.25 2.25 0 01-2.108 0L2.25 9.196V6.75"
-                ></path>
-            </svg>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white tracking-wider">
-                {translations?.contact?.title}
-            </h1>
-        </div>
+<section id="contact" aria-labelledby="contact-title" class="wrap py-16 sm:py-24">
+    <h2 id="contact-title" class="section-title font-bold text-text">{t.contact.title}</h2>
+    <p class="mt-3 max-w-[40rem] text-muted">{t.contact.intro}</p>
+    <p class="mt-2"><a class="link font-mono" href={mailto}>{WORK_EMAIL}</a></p>
 
-        <!-- Contact Form -->
-        <form id="contact-form" action="https://formspree.io/f/mwpnbnoy" method="POST" class="w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                <!-- Left Column - Form Fields -->
-                <div class="flex flex-col gap-6 sm:gap-8" data-animate data-direction="left">
-                    <!-- Name Fields -->
-                    <div class="group">
-                        <label for="firstName" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
-                            <span class="inline-block w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></span>
-                            {translations?.contact?.form?.name?.label}
-                        </label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="relative">
-                                <input
-                                    type="text"
-                                    name="firstName"
-                                    id="firstName"
-                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
-                                    placeholder={translations?.contact?.form?.name?.firstNamePlaceholder}
-                                    required
-                                />
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
-                                </div>
-                            </div>
-                            <div class="relative">
-                                <input
-                                    type="text"
-                                    name="lastName"
-                                    id="lastName"
-                                    class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
-                                    placeholder={translations?.contact?.form?.name?.lastNamePlaceholder}
-                                    required
-                                />
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Email Field -->
-                    <div class="group">
-                        <label for="email" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
-                            <span class="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-                            {translations?.contact?.form?.email?.label}
-                        </label>
-                        <div class="relative">
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
-                                placeholder={translations?.contact?.form?.email?.placeholder}
-                                required
-                            />
-                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Phone Field -->
-                    <div class="group">
-                        <label for="phone" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
-                            <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                            {translations?.contact?.form?.phone?.label}
-                            <span class="text-sm text-gray-400 font-normal"
-                                >{translations?.contact?.form?.phone?.optional}</span
-                            >
-                        </label>
-                        <div class="relative">
-                            <input
-                                type="tel"
-                                name="phone"
-                                id="phone"
-                                class="w-full bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg py-3 px-4 input-focus-effect focus:outline-none"
-                                placeholder={translations?.contact?.form?.phone?.placeholder}
-                            />
-                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column - Message -->
-                <div class="flex flex-col" data-animate data-direction="right">
-                    <label for="message" class="block text-lg sm:text-xl md:text-2xl text-white mb-3">
-                        <span class="inline-block w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse"></span>
-                        {translations?.contact?.form?.message?.label}
-                    </label>
-                    <div class="relative flex-1">
-                        <textarea
-                            name="message"
-                            id="message"
-                            rows="8"
-                            class="w-full h-full min-h-[200px] lg:min-h-[300px] bg-gray-800/50 backdrop-blur-sm text-gray-100 border border-gray-600 rounded-lg p-4 input-focus-effect focus:outline-none resize-none"
-                            placeholder={translations?.contact?.form?.message?.placeholder}
-                            required></textarea>
-                        <div class="absolute top-4 right-4">
-                            <div class="w-2 h-2 bg-gray-500 rounded-full validation-indicator"></div>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-xs text-gray-500" id="char-count">
-                            {translations?.contact?.form?.message?.charCount}
-                        </div>
-                    </div>
-                </div>
+    <div id="contact-root" class="mt-8 max-w-[40rem]">
+        <form
+            id="contact-form"
+            novalidate
+            hidden
+            class="grid gap-6"
+            data-err-required={t.contact.errorRequired}
+            data-err-email={t.contact.errorEmail}
+            data-err-short={extra.errorShort}
+            data-err-long={extra.errorLong}
+            data-err-generic={t.contact.errorGeneric}
+            data-label-send={t.contact.send}
+            data-label-sending={t.contact.sending}
+        >
+            <div>
+                <label for="contact-name" class={labelClass}>{t.contact.name}</label>
+                <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    maxlength="100"
+                    required
+                    aria-describedby="contact-name-error"
+                    placeholder={t.contact.namePlaceholder}
+                    class={inputClass}
+                />
+                <p id="contact-name-error" class={errorClass} hidden></p>
             </div>
 
-            <!-- Submit Button -->
-            <div class="flex justify-center mt-8 sm:mt-12" data-animate data-direction="bottom">
+            <div>
+                <label for="contact-email" class={labelClass}>{t.contact.email}</label>
+                <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    maxlength="254"
+                    required
+                    aria-describedby="contact-email-error"
+                    placeholder={t.contact.emailPlaceholder}
+                    class={inputClass}
+                />
+                <p id="contact-email-error" class={errorClass} hidden></p>
+            </div>
+
+            <div>
+                <label for="contact-message" class={labelClass}>{t.contact.message}</label>
+                <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="6"
+                    maxlength="5000"
+                    required
+                    aria-describedby="contact-message-error"
+                    placeholder={t.contact.messagePlaceholder}
+                    class={`${inputClass} min-h-40 resize-y`}></textarea>
+                <p id="contact-message-error" class={errorClass} hidden></p>
+            </div>
+
+            <div class="hp-field" aria-hidden="true">
+                <label for="contact-hp">{t.contact.honeypotLabel}</label>
+                <input id="contact-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            </div>
+
+            <div id="contact-error" hidden class="border border-bad rounded-md px-4 py-3 text-bad"></div>
+
+            <div>
                 <button
+                    id="contact-submit"
                     type="submit"
-                    id="submit-btn"
-                    class="button-hover-effect neon-gradient-bg text-white py-4 px-8 sm:px-12 rounded-xl shadow-lg transition-all duration-300 text-lg relative group"
+                    class="btn-neon px-6 py-3"
                 >
-                    <span class="relative z-10 flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                        </svg>
-                        {translations?.contact?.form?.submitButton}
-                    </span>
+                    <span data-label>{t.contact.send}</span>
                 </button>
             </div>
         </form>
 
-        <!-- Success Message -->
-        <div id="contact-success-message" class="hidden text-center text-white mt-12 sm:mt-16" data-aos="fade-up">
-            <div
-                class="success-message max-w-lg mx-auto p-6 sm:p-8 bg-gray-800/50 backdrop-blur-sm border neon-gradient-border rounded-2xl"
-            >
-                <div class="mb-4">
-                    <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <h2 class="text-2xl sm:text-3xl mb-4">{translations?.contact?.successMessage?.title}</h2>
-                <p class="text-lg sm:text-xl text-gray-300 leading-relaxed">
-                    {translations?.contact?.successMessage?.text}
-                </p>
+        <div aria-live="polite">
+            <div id="contact-success" hidden class="border border-line-strong bg-surface rounded-md p-6">
+                <h3 id="contact-success-title" tabindex="-1" class="font-mono text-xl text-text">
+                    {t.contact.successTitle}
+                </h3>
+                <p class="mt-3 text-muted">{t.contact.successText}</p>
                 <button
-                    id="send-another-btn"
-                    class="mt-6 neon-gradient-text hover:opacity-80 transition-opacity duration-300 underline"
+                    id="contact-again"
+                    type="button"
+                    class="mt-5 border border-line-strong rounded-md px-5 py-2 font-mono text-text hover:border-accent-soft"
                 >
-                    {translations?.contact?.successMessage?.sendAnotherButton}
+                    {t.contact.sendAnother}
                 </button>
             </div>
         </div>
+
+        <noscript>
+            <p class="text-muted">
+                {extra.noscript}
+                <a class="link font-mono" href={mailto}>{WORK_EMAIL}</a>
+            </p>
+        </noscript>
     </div>
 </section>
 
 <script>
-    const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
-    const successMessage = document.getElementById('contact-success-message') as HTMLElement | null;
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
-    const sendAnotherBtn = document.getElementById('send-another-btn') as HTMLButtonElement | null;
-    const messageTextarea = document.getElementById('message') as HTMLTextAreaElement | null;
-    const charCount = document.getElementById('char-count') as HTMLElement | null;
+    type FieldKey = 'name' | 'email' | 'message';
+    type TokenState = { t: number; sig: string; got: number } | null;
 
-    type FieldId = 'firstName' | 'lastName' | 'email' | 'phone' | 'message';
-    const formFields: FieldId[] = ['firstName', 'lastName', 'email', 'phone', 'message'];
+    const KEYS: FieldKey[] = ['name', 'email', 'message'];
+    // The server drops anything faster than 3 s after the token was issued, so a very
+    // quick (autofilled) submit waits a moment instead of being silently discarded.
+    const MIN_TOKEN_AGE_MS = 3500;
+    // Tokens expire after 2 h on the server; refresh well before that.
+    const STALE_TOKEN_MS = 90 * 60 * 1000;
 
-    function validateField(field: HTMLInputElement | HTMLTextAreaElement): boolean {
-        const parent = field.parentElement as HTMLElement | null;
-        const indicator = parent?.querySelector('.validation-indicator') as HTMLElement | null;
-        let isValid = false;
-
-        if (field.type === 'email') {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            isValid = emailRegex.test(field.value);
-        } else if (field.type === 'tel') {
-            isValid = field.value === '' || field.value.replace(/\D/g, '').length >= 10;
-        } else {
-            isValid = field.value.trim().length > 0;
-        }
-
-        if (isValid) {
-            field.classList.remove('input-error');
-            field.classList.add('input-success');
-            if (indicator) {
-                indicator.className = 'w-2 h-2 bg-green-500 rounded-full validation-indicator';
-            }
-        } else if (field.value.trim() !== '') {
-            field.classList.add('input-error');
-            field.classList.remove('input-success');
-            if (indicator) {
-                indicator.className = 'w-2 h-2 bg-red-500 rounded-full validation-indicator';
-            }
-        } else {
-            field.classList.remove('input-error', 'input-success');
-            if (indicator) {
-                indicator.className = 'w-2 h-2 bg-gray-500 rounded-full validation-indicator';
-            }
-        }
-
-        return isValid || (field.type === 'tel' && field.value === '');
+    function sleep(ms: number): Promise<void> {
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
-    if (messageTextarea && charCount) {
-        messageTextarea.addEventListener('input', () => {
-            const length = messageTextarea.value.length;
-            const maxLength = 500;
-            charCount.textContent = `${length} / ${maxLength} characters`;
+    function init(): void {
+        const root = document.getElementById('contact-root');
+        const form = document.getElementById('contact-form') as HTMLFormElement | null;
+        const submit = document.getElementById('contact-submit') as HTMLButtonElement | null;
+        const label = submit ? submit.querySelector('[data-label]') : null;
+        const generic = document.getElementById('contact-error');
+        const success = document.getElementById('contact-success');
+        const successTitle = document.getElementById('contact-success-title');
+        const again = document.getElementById('contact-again');
+        const honeypot = document.getElementById('contact-hp') as HTMLInputElement | null;
+        if (!root || !form || !submit || !label || !generic || !success || !successTitle || !again || !honeypot) return;
 
-            if (length > maxLength) {
-                charCount.classList.add('text-red-400');
-            } else if (length > maxLength * 0.8) {
-                charCount.classList.add('text-yellow-400');
-                charCount.classList.remove('text-red-400');
+        const inputs = {} as Record<FieldKey, HTMLInputElement | HTMLTextAreaElement>;
+        const errors = {} as Record<FieldKey, HTMLElement>;
+        for (const key of KEYS) {
+            const input = document.getElementById('contact-' + key) as HTMLInputElement | HTMLTextAreaElement | null;
+            const error = document.getElementById('contact-' + key + '-error');
+            if (!input || !error) return;
+            inputs[key] = input;
+            errors[key] = error;
+        }
+
+        const text = form.dataset;
+        const messageFor = (code: string): string => {
+            if (code === 'email') return text.errEmail || '';
+            if (code === 'too_short') return text.errShort || '';
+            if (code === 'too_long') return text.errLong || '';
+            return text.errRequired || '';
+        };
+
+        let token: TokenState = null;
+        async function fetchToken(): Promise<TokenState> {
+            try {
+                const res = await fetch('/api/contact', { method: 'GET', cache: 'no-store', headers: { Accept: 'application/json' } });
+                if (!res.ok) return null;
+                const data = await res.json();
+                if (data && typeof data.t === 'number' && typeof data.sig === 'string') {
+                    return { t: data.t, sig: data.sig, got: performance.now() };
+                }
+            } catch {
+                // The server decides what to do with a missing token.
+            }
+            return null;
+        }
+        let pending: Promise<void> | null = fetchToken().then((next) => {
+            token = next;
+            pending = null;
+        });
+
+        async function getToken(): Promise<TokenState> {
+            if (pending) await pending;
+            if (!token || performance.now() - token.got > STALE_TOKEN_MS) token = await fetchToken();
+            if (token) {
+                const wait = MIN_TOKEN_AGE_MS - (performance.now() - token.got);
+                if (wait > 0) await sleep(wait);
+            }
+            return token;
+        }
+
+        function setError(key: FieldKey, code: string | null): void {
+            const el = errors[key];
+            const input = inputs[key];
+            if (code) {
+                el.setAttribute('role', 'alert');
+                el.textContent = messageFor(code);
+                el.hidden = false;
+                input.setAttribute('aria-invalid', 'true');
             } else {
-                charCount.classList.remove('text-red-400', 'text-yellow-400');
+                el.hidden = true;
+                el.textContent = '';
+                el.removeAttribute('role');
+                input.removeAttribute('aria-invalid');
             }
-        });
-    }
+        }
 
-    formFields.forEach((fieldId) => {
-        const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
-        if (!field) return;
-
-        field.addEventListener('blur', () => validateField(field));
-        field.addEventListener('input', () => {
-            if (field.classList.contains('input-error')) {
-                validateField(field);
+        function validate(key: FieldKey): string | null {
+            const value = inputs[key].value.trim();
+            if (value === '') return 'required';
+            if (key === 'name' && value.length > 100) return 'too_long';
+            if (key === 'email') {
+                if (value.length > 254) return 'too_long';
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) return 'email';
             }
-        });
-    });
+            if (key === 'message') {
+                if (value.length < 10) return 'too_short';
+                if (value.length > 5000) return 'too_long';
+            }
+            return null;
+        }
 
-    if (contactForm && submitBtn && successMessage) {
-        contactForm.addEventListener('submit', (event: SubmitEvent) => {
-            event.preventDefault();
+        function showGeneric(): void {
+            generic!.setAttribute('role', 'alert');
+            generic!.textContent = text.errGeneric || '';
+            generic!.hidden = false;
+        }
+        function hideGeneric(): void {
+            generic!.hidden = true;
+            generic!.textContent = '';
+            generic!.removeAttribute('role');
+        }
 
-            let isFormValid = true;
-            formFields.forEach((fieldId) => {
-                const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
-                if (field?.required && !validateField(field)) {
-                    isFormValid = false;
-                }
+        for (const key of KEYS) {
+            inputs[key].addEventListener('input', () => {
+                if (!errors[key].hidden) setError(key, null);
             });
+        }
 
-            if (!isFormValid) {
-                const firstError = contactForm.querySelector('.input-error') as HTMLElement | null;
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    (firstError as HTMLInputElement).focus();
-                }
+        let sending = false;
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (sending) return;
+            hideGeneric();
+
+            let firstInvalid: FieldKey | null = null;
+            for (const key of KEYS) {
+                const code = validate(key);
+                setError(key, code);
+                if (code && !firstInvalid) firstInvalid = key;
+            }
+            if (firstInvalid) {
+                inputs[firstInvalid].focus();
                 return;
             }
 
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="opacity-0">Send Message</span>';
+            sending = true;
+            submit.disabled = true;
+            label.textContent = text.labelSending || '';
+            form.setAttribute('aria-busy', 'true');
 
-            const formEl = event.target as HTMLFormElement;
-            const data = new FormData(formEl);
-            const url = formEl.action;
-
-            fetch(url, {
-                method: 'POST',
-                body: data,
-                headers: { Accept: 'application/json' },
-            })
-                .then((response) => {
-                    if (!response.ok) throw new Error('Form submission failed');
-                    contactForm.style.animation = 'fadeInUp 0.5s ease-out reverse';
-                    setTimeout(() => {
-                        contactForm.classList.add('hidden');
-                        successMessage.classList.remove('hidden');
-                        successMessage.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
-                })
-                .catch((err) => {
-                    console.error('Error submitting form:', err);
-                    alert('Something went wrong. Please try again later or contact me directly.');
-                })
-                .finally(() => {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
+            let outcome: 'success' | 'field' | 'generic' = 'generic';
+            let badField: FieldKey | null = null;
+            try {
+                const tk = await getToken();
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: inputs.name.value.trim(),
+                        email: inputs.email.value.trim(),
+                        message: inputs.message.value.trim(),
+                        _gotcha: honeypot.value,
+                        t: tk ? tk.t : undefined,
+                        sig: tk ? tk.sig : undefined,
+                    }),
                 });
-        });
-    }
-
-    if (sendAnotherBtn && contactForm && successMessage) {
-        sendAnotherBtn.addEventListener('click', () => {
-            successMessage.classList.add('hidden');
-            contactForm.classList.remove('hidden');
-            contactForm.reset();
-
-            formFields.forEach((fieldId) => {
-                const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
-                if (!field) return;
-                field.classList.remove('input-error', 'input-success');
-                const parent = field.parentElement as HTMLElement | null;
-                const indicator = parent?.querySelector('.validation-indicator') as HTMLElement | null;
-                if (indicator) {
-                    indicator.className = 'w-2 h-2 bg-gray-500 rounded-full validation-indicator';
+                let data: { ok?: boolean; field?: string; error?: string } | null = null;
+                try {
+                    data = await res.json();
+                } catch {
+                    data = null;
                 }
-            });
-
-            if (charCount) {
-                charCount.textContent = '0 / 500 characters';
-                charCount.classList.remove('text-red-400', 'text-yellow-400');
+                if (res.ok && data && data.ok === true) {
+                    outcome = 'success';
+                } else if (res.status === 422 && data && data.field && (KEYS as string[]).indexOf(data.field) !== -1) {
+                    badField = data.field as FieldKey;
+                    setError(badField, data.error || 'required');
+                    outcome = 'field';
+                }
+            } catch {
+                outcome = 'generic';
             }
 
-            contactForm.scrollIntoView({ behavior: 'smooth' });
+            sending = false;
+            submit.disabled = false;
+            label.textContent = text.labelSend || '';
+            form.removeAttribute('aria-busy');
+
+            if (outcome === 'success') {
+                form.reset();
+                form.hidden = true;
+                success.hidden = false;
+                successTitle.focus();
+            } else if (outcome === 'field' && badField) {
+                inputs[badField].focus();
+            } else {
+                showGeneric();
+                submit.focus();
+            }
         });
+
+        again.addEventListener('click', () => {
+            success.hidden = true;
+            form.hidden = false;
+            inputs.name.focus();
+        });
+
+        form.hidden = false;
     }
 
-    document.documentElement.style.scrollBehavior = 'smooth';
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Tab') document.body.classList.add('keyboard-navigation');
-    });
-    document.addEventListener('mousedown', () => {
-        document.body.classList.remove('keyboard-navigation');
-    });
+    init();
 </script>
 
 <style>
-    .neon-gradient-stroke {
-        stroke: url(#neon-grad);
-    }
-
-    .neon-gradient-bg {
-        background: linear-gradient(135deg, #a855f7, #ec4899);
-    }
-
-    .neon-gradient-border {
-        border-color: transparent;
-        border-width: 2px;
-        background:
-            linear-gradient(#1f2937, #1f2937) padding-box,
-            linear-gradient(135deg, #a855f7, #ec4899) border-box;
-    }
-
-    .neon-gradient-text {
-        background: linear-gradient(135deg, #a855f7, #ec4899);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .input-focus-effect {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .input-focus-effect:focus {
-        border: 2px solid transparent;
-        background:
-            linear-gradient(#1f2937, #1f2937) padding-box,
-            linear-gradient(135deg, #a855f7, #ec4899) border-box;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
-    }
-
-    .button-hover-effect {
-        position: relative;
+    /* Honeypot: off-screen (not display:none, which many bots skip) and out of the tab order. */
+    .hp-field {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .button-hover-effect:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.6s;
-    }
-
-    .button-hover-effect:hover:before {
-        left: 100%;
-    }
-
-    .button-hover-effect:hover {
-        transform: translateY(-3px);
-        box-shadow:
-            0 15px 30px rgba(168, 85, 247, 0.4),
-            0 0 40px rgba(236, 72, 153, 0.3);
-    }
-
-    .success-message {
-        animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    .loading {
-        position: relative;
-        pointer-events: none;
-    }
-
-    .loading:after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 20px;
-        height: 20px;
-        margin-left: -10px;
-        margin-top: -10px;
-        border: 2px solid transparent;
-        border-top: 2px solid #ffffff;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    .input-error {
-        border-color: #ef4444 !important;
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-    }
-
-    .input-success {
-        border: 2px solid transparent;
-        background:
-            linear-gradient(#1f2937, #1f2937) padding-box,
-            linear-gradient(135deg, #10b981, #10b981) border-box;
-        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-    }
-
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #1f2937;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #a855f7, #ec4899);
-        border-radius: 4px;
     }
 </style>
-
-<svg width="0" height="0" style="position: absolute;">
-    <defs>
-        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
-            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
-        </linearGradient>
-    </defs>
-</svg>
