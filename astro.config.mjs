@@ -1,30 +1,27 @@
 import { defineConfig } from 'astro/config';
-import vue from '@astrojs/vue';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+const SITE = 'https://jokholk.dev';
+
 export default defineConfig({
-    integrations: [
-        vue(),
-        sitemap({
-            i18n: {
-                defaultLocale: 'en',
-                locales: {
-                    en: 'en-US',
-                    vi: 'vi-VN',
-                },
-            },
-        }),
-    ],
-    vite: {
-        plugins: [tailwindcss()],
-    },
-    site: 'https://jokholk.dev',
+    site: SITE,
     output: 'static',
     adapter: vercel(),
+    trailingSlash: 'never',
     redirects: {
         '/': '/en',
     },
-    trailingSlash: 'never',
+    integrations: [
+        // Only the English home page is meant to be indexed; every other page is `noindex`.
+        sitemap({ filter: (page) => page === `${SITE}/en` }),
+    ],
+    image: {
+        // Strapi media is optimised at build time and served from this site.
+        domains: ['strapi.jokholk.dev'],
+    },
+    vite: {
+        plugins: [tailwindcss()],
+    },
 });

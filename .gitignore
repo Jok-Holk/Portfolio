@@ -1,5 +1,7 @@
 # build output
 dist/
+.vercel/
+
 # generated types
 .astro/
 
@@ -12,9 +14,18 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
-# environment variables
+# environment: .env holds only the public Strapi URL and is tracked.
+# Secrets belong in Vercel's environment settings or in a local .env.local.
+.env.local
+.env.*.local
 .env.production
+
+# tool output
+.lighthouseci/
+.unlighthouse/
+
+# local notes, reports and screenshots (not part of the site)
+docs/
 
 # macOS-specific files
 .DS_Store
@@ -24,3 +35,7 @@ pnpm-debug.log*
 
 # strapi
 backend/
+
+# python bytecode
+__pycache__/
+*.pyc
