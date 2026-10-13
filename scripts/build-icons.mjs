@@ -1,5 +1,6 @@
 /**
- * Builds the logo, favicons, app icons, OG image and manifest into /public.
+ * Builds the logo, favicons, app icons, OG image and manifest into /public, and the
+ * hero motif into src/assets/logo.
  * Inputs: src/assets/logo/source/vector-01.original.svg (copy of the original,
  * never edited) and src/assets/logo/jok-holk-text.json (outlined wordmark, made by
  * scripts/logo/outline-text.py).
@@ -63,7 +64,8 @@ const decorLine = lines.find(isDecor);
 const decorPath = decorLine && /\sd="([^"]+)"/.exec(decorLine)?.[1];
 if (!decorPath) throw new Error('Could not find the decoration path in the logo');
 const motifSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 437.29 437.29"><path fill="#ce2bd4" d="${decorPath}"/></svg>`;
-await fs.writeFile(path.join(PUBLIC, 'motif.svg'), minify(motifSvg));
+// Inlined into the home page (not served as a file), so it never competes for LCP.
+await fs.writeFile(path.join(root, 'src/assets/logo/motif.svg'), minify(motifSvg));
 
 const render = (svg, size) => sharp(Buffer.from(svg), { density: 600 }).resize(size, size).png();
 
@@ -131,6 +133,6 @@ await fs.writeFile(
 );
 
 const sizeKB = async (f) => ((await fs.stat(path.join(PUBLIC, f))).size / 1024).toFixed(1) + ' KB';
-for (const f of ['logo.svg', 'logo-mark.svg', 'motif.svg', 'favicon.svg', 'favicon.ico', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'og-default.png', 'site.webmanifest']) {
+for (const f of ['logo.svg', 'logo-mark.svg', 'favicon.svg', 'favicon.ico', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'og-default.png', 'site.webmanifest']) {
     console.log(f.padEnd(24), await sizeKB(f));
 }

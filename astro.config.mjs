@@ -10,6 +10,10 @@ export default defineConfig({
     output: 'static',
     adapter: vercel(),
     trailingSlash: 'never',
+    build: {
+        // The whole stylesheet is small; inlining it removes a render-blocking request.
+        inlineStylesheets: 'always',
+    },
     redirects: {
         '/': '/en',
     },

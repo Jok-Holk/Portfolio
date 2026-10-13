@@ -23,8 +23,8 @@
     --color-ok: #79d8b2;
     --color-bad: #ff9a9a;
 
-    --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+    --font-sans: 'Be Vietnam Pro', 'Be Vietnam Pro Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 
     /* Two radii only. */
     --radius-*: initial;
@@ -167,7 +167,7 @@
         box-shadow: 0 -10px 30px -18px rgb(252 3 253 / 0.55);
     }
 
-    /* The logo's dashes, sparkles and diamonds as hero artwork (public/motif.svg). */
+    /* The logo's dashes, sparkles and diamonds as hero artwork, inlined from src/assets/logo/motif.svg. */
     .hero-motif {
         position: absolute;
         z-index: -1;
@@ -175,7 +175,6 @@
         right: -4%;
         width: min(980px, 72vw);
         height: 760px;
-        background: url('/motif.svg') no-repeat right center / contain;
         opacity: 0.2;
         pointer-events: none;
         -webkit-mask-image: linear-gradient(to left, #000 55%, transparent);

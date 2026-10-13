@@ -1,6 +1,10 @@
 ---
 import { SITE_URL, SITE_NAME, OG_DEFAULT_IMAGE } from '../../lib/site';
 import type { Lang } from '../../locales';
+import beLatin400 from '../../../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-latin-400-normal.woff2?url';
+import beLatin600 from '../../../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-latin-600-normal.woff2?url';
+import beVietnamese400 from '../../../node_modules/@fontsource/be-vietnam-pro/files/be-vietnam-pro-vietnamese-400-normal.woff2?url';
+import monoLatin from '../../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
 
 interface Props {
     title: string;
@@ -32,6 +36,8 @@ const canonical = new URL(path, SITE_URL).toString();
 const imageUrl = new URL(image, SITE_URL).toString();
 const locale = lang === 'vi' ? 'vi_VN' : 'en_US';
 const robots = indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow';
+// Fonts used above the fold, fetched with the HTML instead of after the CSS is parsed.
+const fontPreloads = [beLatin400, beLatin600, monoLatin, ...(lang === 'vi' ? [beVietnamese400] : [])];
 const serialize = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c');
 ---
 
@@ -57,6 +63,8 @@ const serialize = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c'
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
+
+{fontPreloads.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
 
 <link rel="icon" href="/favicon.ico" sizes="48x48" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

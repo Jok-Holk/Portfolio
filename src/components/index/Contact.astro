@@ -198,12 +198,33 @@ const errorClass = 'mt-2 text-sm text-bad';
             }
             return null;
         }
-        let pending: Promise<void> | null = fetchToken().then((next) => {
-            token = next;
-            pending = null;
-        });
+        let pending: Promise<void> | null = null;
+        function warmUp(): void {
+            if (pending || token) return;
+            pending = fetchToken().then((next) => {
+                token = next;
+                pending = null;
+            });
+        }
+        // Ask for the token when the visitor gets near the form, not on every page view.
+        if ('IntersectionObserver' in window) {
+            const near = new IntersectionObserver(
+                (entries) => {
+                    if (entries.some((entry) => entry.isIntersecting)) {
+                        warmUp();
+                        near.disconnect();
+                    }
+                },
+                { rootMargin: '400px 0px' },
+            );
+            near.observe(root);
+        } else {
+            warmUp();
+        }
+        form.addEventListener('focusin', warmUp, { once: true });
 
         async function getToken(): Promise<TokenState> {
+            warmUp();
             if (pending) await pending;
             if (!token || performance.now() - token.got > STALE_TOKEN_MS) token = await fetchToken();
             if (token) {
