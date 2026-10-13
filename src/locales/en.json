@@ -1,0 +1,141 @@
+{
+    "meta": {
+        "title": "JokHolk Realm",
+        "description": "JokHolk's personal portfolio website showcasing software development, game projects journey."
+    },
+    "nav": {
+        "skip": "Skip to content",
+        "about": "About",
+        "background": "Background",
+        "projects": "Projects",
+        "blog": "Blog",
+        "contact": "Contact",
+        "menu": "Menu",
+        "language": "Language",
+        "home": "Home"
+    },
+    "hero": {
+        "name": "Jok Holk",
+        "lead": "Welcome to my digital realm, built with passion. I'm a student of software and game development, creating web apps and indie games, with a goal to become a fullstack expert.",
+        "photoAlt": "Portrait of Jok Holk wearing a black hoodie with the Jok Holk logo",
+        "links": {
+            "github": "GitHub",
+            "email": "Email",
+            "cv": "CV (PDF)",
+            "tryhackme": "TryHackMe"
+        }
+    },
+    "about": {
+        "title": "About",
+        "body": [
+            "I'm a student studying software and game development, constantly learning through building apps, websites, and indie games. These projects not only fuel my creativity but also strengthen my foundation in programming and software design, which I see as essential steps toward my long-term goals.",
+            "My main direction is full stack web development: I focus on building complete web applications, from scalable back-end systems to modern, responsive front-end experiences. At the same time, I take on freelance web projects with modern tools like Astro and explore building an indie game studio. These experiences aren't my final destination, but they provide valuable real-world programming practice and help me grow toward a professional career as a full stack developer."
+        ],
+        "facts": [
+            { "label": "Alias", "value": "Joker, Jok." },
+            { "label": "Focus", "value": "Software Development, Full Stack Web Development, Game Development." },
+            { "label": "Toolset", "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js." },
+            { "label": "Languages", "value": "HTML, CSS, JavaScript, Python, Bash, PowerShell, React, Astro, Node.js, Next.js." },
+            {
+                "label": "Specialty",
+                "value": "Full stack web development with Next.js (SSR), Astro for static sites, RESTful APIs, and modern front-end architectures; Unity indie game development."
+            }
+        ]
+    },
+    "background": {
+        "title": "Background",
+        "education": "Education",
+        "experience": "Experience",
+        "educationItems": [
+            {
+                "institution": "FUNiX Online University",
+                "url": "https://funix.edu.vn/",
+                "program": "Software Engineer Program",
+                "dates": "October 2023 - Present",
+                "details": "Online learning, software development"
+            },
+            {
+                "institution": "FPT Polytechnic College",
+                "url": "https://caodang.fpt.edu.vn/",
+                "program": "Game Programming",
+                "dates": "January 2025 - Present",
+                "details": "Game development, traditional learning"
+            }
+        ]
+    },
+    "projects": {
+        "title": "Projects",
+        "code": "Code",
+        "demo": "Demo"
+    },
+    "blog": {
+        "title": "Blog",
+        "listTitle": "Journals",
+        "listDescription": "Where I share insights, projects, and my journey through software development, indie games.",
+        "viewAll": "All posts",
+        "back": "Back to blog",
+        "backHome": "Back to home",
+        "published": "Published",
+        "minRead": "min read",
+        "onThisPage": "On this page",
+        "previous": "Previous",
+        "next": "Next",
+        "otherLanguage": "Read in Vietnamese",
+        "copy": "Copy",
+        "copied": "Copied",
+        "searchLabel": "Search posts",
+        "searchPlaceholder": "Search by title or tag",
+        "allTags": "All",
+        "resultsOne": "result",
+        "resultsMany": "results",
+        "emptyTitle": "No posts found",
+        "emptyText": "Try a different keyword, or clear the search.",
+        "clear": "Clear search",
+        "unavailable": "Posts could not be loaded right now."
+    },
+    "contact": {
+        "title": "Contact",
+        "intro": "Send a message and I'll reply by email.",
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "you@example.com",
+        "message": "Message",
+        "messagePlaceholder": "What would you like to talk about?",
+        "send": "Send message",
+        "sending": "Sending...",
+        "successTitle": "Message sent",
+        "successText": "Thanks for writing. I'll get back to you by email.",
+        "sendAnother": "Send another message",
+        "errorRequired": "Please fill in this field.",
+        "errorEmail": "Please enter a valid email address.",
+        "errorGeneric": "Something went wrong. Please try again later or email me directly.",
+        "honeypotLabel": "Leave this field empty"
+    },
+    "footer": {
+        "copyright": "Jok Holk",
+        "email": "Email",
+        "github": "GitHub",
+        "cv": "CV (PDF)"
+    },
+    "mascot": {
+        "label": "Neon cat, tap for a message",
+        "lines": [
+            "Meh! 😼",
+            "Meowww?",
+            "Meow ʘᆽʘ",
+            "(˃ᆺ˂)",
+            "Purrr~ 😻",
+            "Hiss! >.<",
+            "Nya! 🐾",
+            "Zzz... 😸",
+            "Rawr! 🐱",
+            "Mlem! 🐈‍👅"
+        ]
+    },
+    "notFound": {
+        "title": "Page not found",
+        "text": "The page you are looking for does not exist or has moved.",
+        "home": "Back to home"
+    }
+}

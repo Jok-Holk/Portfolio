@@ -1,0 +1,70 @@
+---
+import { SITE_URL, SITE_NAME, OG_DEFAULT_IMAGE } from '../../lib/site';
+import type { Lang } from '../../locales';
+
+interface Props {
+    title: string;
+    description: string;
+    lang: Lang;
+    /** Pathname of the current page, used for the canonical URL. */
+    path: string;
+    /** Only the English home page is indexable; everything else is `noindex`. */
+    indexable?: boolean;
+    image?: string;
+    imageAlt?: string;
+    type?: 'website' | 'article';
+    jsonLd?: object[];
+}
+
+const {
+    title,
+    description,
+    lang,
+    path,
+    indexable = false,
+    image = OG_DEFAULT_IMAGE,
+    imageAlt = SITE_NAME,
+    type = 'website',
+    jsonLd = [],
+} = Astro.props;
+
+const canonical = new URL(path, SITE_URL).toString();
+const imageUrl = new URL(image, SITE_URL).toString();
+const locale = lang === 'vi' ? 'vi_VN' : 'en_US';
+const robots = indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow';
+const serialize = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c');
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={robots} />
+<meta name="author" content={SITE_NAME} />
+<meta name="theme-color" content="#010101" />
+<meta name="color-scheme" content="dark" />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:locale" content={locale} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<script is:inline>
+    document.documentElement.classList.add('js');
+</script>
+
+{jsonLd.map((data) => <script type="application/ld+json" set:html={serialize(data)} />)}

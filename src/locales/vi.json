@@ -1,0 +1,141 @@
+{
+    "meta": {
+        "title": "Không gian ảo của Thái",
+        "description": "Chào mừng bạn đến với không gian ảo của tôi, nơi tôi chia sẻ về phát triển phần mềm, phát triển game indie và hành trình trở thành lập trình viên full stack."
+    },
+    "nav": {
+        "skip": "Chuyển đến nội dung",
+        "about": "Giới thiệu",
+        "background": "Học vấn & kinh nghiệm",
+        "projects": "Dự án",
+        "blog": "Bài viết",
+        "contact": "Liên hệ",
+        "menu": "Menu",
+        "language": "Ngôn ngữ",
+        "home": "Trang chủ"
+    },
+    "hero": {
+        "name": "Thái Nguyễn",
+        "lead": "Chào mừng bạn đến với không gian ảo của tôi, được xây dựng bằng đam mê. Tôi là sinh viên ngành phần mềm và phát triển game, tạo ra các ứng dụng web và game indie, với mục tiêu trở thành lập trình viên full stack.",
+        "photoAlt": "Chân dung Thái Nguyễn mặc áo hoodie đen có in logo Jok Holk",
+        "links": {
+            "github": "GitHub",
+            "email": "Email",
+            "cv": "CV (PDF)",
+            "tryhackme": "TryHackMe"
+        }
+    },
+    "about": {
+        "title": "Giới thiệu",
+        "body": [
+            "Tôi là một sinh viên đang học phát triển phần mềm và trò chơi, không ngừng học hỏi thông qua việc xây dựng ứng dụng, trang web và game indie. Những dự án này không chỉ nuôi dưỡng sự sáng tạo mà còn củng cố nền tảng của tôi về lập trình và thiết kế phần mềm, mà tôi xem là những bước đi thiết yếu hướng tới mục tiêu lâu dài.",
+            "Hướng chính của tôi là phát triển web full stack: tôi tập trung xây dựng các ứng dụng web hoàn chỉnh, từ hệ thống back-end có khả năng mở rộng đến giao diện front-end hiện đại, tối ưu trải nghiệm người dùng. Bên cạnh đó, tôi nhận các dự án web tự do sử dụng những công cụ hiện đại như Astro và đồng thời khám phá việc xây dựng một studio game indie. Những trải nghiệm này không phải là đích đến cuối cùng, nhưng chúng mang lại cơ hội rèn luyện lập trình thực tế và mở rộng góc nhìn, giúp tôi phát triển vững vàng trên con đường trở thành lập trình viên full stack chuyên nghiệp."
+        ],
+        "facts": [
+            { "label": "Bí danh", "value": "Joker, Jok." },
+            { "label": "Lĩnh vực", "value": "Phát triển Phần mềm, Phát triển Web Full Stack, Phát triển Trò chơi." },
+            { "label": "Bộ công cụ", "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js." },
+            { "label": "Ngôn ngữ", "value": "HTML, CSS, JavaScript, Python, React, Astro, Node.js, Next.js." },
+            {
+                "label": "Chuyên môn",
+                "value": "Phát triển web full stack với Next.js (SSR), Astro cho website tĩnh, xây dựng RESTful API và kiến trúc front-end hiện đại; Phát triển game indie với Unity."
+            }
+        ]
+    },
+    "background": {
+        "title": "Học vấn & kinh nghiệm",
+        "education": "Học vấn",
+        "experience": "Kinh nghiệm",
+        "educationItems": [
+            {
+                "institution": "Đại học trực tuyến FUNiX",
+                "url": "https://funix.edu.vn/",
+                "program": "Chương trình Kỹ sư Phần mềm",
+                "dates": "Tháng 10/2023 - Hiện tại",
+                "details": "Học trực tuyến, phát triển phần mềm"
+            },
+            {
+                "institution": "Cao đẳng FPT Polytechnic",
+                "url": "https://caodang.fpt.edu.vn/",
+                "program": "Lập trình Game",
+                "dates": "Tháng 1/2025 - Hiện tại",
+                "details": "Phát triển game, học truyền thống"
+            }
+        ]
+    },
+    "projects": {
+        "title": "Dự án",
+        "code": "Mã nguồn",
+        "demo": "Bản demo"
+    },
+    "blog": {
+        "title": "Bài viết",
+        "listTitle": "Nhật ký",
+        "listDescription": "Góc nhỏ nơi mình ghi lại suy nghĩ, dự án và hành trình theo đuổi lập trình, game indie và phát triển web full stack.",
+        "viewAll": "Tất cả bài viết",
+        "back": "Quay lại trang bài viết",
+        "backHome": "Về trang chủ",
+        "published": "Đăng ngày",
+        "minRead": "phút đọc",
+        "onThisPage": "Trong bài này",
+        "previous": "Bài trước",
+        "next": "Bài sau",
+        "otherLanguage": "Đọc bản tiếng Anh",
+        "copy": "Sao chép",
+        "copied": "Đã chép",
+        "searchLabel": "Tìm bài viết",
+        "searchPlaceholder": "Tìm theo tiêu đề hoặc tag",
+        "allTags": "Tất cả",
+        "resultsOne": "kết quả",
+        "resultsMany": "kết quả",
+        "emptyTitle": "Không tìm thấy bài viết nào",
+        "emptyText": "Thử từ khóa khác hoặc xóa tìm kiếm.",
+        "clear": "Xóa tìm kiếm",
+        "unavailable": "Hiện chưa tải được bài viết."
+    },
+    "contact": {
+        "title": "Liên hệ",
+        "intro": "Gửi tin nhắn, tôi sẽ trả lời qua email.",
+        "name": "Họ và tên",
+        "namePlaceholder": "Tên của bạn",
+        "email": "Email",
+        "emailPlaceholder": "emailcuaban@vidu.com",
+        "message": "Tin nhắn",
+        "messagePlaceholder": "Bạn muốn trao đổi về điều gì?",
+        "send": "Gửi tin nhắn",
+        "sending": "Đang gửi...",
+        "successTitle": "Đã gửi tin nhắn",
+        "successText": "Cảm ơn bạn đã liên hệ. Tôi sẽ trả lời qua email.",
+        "sendAnother": "Gửi tin nhắn khác",
+        "errorRequired": "Vui lòng điền thông tin này.",
+        "errorEmail": "Vui lòng nhập địa chỉ email hợp lệ.",
+        "errorGeneric": "Đã có lỗi xảy ra. Vui lòng thử lại sau hoặc gửi email trực tiếp cho tôi.",
+        "honeypotLabel": "Để trống ô này"
+    },
+    "footer": {
+        "copyright": "Thái Nguyễn",
+        "email": "Email",
+        "github": "GitHub",
+        "cv": "CV (PDF)"
+    },
+    "mascot": {
+        "label": "Mèo neon, chạm để xem lời nhắn",
+        "lines": [
+            "Meh! 😼",
+            "Meowww?",
+            "Meo ʘᆽʘ",
+            "(˃ᆺ˂)",
+            "Grừ~ 😻",
+            "Khè! >.<",
+            "Nya! 🐾",
+            "Zzz... 😸",
+            "Gừ! 🐱",
+            "Mlem! 🐈‍👅"
+        ]
+    },
+    "notFound": {
+        "title": "Không tìm thấy trang",
+        "text": "Trang bạn tìm không tồn tại hoặc đã được chuyển đi.",
+        "home": "Về trang chủ"
+    }
+}
