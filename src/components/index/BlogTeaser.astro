@@ -1,0 +1,43 @@
+---
+import { getArticles } from '../../lib/strapi';
+import { getTranslations, type Lang } from '../../locales';
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+const articles = (await getArticles(lang)).slice(0, 3);
+const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<section id="blogs" class="wrap py-14 sm:py-20" aria-labelledby="blogs-title">
+    <div class="flex flex-wrap items-baseline justify-between gap-4">
+        <h2 id="blogs-title" class="section-title font-bold text-text">{t.blog.title}</h2>
+        <a class="link font-mono text-sm" href={`/${lang}/blog`}>{t.blog.viewAll}</a>
+    </div>
+
+    <ul class="mt-8 divide-y divide-line border-y border-line" data-reveal>
+        {
+            articles.map((article) => (
+                <li class="relative py-5">
+                    <p class="font-mono text-sm text-subtle">
+                        <time datetime={article.publishDate}>{formatDate(article.publishDate)}</time>
+                    </p>
+                    <h3 class="mt-1 text-lg font-bold text-text">
+                        <a
+                            href={`/${lang}/blog/${article.slug}`}
+                            class="after:absolute after:inset-0 hover:text-accent-soft"
+                        >
+                            {article.title}
+                        </a>
+                    </h3>
+                    {article.description && <p class="mt-1 max-w-[68ch] text-muted">{article.description}</p>}
+                </li>
+            ))
+        }
+    </ul>
+</section>

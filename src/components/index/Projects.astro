@@ -1,61 +1,41 @@
 ---
+import { getCollection, render } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
-import { getCollection } from 'astro:content';
-const { translations, currentLang } = Astro.props;
-const projects = await getCollection('projects', ({ data }) => data.lang === currentLang);
+import { getTranslations, type Lang } from '../../locales';
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+const projects = await getCollection('projects', ({ data }) => data.lang === lang);
+const items = await Promise.all(
+    projects.map(async (entry) => ({ data: entry.data, Content: (await render(entry)).Content })),
+);
 ---
 
-<section id="projects" class="text-gray-300 font-mono my-16 sm:my-20 md:my-32 lg:my-40">
-    <div class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 my-12 sm:my-16 md:my-24 lg:my-32 mx-auto">
-        <div class="flex items-center gap-4 mb-12 md:mb-16">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="url(#gradient-proj)"
-                class="w-10 h-10 md:w-12 md:h-12"
-            >
-                <defs>
-                    <linearGradient id="gradient-proj" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
-                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
-                    </linearGradient>
-                </defs>
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"></path>
-            </svg>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl text-white">
-                {translations?.projects?.title}
-            </h1>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {
-                projects.map((item) => (
-                    <ProjectCard
-                        title={item.data.title}
-                        description={item.body}
-                        tags={item.data.tags}
-                        codeLink={item.data.codeLink}
-                        demoLink={item.data.demoLink ?? ''}
-                    />
-                ))
-            }
-        </div>
+<section id="projects" class="wrap py-14 sm:py-20" aria-labelledby="projects-title">
+    <h2 id="projects-title" class="section-title font-bold text-text">{t.projects.title}</h2>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2" data-reveal>
+        {
+            items.map(({ data, Content }) => (
+                <ProjectCard
+                    title={data.title}
+                    tags={data.tags}
+                    codeLink={data.codeLink}
+                    demoLink={data.demoLink}
+                    codeLabel={t.projects.code}
+                    demoLabel={t.projects.demo}
+                    role={data.role}
+                    image={data.image}
+                    imageAlt={data.imageAlt}
+                >
+                    <Content />
+                </ProjectCard>
+            ))
+        }
     </div>
 </section>
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-    #projects {
-        scroll-margin-top: 2rem;
-    }
-    @media (min-width: 768px) {
-        #projects {
-            scroll-margin-top: 4rem;
-        }
-    }
-</style>

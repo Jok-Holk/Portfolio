@@ -1,0 +1,48 @@
+---
+import { Picture } from 'astro:assets';
+import heroPhoto from '../../assets/hero.webp';
+import { getTranslations, type Lang } from '../../locales';
+import { LINKS, WORK_EMAIL, cvUrl } from '../../lib/site';
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<section id="home" class="wrap grid items-center gap-10 py-14 sm:py-20 md:grid-cols-[1fr_auto] md:gap-14">
+    <div>
+        <h1 class="cursor text-[clamp(3.25rem,9vw,6.75rem)] font-bold leading-[0.95] tracking-[-0.04em] text-text">{t.hero.name}</h1>
+        <p class="mt-6 max-w-[60ch] text-lg text-muted">{t.hero.lead}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <a
+                href={`mailto:${WORK_EMAIL}`}
+                class="btn-neon px-5 py-3 text-sm"
+            >
+                {t.hero.links.email}
+            </a>
+            <ul class="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-sm">
+                <li><a class="link" href={LINKS.github} target="_blank" rel="noopener noreferrer">{t.hero.links.github}</a></li>
+                <li>
+                    <a class="link" href={LINKS.tryhackme} target="_blank" rel="noopener noreferrer">{t.hero.links.tryhackme}</a>
+                </li>
+                <li><a class="link" href={cvUrl(lang)} target="_blank" rel="noopener noreferrer">{t.hero.links.cv}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <Picture
+        src={heroPhoto}
+        alt={t.hero.photoAlt}
+        formats={['avif', 'webp']}
+        fallbackFormat="webp"
+        width={560}
+        height={842}
+        widths={[280, 420, 560]}
+        sizes="(min-width: 768px) 280px, 70vw"
+        priority
+        class="neon-frame mx-auto w-full max-w-[280px] rounded-md md:mx-0"
+    />
+</section>

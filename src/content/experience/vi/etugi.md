@@ -7,7 +7,6 @@ techs: ['HTML', 'CSS', 'JavaScript']
 lang: 'vi'
 ---
 
-Đây là dự án freelance website đầu tiên của tôi, trong đó tôi thiết kế và xây dựng toàn bộ giao diện front-end từ đầu bằng <b>HTML</b>, <b>CSS</b> và <b>JavaScript</b>.
-<br>
-<br>
+Đây là dự án freelance website đầu tiên của tôi, trong đó tôi thiết kế và xây dựng toàn bộ giao diện front-end từ đầu bằng **HTML**, **CSS** và **JavaScript**.
+
 Dự án mang lại kinh nghiệm thực tế quan trọng, giúp tôi củng cố vững chắc các kiến thức nền tảng về phát triển web và tạo tiền đề để cải thiện chất lượng mã nguồn ở các dự án sau.
