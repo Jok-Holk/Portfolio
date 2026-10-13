@@ -28,29 +28,21 @@
     "about": {
         "title": "About",
         "body": [
-            "I study software engineering at FUNiX and game programming at FPT Polytechnic. I learn mostly by building: websites, small apps and games that I finish and publish.",
+            "I study software engineering at FUNiX and game programming at FPT Polytechnic. I learn mostly by building: websites, small apps and games that I finish and publish. Online I go by Jok, or Joker.",
             "On the web I work with Astro for static sites and Next.js for server-rendered apps, with Node.js and REST APIs behind them. I also run my own VPS, where I host Strapi, Nextcloud and automated backups, and I write up each setup on the blog. For games I use Unity and C#. Rogue Adventure is the project where I did most of the work myself."
         ],
         "facts": [
             {
-                "label": "Alias",
-                "value": "Joker, Jok."
+                "label": "Web",
+                "value": "Astro for this site, Next.js for a server-rendered dashboard that manages my VPS, Strapi as the CMS behind the blog."
             },
             {
-                "label": "Focus",
-                "value": "Fullstack web development, game development."
+                "label": "Games",
+                "value": "Unity and C#: THIEF, a 2.5D fighting game, and Rogue Adventure, a 2D platformer."
             },
             {
-                "label": "Toolset",
-                "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js."
-            },
-            {
-                "label": "Languages",
-                "value": "HTML, CSS, JavaScript, Python, Bash, PowerShell, React, Astro, Node.js, Next.js."
-            },
-            {
-                "label": "Specialty",
-                "value": "Next.js (SSR), Astro for static sites, REST APIs, self-hosting on a VPS. Indie games with Unity."
+                "label": "Infrastructure",
+                "value": "A VPS I manage myself, running Nginx, Nextcloud and Strapi, with daily backups to Cloudflare R2."
             }
         ]
     },

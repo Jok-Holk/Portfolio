@@ -28,29 +28,21 @@
     "about": {
         "title": "Giới thiệu",
         "body": [
-            "Tôi học kỹ sư phần mềm ở FUNiX và lập trình game ở FPT Polytechnic. Tôi học chủ yếu bằng cách làm: website, ứng dụng nhỏ và game mà tôi làm xong rồi đăng lên.",
+            "Tôi học kỹ sư phần mềm ở FUNiX và lập trình game ở FPT Polytechnic. Tôi học chủ yếu bằng cách làm: website, ứng dụng nhỏ và game mà tôi làm xong rồi đăng lên. Trên mạng tôi dùng tên Jok, hay Joker.",
             "Về web, tôi dùng Astro cho site tĩnh và Next.js cho ứng dụng render phía server, kèm Node.js và REST API. Tôi cũng tự chạy một VPS, nơi tôi cài Strapi, Nextcloud và backup tự động, rồi viết lại từng bước cài đặt trên blog. Với game, tôi dùng Unity và C#. Rogue Adventure là dự án tôi tự làm phần lớn."
         ],
         "facts": [
             {
-                "label": "Bí danh",
-                "value": "Joker, Jok."
+                "label": "Web",
+                "value": "Astro cho site này, Next.js cho một dashboard render phía server để quản lý VPS, Strapi làm CMS cho blog."
             },
             {
-                "label": "Lĩnh vực",
-                "value": "Phát triển web full stack, phát triển game."
+                "label": "Game",
+                "value": "Unity và C#: THIEF, game đối kháng 2.5D, và Rogue Adventure, game platformer 2D."
             },
             {
-                "label": "Bộ công cụ",
-                "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js."
-            },
-            {
-                "label": "Ngôn ngữ",
-                "value": "HTML, CSS, JavaScript, Python, React, Astro, Node.js, Next.js."
-            },
-            {
-                "label": "Chuyên môn",
-                "value": "Next.js (SSR), Astro cho site tĩnh, REST API, tự host trên VPS. Game indie với Unity."
+                "label": "Hạ tầng",
+                "value": "Một VPS tôi tự quản lý, chạy Nginx, Nextcloud và Strapi, backup hằng ngày lên Cloudflare R2."
             }
         ]
     },

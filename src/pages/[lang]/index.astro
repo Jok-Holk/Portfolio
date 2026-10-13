@@ -7,6 +7,7 @@ import Projects from '../../components/index/Projects.astro';
 import BlogTeaser from '../../components/index/BlogTeaser.astro';
 import Contact from '../../components/index/Contact.astro';
 import { getStaticLangPaths, getTranslations, langs, type Lang } from '../../locales';
+import { getCollection } from 'astro:content';
 import { homeJsonLd } from '../../lib/seo';
 import motifSource from '../../assets/logo/motif.svg?raw';
 
@@ -19,6 +20,7 @@ const t = getTranslations(lang);
 const other = langs.find((l) => l !== lang) as Lang;
 // Only the English home page is indexed; the Vietnamese one stays reachable for visitors.
 const indexable = lang === 'en';
+const projects = indexable ? await getCollection('projects', ({ data }) => data.lang === 'en') : [];
 const motif = motifSource.replace('<svg ', '<svg preserveAspectRatio="xMaxYMid meet" width="100%" height="100%" ');
 ---
 
@@ -27,7 +29,16 @@ const motif = motifSource.replace('<svg ', '<svg preserveAspectRatio="xMaxYMid m
     title={t.meta.title}
     description={t.meta.description}
     indexable={indexable}
-    jsonLd={indexable ? homeJsonLd() : []}
+    jsonLd={indexable
+        ? homeJsonLd(
+              projects.map(({ data }) => ({
+                  name: data.title,
+                  codeUrl: data.codeLink,
+                  demoUrl: data.demoLink,
+                  tags: data.tags,
+              })),
+          )
+        : []}
     alternateHref={`/${other}`}
 >
     <div class="home relative isolate overflow-x-clip">

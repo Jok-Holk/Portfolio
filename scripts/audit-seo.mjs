@@ -93,7 +93,7 @@ for (const file of htmlFiles) {
                 fail(route, 'JSON-LD block is not valid JSON');
             }
         }
-        for (const need of ['WebSite', 'Person']) if (!types.includes(need)) fail(route, `JSON-LD ${need} missing`);
+        for (const need of ['WebSite', 'Organization', 'Person', 'SoftwareSourceCode']) if (!types.includes(need)) fail(route, `JSON-LD ${need} missing`);
     } else if (!isNoindex) {
         fail(route, `must be noindex (robots meta is "${robots || 'missing'}")`);
     }
