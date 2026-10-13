@@ -3,6 +3,8 @@ import '../styles/tailwind.css';
 import Head from '../components/seo/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import { getTranslations, type Lang } from '../locales';
 
 interface Props {
@@ -49,6 +51,8 @@ const t = getTranslations(lang);
             <slot />
         </main>
         <Footer lang={lang} />
+        <Analytics />
+        <SpeedInsights />
         <script>
             // Reveal-on-scroll: elements marked data-reveal fade in once. Content stays visible without JS.
             const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
