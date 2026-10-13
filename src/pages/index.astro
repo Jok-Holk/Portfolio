@@ -1,9 +1,0 @@
----
-import { defaultLocale } from '../locales';
-
-if (import.meta.env.PROD) {
-    return Astro.redirect(`/${defaultLocale}`, 302);
-}
----
-
-<meta http-equiv="refresh" content={`0;url=/${defaultLocale}`} />
