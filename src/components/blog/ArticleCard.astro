@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import type { Article } from '../../lib/strapi';
+import type { Lang } from '../../locales';
+import { formatDate, searchKey } from './utils';
+
+interface Props {
+    article: Article;
+    lang: Lang;
+    /** The first cards are above the fold: load their thumbnails right away. */
+    eager?: boolean;
+}
+
+const { article, lang, eager = false } = Astro.props;
+const href = `/${lang}/blog/${article.slug}`;
+---
+
+<li
+    data-article
+    data-search={searchKey([article.title, article.description, ...article.categories.map((c) => c.name)].join(' '))}
+    data-tags={article.categories.map((c) => searchKey(c.name)).join('|')}
+>
+    <article
+        class="card-neon relative flex flex-col gap-4 rounded-md bg-surface p-4 transition-colors focus-within:border-x-accent-soft focus-within:border-b-accent-soft sm:flex-row sm:gap-5 sm:p-5"
+    >
+        {
+            article.image && (
+                <div class="aspect-video w-full shrink-0 overflow-hidden rounded-sm border border-line bg-surface-2 sm:w-52">
+                    <Image
+                        src={article.image.url}
+                        alt=""
+                        width={480}
+                        height={270}
+                        loading={eager ? 'eager' : 'lazy'}
+                        decoding={eager ? 'sync' : 'async'}
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+            )
+        }
+        <div class="min-w-0 flex-1">
+            <p class="font-mono text-xs text-subtle">
+                <time datetime={article.publishDate}>{formatDate(article.publishDate, lang)}</time>
+            </p>
+            <h2 class="mt-1 text-lg font-bold leading-snug text-text">
+                <a href={href} class="after:absolute after:inset-0 after:content-['']">{article.title}</a>
+            </h2>
+            {article.description && <p class="mt-2 line-clamp-3 text-sm text-muted">{article.description}</p>}
+            {
+                article.categories.length > 0 && (
+                    <ul class="mt-3 flex flex-wrap gap-2" role="list">
+                        {article.categories.map((category) => (
+                            <li class="rounded-sm border border-line bg-surface-2 px-2 py-0.5 font-mono text-xs text-muted">
+                                {category.name}
+                            </li>
+                        ))}
+                    </ul>
+                )
+            }
+        </div>
+    </article>
+</li>

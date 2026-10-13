@@ -1,167 +1,166 @@
 ---
-import Layout from '../../../layouts/blogLayout.astro';
-import fetchApi from '../../../lib/strapi';
-import type Article from '../../../interfaces/article';
-import BlogListWithSearch from '../../../components/BlogListWithSearch.vue';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticleCard from '../../../components/blog/ArticleCard.astro';
+import BackLink from '../../../components/blog/BackLink.astro';
+import { searchKey } from '../../../components/blog/utils';
+import { getArticles } from '../../../lib/strapi';
+import { getStaticLangPaths, getTranslations, langs, type Lang } from '../../../locales';
 
-import { getTranslations } from '../../../locales';
-export async function getStaticPaths() {
-    return [{ params: { lang: 'en' } }, { params: { lang: 'vi' } }];
+export function getStaticPaths() {
+    return getStaticLangPaths();
 }
-const { lang } = Astro.params;
-const translations = await getTranslations(lang);
-const articles = await fetchApi<Article[]>({
-    endpoint: `articles?populate=*&locale=${lang}&sort=publish_date:desc`,
-    wrappedByKey: 'data',
-});
 
-const strapiUrl = import.meta.env.STRAPI_URL;
+const lang = Astro.params.lang as Lang;
+const t = getTranslations(lang);
+const other = langs.find((l) => l !== lang) as Lang;
+
+// A failing request throws here and fails the build on purpose.
+const articles = await getArticles(lang);
+
+// One chip per tag, in alphabetical order.
+const tags = new Map<string, string>();
+for (const article of articles) {
+    for (const category of article.categories) {
+        const key = searchKey(category.name);
+        if (key && !tags.has(key)) tags.set(key, category.name);
+    }
+}
+const tagChips = [...tags.entries()].sort((a, b) => a[1].localeCompare(b[1], lang));
+
+const chip =
+    'rounded-sm border border-line bg-surface px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-line-strong aria-pressed:border-neon aria-pressed:bg-neon aria-pressed:text-ink';
 ---
 
-<Layout title={translations?.titleBlog}>
-    <section
-        class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 mx-auto my-16 sm:my-20 md:my-24 lg:my-32 text-gray-300 font-mono min-h-screen"
-    >
-        <div class="animate-fade-in-left mb-8 md:mb-12">
-            <a
-                href={`/${lang}`}
-                class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg neon-gradient-text font-mono transition-all duration-300 hover:opacity-80 hover:scale-105"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5 sm:w-6 sm:h-6 neon-gradient-stroke transition-all duration-300 group-hover:-translate-x-2 group-hover:scale-110"
-                >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
-                </svg>
-                <span class="underline-on-hover"> {translations?.blogContent?.goback}</span>
-            </a>
-        </div>
+<BaseLayout lang={lang} title={t.blog.listTitle} description={t.blog.listDescription} alternateHref={`/${other}/blog`}>
+    <div class="wrap py-12 sm:py-16" data-blog data-one={t.blog.resultsOne} data-many={t.blog.resultsMany}>
+        <BackLink href={`/${lang}`} label={t.blog.backHome} />
 
-        <!-- Page Title with Animation -->
-        <div class="animate-fade-in-up mb-8 md:mb-12">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
-                {translations?.blogContent?.myJournals}
-            </h1>
-            <div class="h-1 w-20 sm:w-24 md:w-32 neon-gradient-bg rounded-full animate-gradient"></div>
-        </div>
+        <header class="mt-8 max-w-2xl">
+            <h1 class="text-3xl font-bold text-text sm:text-4xl">{t.blog.listTitle}</h1>
+            <p class="mt-4 text-muted">{t.blog.listDescription}</p>
+        </header>
 
-        <!-- Blog List Component -->
-        <div class="animate-fade-in-up opacity-0" style="animation-delay: 300ms; animation-fill-mode: forwards;">
-            <BlogListWithSearch
-                articles={articles}
-                translations={translations}
-                lang={lang}
-                strapiUrl={strapiUrl}
-                client:visible
-            />
-        </div>
-    </section>
-</Layout>
+        {
+            articles.length === 0 ? (
+                <p class="mt-12 rounded-md border border-line bg-surface p-6 text-muted">{t.blog.unavailable}</p>
+            ) : (
+                <>
+                    {/* Search and tag filter need JavaScript, so they stay hidden without it. */}
+                    <div class="mt-10 hidden [.js_&]:block" role="search">
+                        <label for="blog-search" class="block font-mono text-xs text-subtle">
+                            {t.blog.searchLabel}
+                        </label>
+                        <input
+                            id="blog-search"
+                            type="search"
+                            data-search-input
+                            autocomplete="off"
+                            placeholder={t.blog.searchPlaceholder}
+                            class="mt-2 w-full rounded-md border border-line bg-surface px-3 py-2.5 text-text placeholder:text-subtle"
+                        />
+                        {tagChips.length > 0 && (
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <button type="button" data-tag="" aria-pressed="true" class={chip}>
+                                    {t.blog.allTags}
+                                </button>
+                                {tagChips.map(([key, name]) => (
+                                    <button type="button" data-tag={key} aria-pressed="false" class={chip}>
+                                        {name}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
 
-<style>
-    .neon-gradient-text {
-        background: linear-gradient(135deg, #a855f7, #ec4899);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+                    <p
+                        class="mt-8 hidden font-mono text-xs text-subtle [.js_&]:block"
+                        role="status"
+                        aria-live="polite"
+                        data-count
+                    >
+                        {articles.length} {articles.length === 1 ? t.blog.resultsOne : t.blog.resultsMany}
+                    </p>
 
-    .neon-gradient-stroke {
-        stroke: url(#neon-grad);
-    }
+                    <ul class="mt-8 grid gap-4 [.js_&]:mt-3" role="list" data-list>
+                        {articles.map((article, index) => (
+                            <ArticleCard article={article} lang={lang} eager={index < 2} />
+                        ))}
+                    </ul>
 
-    .neon-gradient-bg {
-        background: linear-gradient(135deg, #a855f7, #ec4899);
-    }
-
-    @keyframes fade-in-up {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
+                    <div class="mt-4 rounded-md border border-line bg-surface p-6" data-empty hidden>
+                        <h2 class="text-lg font-bold text-text">{t.blog.emptyTitle}</h2>
+                        <p class="mt-2 text-sm text-muted">{t.blog.emptyText}</p>
+                        <button
+                            type="button"
+                            data-clear
+                            class="mt-4 rounded-sm border border-line-strong bg-surface-2 px-3 py-1.5 font-mono text-xs text-text transition-colors hover:border-accent-soft"
+                        >
+                            {t.blog.clear}
+                        </button>
+                    </div>
+                </>
+            )
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+    </div>
+</BaseLayout>
+
+<script>
+    // Progressive enhancement: the full list is already in the HTML; this only hides what does not match.
+    const root = document.querySelector<HTMLElement>('[data-blog]');
+    const input = root?.querySelector<HTMLInputElement>('[data-search-input]');
+    const count = root?.querySelector<HTMLElement>('[data-count]');
+    const empty = root?.querySelector<HTMLElement>('[data-empty]');
+    const list = root?.querySelector<HTMLElement>('[data-list]');
+    const clear = root?.querySelector<HTMLButtonElement>('[data-clear]');
+
+    if (root && input && count && empty && list && clear) {
+        const items = Array.from(list.querySelectorAll<HTMLElement>('[data-article]'));
+        const chips = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tag]'));
+        const labelOne = root.dataset.one ?? '';
+        const labelMany = root.dataset.many ?? '';
+        let tag = '';
+
+        // Same normalisation as searchKey() in components/blog/utils.ts: no diacritics, no case.
+        const normalise = (text: string) =>
+            text
+                .normalize('NFD')
+                .replace(/[̀-ͯ]/g, '')
+                .replace(/đ/gi, 'd')
+                .toLowerCase()
+                .replace(/\s+/g, ' ')
+                .trim();
+
+        const apply = () => {
+            const words = normalise(input.value).split(' ').filter(Boolean);
+            let shown = 0;
+            for (const item of items) {
+                const tags = (item.dataset.tags ?? '').split('|');
+                const haystack = item.dataset.search ?? '';
+                const visible = (!tag || tags.includes(tag)) && words.every((word) => haystack.includes(word));
+                item.hidden = !visible;
+                if (visible) shown++;
+            }
+            for (const chip of chips) chip.setAttribute('aria-pressed', String((chip.dataset.tag ?? '') === tag));
+            count.textContent = `${shown} ${shown === 1 ? labelOne : labelMany}`;
+            empty.hidden = shown !== 0;
+            list.hidden = shown === 0;
+        };
+
+        input.addEventListener('input', apply);
+        for (const chip of chips) {
+            chip.addEventListener('click', () => {
+                const key = chip.dataset.tag ?? '';
+                tag = key === tag ? '' : key;
+                apply();
+            });
         }
+        clear.addEventListener('click', () => {
+            input.value = '';
+            tag = '';
+            apply();
+            input.focus();
+        });
+        // The browser may restore the typed text when coming back to the page.
+        if (input.value) apply();
     }
-
-    @keyframes fade-in-left {
-        from {
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes gradient {
-        0% {
-            transform: scaleX(0);
-        }
-        100% {
-            transform: scaleX(1);
-        }
-    }
-
-    .animate-fade-in-up {
-        animation: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .animate-fade-in-left {
-        animation: fade-in-left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .animate-gradient {
-        animation: gradient 1s ease-out 0.5s forwards;
-        transform: scaleX(0);
-        transform-origin: left;
-    }
-
-    .underline-on-hover {
-        position: relative;
-        display: inline-block;
-    }
-
-    .underline-on-hover::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        bottom: -2px;
-        left: 0;
-        background: linear-gradient(135deg, #a855f7, #ec4899);
-        transform: scaleX(0);
-        transform-origin: bottom left;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 1px;
-    }
-
-    .group:hover .underline-on-hover::after {
-        transform: scaleX(1);
-    }
-
-    @media (max-width: 640px) {
-        h1 {
-            line-height: 1.2;
-        }
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
-
-<svg width="0" height="0" style="position: absolute;">
-    <defs>
-        <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
-            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
-        </linearGradient>
-    </defs>
-</svg>
+</script>

@@ -1,800 +1,279 @@
 ---
-import Layout from '../../../layouts/slugBlogLayout.astro';
-import fetchApi from '../../../lib/strapi';
-import type Article from '../../../interfaces/article';
-import { getTranslations } from '../../../locales';
+import type { InferGetStaticPropsType } from 'astro';
+import { Picture } from 'astro:assets';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BackLink from '../../../components/blog/BackLink.astro';
+import { formatDate } from '../../../components/blog/utils';
+import { getArticles, getStrapiUrl, type Article } from '../../../lib/strapi';
+import { renderMarkdown } from '../../../lib/markdown';
+import { clampText } from '../../../lib/seo';
+import { getTranslations, langs, type Lang } from '../../../locales';
+import '../../../styles/article.css';
 
-export const prerender = true;
+/*
+ * Theme variables read by article.css. Tailwind only emits variables it finds in use
+ * and also scans plain text, so they are listed here:
+ * --color-text --color-muted --color-subtle --color-line --color-line-strong --color-surface
+ * --color-surface-2 --color-accent-soft --color-accent-deep --color-ok --color-bad
+ * --font-mono --radius-sm --radius-md
+ */
+
+type Neighbour = { title: string; slug: string } | undefined;
+type ArticlePath = {
+    params: { lang: Lang; slug: string };
+    props: { article: Article; previous: Neighbour; next: Neighbour };
+};
 
 export async function getStaticPaths() {
-    const supportedLangs = ['en', 'vi'];
-    const paths = [];
-
-    for (const lang of supportedLangs) {
-        const articles = await fetchApi<Article[]>({
-            endpoint: `articles?populate=*&locale=${lang}&sort=publish_date:desc`,
-            wrappedByKey: 'data',
-        });
-
-        console.log(`[DEBUG] lang=${lang} articles=`, JSON.stringify(articles?.slice(0, 2)));
-
-        for (const article of articles) {
-            console.log(`[DEBUG] article keys=`, Object.keys(article));
-            console.log(`[DEBUG] slug=`, article.slug);
+    const paths: ArticlePath[] = [];
+    for (const lang of langs) {
+        const articles = await getArticles(lang);
+        articles.forEach((article, index) => {
+            // Newest first, so the following index is the older post ("previous").
+            const older = articles[index + 1];
+            const newer = articles[index - 1];
             paths.push({
                 params: { lang, slug: article.slug },
-                props: { article },
+                props: {
+                    article,
+                    previous: older ? { title: older.title, slug: older.slug } : undefined,
+                    next: newer ? { title: newer.title, slug: newer.slug } : undefined,
+                },
             });
-        }
+        });
     }
     return paths;
 }
 
-const { lang, slug } = Astro.params;
-const translations = await getTranslations(lang);
-const { article } = Astro.props;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-function parseMarkdown(md: string): string {
-    const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const escapeAttr = (s: string) => escapeHtml(s).replace(/"/g, '&quot;');
+const lang = Astro.params.lang as Lang;
+const { article, previous, next } = Astro.props as Props;
+const t = getTranslations(lang);
+const otherLang = langs.find((l) => l !== lang) as Lang;
 
-    function inlineParser(s: string): string {
-        const pattern = /`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)|\*\*(.+?)\*\*|\*(?!\*)([^*]+)\*(?!\*)/g;
-        let out = '';
-        let lastIndex = 0;
-        let m: RegExpExecArray | null;
-        while ((m = pattern.exec(s)) !== null) {
-            out += escapeHtml(s.slice(lastIndex, m.index));
-            if (m[1] !== undefined) {
-                out += `<code>${escapeHtml(m[1])}</code>`;
-            } else if (m[2] !== undefined) {
-                out += `<a href="${escapeAttr(m[3])}" target="_blank" rel="noopener noreferrer">${inlineParser(
-                    m[2],
-                )}</a>`;
-            } else if (m[4] !== undefined) {
-                out += `<strong>${inlineParser(m[4])}</strong>`;
-            } else if (m[5] !== undefined) {
-                out += `<em>${inlineParser(m[5])}</em>`;
-            }
-            lastIndex = pattern.lastIndex;
-        }
-        out += escapeHtml(s.slice(lastIndex));
-        return out;
-    }
+const { html, headings, readingTimeMinutes } = await renderMarkdown(article.content, {
+    title: article.title,
+    baseUrl: getStrapiUrl(),
+});
 
-    const lines = md.split(/\r?\n/);
-    const result: string[] = [];
-    const listStack: { type: 'ul' | 'ol'; indent: number }[] = [];
+const translation = article.localizations.find((l) => l.locale !== lang);
+const alternateHref = translation ? `/${translation.locale}/blog/${translation.slug}` : `/${otherLang}/blog`;
 
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        const trimmed = line.trim();
-        const leadingSpaces = line.length - trimmed.length;
-
-        if (trimmed === '') {
-            while (listStack.length > 0) {
-                const last = listStack.pop();
-                if (last) result.push(`</${last.type}>`);
-            }
-            result.push('');
-            continue;
-        }
-
-        if (trimmed.startsWith('```')) {
-            const codeLines: string[] = [];
-            let j = i + 1;
-            while (j < lines.length && !lines[j].trim().startsWith('```')) {
-                codeLines.push(lines[j]);
-                j++;
-            }
-            result.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`);
-            i = j;
-            continue;
-        }
-
-        if (trimmed.startsWith('>')) {
-            const bLines: string[] = [];
-            let j = i;
-            while (j < lines.length && lines[j].trim().startsWith('>')) {
-                bLines.push(lines[j].replace(/^\s*>\s?/, ''));
-                j++;
-            }
-            const innerHtml = parseMarkdown(bLines.join('\n'));
-            result.push(`<blockquote>${innerHtml}</blockquote>`);
-            i = j - 1;
-            continue;
-        }
-
-        const headerMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
-        if (headerMatch) {
-            const level = headerMatch[1].length;
-            result.push(`<h${level}>${inlineParser(headerMatch[2])}</h${level}>`);
-            continue;
-        }
-
-        if (trimmed === '---') {
-            result.push('<hr>');
-            continue;
-        }
-
-        const listMatch = trimmed.match(/^([*+-]|\d+\.)\s+(.*)$/);
-        if (listMatch) {
-            const marker = listMatch[1];
-            const contentRaw = listMatch[2];
-            const isOrdered = /^\d+\.$/.test(marker);
-            const listType: 'ul' | 'ol' = isOrdered ? 'ol' : 'ul';
-            const currentIndent = Math.floor(leadingSpaces / 2);
-            const last = listStack[listStack.length - 1];
-
-            if (!last) {
-                // Nếu là ordered list, lấy số bắt đầu từ marker
-                if (isOrdered) {
-                    const startNum = parseInt(marker);
-                    result.push(`<${listType} start="${startNum}">`);
-                } else {
-                    result.push(`<${listType}>`);
-                }
-                listStack.push({ type: listType, indent: currentIndent });
-            } else if (currentIndent > last.indent) {
-                if (isOrdered) {
-                    const startNum = parseInt(marker);
-                    result.push(`<${listType} start="${startNum}">`);
-                } else {
-                    result.push(`<${listType}>`);
-                }
-                listStack.push({ type: listType, indent: currentIndent });
-            } else if (currentIndent < last.indent) {
-                while (listStack.length > 0 && currentIndent < (listStack[listStack.length - 1]?.indent ?? 0)) {
-                    const popped = listStack.pop();
-                    if (popped) result.push(`</${popped.type}>`);
-                }
-                const top = listStack[listStack.length - 1];
-                if (top && top.type !== listType) {
-                    listStack.pop();
-                    if (isOrdered) {
-                        const startNum = parseInt(marker);
-                        result.push(`<${listType} start="${startNum}">`);
-                    } else {
-                        result.push(`<${listType}>`);
-                    }
-                    listStack.push({ type: listType, indent: currentIndent });
-                }
-            } else if (last && last.type !== listType) {
-                listStack.pop();
-                if (isOrdered) {
-                    const startNum = parseInt(marker);
-                    result.push(`<${listType} start="${startNum}">`);
-                } else {
-                    result.push(`<${listType}>`);
-                }
-                listStack.push({ type: listType, indent: currentIndent });
-            }
-
-            result.push(`<li>${inlineParser(contentRaw)}</li>`);
-            continue;
-        }
-
-        while (listStack.length > 0) {
-            const last = listStack.pop();
-            if (last) result.push(`</${last.type}>`);
-        }
-
-        result.push(`<p>${inlineParser(trimmed)}</p>`);
-    }
-
-    while (listStack.length > 0) {
-        const last = listStack.pop();
-        if (last) result.push(`</${last.type}>`);
-    }
-
-    return result.join('\n');
-}
-
-const htmlContent = parseMarkdown(article.content);
+const description = clampText(article.description || article.title, 160);
+const cover = article.image;
+const coverWidth = cover?.width && cover?.height ? Math.min(cover.width, 1200) : undefined;
+const coverHeight = cover?.width && cover?.height && coverWidth ? Math.round((coverWidth * cover.height) / cover.width) : undefined;
+const coverSizes = '(min-width: 768px) 700px, 100vw';
+const coverClass = 'h-auto w-full rounded-md border border-line object-cover';
+const coverWidths = coverWidth ? [600, 900, 1200].filter((w) => w <= coverWidth) : [];
+if (coverWidth && !coverWidths.includes(coverWidth)) coverWidths.push(coverWidth);
 ---
 
-<Layout
-    title={article.title}
-    description={article.description}
-    image={`${import.meta.env.STRAPI_URL}${article.image.url}`}
+<BaseLayout
+    lang={lang}
+    title={clampText(article.title, 60)}
+    description={description}
+    type="article"
+    image={cover?.url}
+    imageAlt={article.title}
+    alternateHref={alternateHref}
 >
-    <article class="min-h-screen bg-black">
-        <div
-            class="container px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 py-16 sm:py-20 md:py-24 lg:py-32 mx-auto text-gray-300 font-mono"
-        >
-            <!-- Back Navigation -->
-            <div class="animate-fade-in-left mb-8 md:mb-12">
-                <a
-                    href=`/${lang}/blog`
-                    class="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg transition-all duration-300 hover:scale-105 back-link"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300 group-hover:-translate-x-2 group-hover:scale-110 back-arrow"
-                    >
-                        <defs>
-                            <linearGradient id="backArrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
-                                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
-                            </linearGradient>
-                        </defs>
-                        <path
-                            stroke="url(#backArrowGradient)"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
-                    </svg>
-                    <span class="underline-on-hover">{translations?.slugBlog?.backToBlogs}</span>
-                </a>
-            </div>
-
-            <!-- Article Header -->
-            <header class="mb-8 md:mb-12 lg:mb-16">
-                <!-- Featured Image -->
+    <article class="wrap py-10 sm:py-14">
+        <div class="mx-auto max-w-[68ch]">
+            <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+                <BackLink href={`/${lang}/blog`} label={t.blog.back} />
                 {
-                    article.image && (
-                        <div
-                            class="mb-8 md:mb-12 animate-fade-in-up opacity-0"
-                            style="animation-delay: 200ms; animation-fill-mode: forwards;"
+                    translation && (
+                        <a
+                            href={alternateHref}
+                            hreflang={translation.locale}
+                            lang={translation.locale}
+                            class="link font-mono text-sm"
                         >
-                            <div class="relative overflow-hidden rounded-2xl shadow-2xl group">
-                                <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent z-10" />
-                                <img
-                                    src={`${import.meta.env.STRAPI_URL}${article.image.url}`}
-                                    alt={article.title}
-                                    class="w-full h-64 sm:h-80 md:h-96 lg:h-128 object-cover transition-all duration-700 group-hover:scale-105"
-                                    loading="eager"
-                                />
-                            </div>
-                        </div>
+                            {t.blog.otherLanguage}
+                        </a>
                     )
                 }
+            </div>
 
-                <!-- Title and Meta -->
-                <div class="space-y-4 md:space-y-6">
-                    <div
-                        class="animate-fade-in-up opacity-0"
-                        style="animation-delay: 400ms; animation-fill-mode: forwards;"
-                    >
-                        <h1
-                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight md:leading-tight"
-                        >
-                            {article.title}
-                        </h1>
-                    </div>
-
-                    <div
-                        class="animate-fade-in-up opacity-0"
-                        style="animation-delay: 600ms; animation-fill-mode: forwards;"
-                    >
-                        <div class="flex items-center gap-4 text-sm sm:text-base text-gray-400">
-                            <div class="flex items-center gap-2">
-                                <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 20 20">
-                                    <defs>
-                                        <linearGradient id="calendarMetaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
-                                            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
-                                        </linearGradient>
-                                    </defs>
-                                    <path
-                                        fill="url(#calendarMetaGradient)"
-                                        fill-rule="evenodd"
-                                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="font-medium">
-                                    {translations?.slugBlog?.publishedOn}
-                                    {
-                                        new Date(article.publish_date).toLocaleDateString(lang, {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric',
-                                        })
-                                    }
-                                </span>
-                            </div>
-                        </div>
-                        <div class="h-px mt-6 gradient-divider"></div>
-                    </div>
-                </div>
+            <header class="mt-8">
+                <p class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-subtle">
+                    <span>
+                        {t.blog.published}{' '}
+                        <time datetime={article.publishDate} class="text-muted">{formatDate(article.publishDate, lang)}</time>
+                    </span>
+                    <span aria-hidden="true">/</span>
+                    <span>{readingTimeMinutes} {t.blog.minRead}</span>
+                </p>
+                <h1 class="mt-3 text-balance text-3xl font-bold leading-tight text-text sm:text-4xl">{article.title}</h1>
+                {article.description && <p class="mt-4 text-lg text-muted">{article.description}</p>}
+                {
+                    article.categories.length > 0 && (
+                        <ul class="mt-5 flex flex-wrap gap-2" role="list">
+                            {article.categories.map((category) => (
+                                <li class="rounded-sm border border-line bg-surface-2 px-2 py-0.5 font-mono text-xs text-muted">
+                                    {category.name}
+                                </li>
+                            ))}
+                        </ul>
+                    )
+                }
             </header>
 
-            <!-- Article Content -->
-            <main class="animate-fade-in-up opacity-0" style="animation-delay: 800ms; animation-fill-mode: forwards;">
-                <div class="markdown-content" set:html={htmlContent} />
-            </main>
+            {
+                cover && (
+                    <div class="mt-8">
+                        {coverWidth && coverHeight ? (
+                            <Picture
+                                src={cover.url}
+                                alt={cover.alt ?? ''}
+                                width={coverWidth}
+                                height={coverHeight}
+                                widths={coverWidths}
+                                sizes={coverSizes}
+                                formats={['avif', 'webp']}
+                                fallbackFormat="webp"
+                                loading="eager"
+                                decoding="sync"
+                                fetchpriority="high"
+                                class={coverClass}
+                            />
+                        ) : (
+                            <Picture
+                                src={cover.url}
+                                alt={cover.alt ?? ''}
+                                inferSize
+                                formats={['avif', 'webp']}
+                                fallbackFormat="webp"
+                                loading="eager"
+                                decoding="sync"
+                                fetchpriority="high"
+                                class={coverClass}
+                            />
+                        )}
+                    </div>
+                )
+            }
 
-            <!-- Article Footer -->
-            <footer
-                class="mt-16 md:mt-20 lg:mt-24 animate-fade-in-up opacity-0"
-                style="animation-delay: 1000ms; animation-fill-mode: forwards;"
-            >
-                <div class="h-px mb-8 gradient-divider"></div>
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-4">
-                    <a
-                        href=`/${lang}/blog/`
-                        class="group inline-flex items-center gap-3 text-base sm:text-lg transition-all duration-300 hover:scale-105 footer-link"
-                    >
-                        <svg
-                            class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-300 group-hover:-translate-x-1 footer-arrow"
-                            viewBox="0 0 20 20"
-                        >
-                            <defs>
-                                <linearGradient id="footerArrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1"></stop>
-                                    <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"></stop>
-                                </linearGradient>
-                            </defs>
-                            <path
-                                fill="url(#footerArrowGradient)"
-                                fill-rule="evenodd"
-                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="underline-on-hover">{translations?.slugBlog?.readmore}</span>
-                    </a>
-                    <div class="text-sm text-gray-500">{translations?.slugBlog?.thanksforreading}</div>
-                </div>
-            </footer>
+            {
+                headings.length >= 3 && (
+                    <details class="mt-8 rounded-md border border-line bg-surface">
+                        <summary class="cursor-pointer px-4 py-3 font-mono text-sm text-text">{t.blog.onThisPage}</summary>
+                        <nav aria-label={t.blog.onThisPage} class="border-t border-line px-4 py-3">
+                            <ol class="space-y-1.5 text-sm" role="list">
+                                {headings.map((heading) => (
+                                    <li class={heading.depth === 3 ? 'pl-4' : ''}>
+                                        <a href={`#${heading.id}`} class="text-muted transition-colors hover:text-text">
+                                            {heading.text}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ol>
+                        </nav>
+                    </details>
+                )
+            }
+
+            <div class="article mt-10" data-article data-copy-label={t.blog.copy} data-copied-label={t.blog.copied} set:html={html} />
+
+            <hr class="mt-14 border-line" />
+
+            {
+                (previous || next) && (
+                    <nav class="mt-8 grid gap-4 sm:grid-cols-2" aria-label={`${t.blog.previous} / ${t.blog.next}`}>
+                        {previous && (
+                            <a
+                                href={`/${lang}/blog/${previous.slug}`}
+                                rel="prev"
+                                class="block rounded-md border border-line bg-surface p-4 transition-colors hover:border-line-strong"
+                            >
+                                <span class="block font-mono text-xs text-subtle">{t.blog.previous}</span>
+                                <span class="mt-1 block font-bold leading-snug text-text">{previous.title}</span>
+                            </a>
+                        )}
+                        {next && (
+                            <a
+                                href={`/${lang}/blog/${next.slug}`}
+                                rel="next"
+                                class="block rounded-md border border-line bg-surface p-4 transition-colors hover:border-line-strong sm:col-start-2 sm:text-right"
+                            >
+                                <span class="block font-mono text-xs text-subtle">{t.blog.next}</span>
+                                <span class="mt-1 block font-bold leading-snug text-text">{next.title}</span>
+                            </a>
+                        )}
+                    </nav>
+                )
+            }
+
+            <div class="mt-10">
+                <BackLink href={`/${lang}/blog`} label={t.blog.back} />
+            </div>
         </div>
     </article>
-</Layout>
+</BaseLayout>
 
-<style>
-    /* Animations */
-    @keyframes fade-in-up {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+<script>
+    // Adds a "Copy" button to every code block. Without JavaScript the blocks still read fine.
+    const article = document.querySelector<HTMLElement>('[data-article]');
+
+    if (article) {
+        const copyLabel = article.dataset.copyLabel || 'Copy';
+        const copiedLabel = article.dataset.copiedLabel || 'Copied';
+
+        const copyText = async (text: string) => {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+            // Fallback for older browsers and non-secure contexts.
+            const area = document.createElement('textarea');
+            area.value = text;
+            area.setAttribute('readonly', '');
+            area.style.position = 'fixed';
+            area.style.opacity = '0';
+            document.body.appendChild(area);
+            area.select();
+            const ok = document.execCommand('copy');
+            area.remove();
+            if (!ok) throw new Error('copy failed');
+        };
+
+        article.querySelectorAll<HTMLElement>('.code-block').forEach((block) => {
+            const code = block.querySelector('pre code');
+            const head = block.querySelector('.code-head');
+            if (!code || !head) return;
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'code-copy';
+            button.textContent = copyLabel;
+
+            // Screen readers do not reliably announce a button whose label changes, so a live region says it.
+            const status = document.createElement('span');
+            status.className = 'sr-only';
+            status.setAttribute('role', 'status');
+            status.setAttribute('aria-live', 'polite');
+
+            let timer: number | undefined;
+            button.addEventListener('click', async () => {
+                try {
+                    await copyText(code.textContent ?? '');
+                } catch {
+                    return;
+                }
+                button.textContent = copiedLabel;
+                button.dataset.copied = 'true';
+                status.textContent = copiedLabel;
+                window.clearTimeout(timer);
+                timer = window.setTimeout(() => {
+                    button.textContent = copyLabel;
+                    delete button.dataset.copied;
+                    status.textContent = '';
+                }, 2000);
+            });
+
+            head.append(button, status);
+        });
     }
-
-    @keyframes fade-in-left {
-        from {
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    .animate-fade-in-up {
-        animation: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .animate-fade-in-left {
-        animation: fade-in-left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Gradient effects */
-    .back-link,
-    .footer-link {
-        background: linear-gradient(135deg, #a855f7, #ec4899);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .gradient-divider {
-        background: linear-gradient(90deg, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5), transparent);
-    }
-
-    .underline-on-hover {
-        position: relative;
-        display: inline-block;
-    }
-
-    .underline-on-hover::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        bottom: -2px;
-        left: 0;
-        background: linear-gradient(90deg, #a855f7, #ec4899);
-        transform: scaleX(0);
-        transform-origin: bottom left;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 1px;
-    }
-
-    .group:hover .underline-on-hover::after {
-        transform: scaleX(1);
-    }
-
-    /* Markdown Content Styles */
-    :global(.markdown-content) {
-        line-height: 1.7;
-        color: #d1d5db;
-        max-width: none;
-    }
-
-    /* Typography Scale */
-    :global(.markdown-content h1) {
-        font-size: 2.5rem !important;
-        font-weight: 800 !important;
-        color: #ffffff !important;
-        margin: 3rem 0 2rem 0 !important;
-        line-height: 1.1 !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        position: relative !important;
-    }
-
-    :global(.markdown-content h1::after) {
-        content: '' !important;
-        position: absolute !important;
-        left: 0 !important;
-        bottom: -12px !important;
-        width: 80px !important;
-        height: 4px !important;
-        background: linear-gradient(90deg, #a855f7, #ec4899) !important;
-        border-radius: 2px !important;
-        box-shadow: 0 0 20px rgba(168, 85, 247, 0.5) !important;
-    }
-
-    :global(.markdown-content h2) {
-        font-size: 2rem !important;
-        font-weight: 700 !important;
-        color: #ffffff !important;
-        margin: 2.5rem 0 1.5rem 0 !important;
-        line-height: 1.2 !important;
-        position: relative !important;
-        padding-left: 1.5rem !important;
-    }
-
-    :global(.markdown-content h2::before) {
-        content: '' !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 5px !important;
-        height: 100% !important;
-        background: linear-gradient(180deg, #a855f7, #ec4899) !important;
-        border-radius: 3px !important;
-        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4) !important;
-    }
-
-    :global(.markdown-content h3) {
-        font-size: 1.5rem !important;
-        font-weight: 600 !important;
-        color: #e2e8f0 !important;
-        margin: 2rem 0 1rem 0 !important;
-        line-height: 1.3 !important;
-    }
-
-    :global(.markdown-content h4) {
-        font-size: 1.25rem !important;
-        font-weight: 600 !important;
-        color: #cbd5e1 !important;
-        margin: 1.5rem 0 0.75rem 0 !important;
-        line-height: 1.4 !important;
-    }
-
-    :global(.markdown-content p) {
-        margin: 1.5rem 0 !important;
-        font-size: 1.125rem !important;
-        line-height: 1.8 !important;
-        color: #d1d5db !important;
-    }
-
-    :global(.markdown-content p:first-child) {
-        margin-top: 0 !important;
-    }
-
-    /* Links */
-    :global(.markdown-content a) {
-        color: transparent !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        text-decoration: none !important;
-        font-weight: 500 !important;
-        position: relative !important;
-        transition: all 0.3s ease !important;
-        filter: brightness(1) !important;
-    }
-
-    :global(.markdown-content a:hover) {
-        filter: brightness(1.2) !important;
-    }
-
-    :global(.markdown-content a::after) {
-        content: '' !important;
-        position: absolute !important;
-        width: 100% !important;
-        height: 2px !important;
-        bottom: -2px !important;
-        left: 0 !important;
-        background: linear-gradient(90deg, #a855f7, #ec4899) !important;
-        transform: scaleX(0) !important;
-        transform-origin: bottom left !important;
-        transition: transform 0.3s ease !important;
-    }
-
-    :global(.markdown-content a:hover::after) {
-        transform: scaleX(1) !important;
-    }
-
-    /* Lists */
-    :global(.markdown-content ul),
-    :global(.markdown-content ol) {
-        margin: 1.5rem 0 !important;
-        padding-left: 2rem !important;
-    }
-
-    :global(.markdown-content ul) {
-        list-style-type: none !important;
-        position: relative !important;
-    }
-
-    :global(.markdown-content ul li) {
-        margin: 0.75rem 0 !important;
-        line-height: 1.8 !important;
-        color: #d1d5db !important;
-        position: relative !important;
-        padding-left: 1.5rem !important;
-    }
-
-    :global(.markdown-content ul li:before) {
-        content: '' !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: 0.7rem !important;
-        width: 8px !important;
-        height: 8px !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        border-radius: 50% !important;
-        box-shadow:
-            0 0 10px rgba(168, 85, 247, 0.6),
-            0 0 20px rgba(236, 72, 153, 0.4) !important;
-    }
-
-    :global(.markdown-content ul ul li:before) {
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        width: 6px !important;
-        height: 6px !important;
-    }
-
-    :global(.markdown-content ul ul ul li:before) {
-        background: #ec4899 !important;
-        width: 4px !important;
-        height: 4px !important;
-    }
-
-    :global(.markdown-content ol) {
-        list-style-type: none !important;
-        counter-reset: item !important;
-        position: relative !important;
-        padding-left: 2rem !important;
-        margin: 1.5rem 0 !important;
-    }
-
-    :global(.markdown-content ol li) {
-        margin: 0.75rem 0 !important;
-        line-height: 1.8 !important;
-        color: #d1d5db !important;
-        position: relative !important;
-        padding-left: 2rem !important;
-        counter-increment: item !important;
-    }
-
-    :global(.markdown-content ol li:before) {
-        content: counter(item) '.' !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        font-weight: bold !important;
-        font-size: 1rem !important;
-    }
-
-    :global(.markdown-content ol[start]) {
-        counter-reset: item calc(attr(start number) - 1) !important;
-    }
-
-    /* Code */
-    :global(.markdown-content code) {
-        background: rgba(168, 85, 247, 0.15) !important;
-        padding: 0.25rem 0.5rem !important;
-        border-radius: 6px !important;
-        font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace !important;
-        font-size: 0.9em !important;
-        border: 1px solid rgba(168, 85, 247, 0.4) !important;
-        box-shadow:
-            0 0 10px rgba(168, 85, 247, 0.2),
-            0 0 20px rgba(236, 72, 153, 0.1) !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        font-weight: 600 !important;
-        position: relative !important;
-    }
-
-    :global(.markdown-content code::after) {
-        content: '' !important;
-        position: absolute !important;
-        inset: 0 !important;
-        background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.15)) !important;
-        border-radius: 6px !important;
-        z-index: -1 !important;
-    }
-
-    :global(.markdown-content pre) {
-        background: #1a202c !important;
-        color: #e2e8f0 !important;
-        padding: 2rem !important;
-        border-radius: 12px !important;
-        margin: 2rem 0 !important;
-        overflow-x: auto !important;
-        border: 1px solid rgba(168, 85, 247, 0.2) !important;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
-        position: relative !important;
-    }
-
-    :global(.markdown-content pre::before) {
-        content: '' !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        height: 1px !important;
-        background: linear-gradient(90deg, transparent, #a855f7, #ec4899, transparent) !important;
-    }
-
-    :global(.markdown-content pre code) {
-        background: none !important;
-        color: #e2e8f0 !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        border: none !important;
-        box-shadow: none !important;
-        font-weight: normal !important;
-        position: static !important;
-        -webkit-text-fill-color: #e2e8f0 !important;
-        background-clip: border-box !important;
-        -webkit-background-clip: border-box !important;
-    }
-
-    :global(.markdown-content pre code::after) {
-        display: none !important;
-    }
-
-    /* Blockquotes */
-    :global(.markdown-content blockquote) {
-        margin: 2.5rem 0 !important;
-        padding: 1.5rem 2rem 1.5rem 3rem !important;
-        background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.05)) !important;
-        border-left: 4px solid #a855f7 !important;
-        border-image: linear-gradient(180deg, #a855f7, #ec4899) 1 !important;
-        border-image-slice: 1 !important;
-        border-radius: 0 12px 12px 0 !important;
-        position: relative !important;
-        backdrop-filter: blur(10px) !important;
-        box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15) !important;
-        font-style: italic !important;
-    }
-
-    :global(.markdown-content blockquote::before) {
-        content: '"' !important;
-        position: absolute !important;
-        top: 0.5rem !important;
-        left: 0.5rem !important;
-        font-size: 3rem !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        opacity: 0.3 !important;
-        font-family: serif !important;
-        line-height: 1 !important;
-    }
-
-    :global(.markdown-content blockquote p) {
-        color: transparent !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        font-style: italic !important;
-        font-size: 1.2rem !important;
-        margin: 0 !important;
-        position: relative !important;
-        z-index: 1 !important;
-        font-weight: 600 !important;
-    }
-
-    /* Text Styling */
-    :global(.markdown-content strong) {
-        color: #ffffff !important;
-        font-weight: 700 !important;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.1) !important;
-    }
-
-    :global(.markdown-content em) {
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        font-style: italic !important;
-    }
-
-    /* Horizontal Rules */
-    :global(.markdown-content hr) {
-        margin: 4rem 0 !important;
-        border: none !important;
-        height: 1px !important;
-        background: linear-gradient(90deg, transparent, #a855f7, #ec4899, transparent) !important;
-        position: relative !important;
-    }
-
-    :global(.markdown-content hr::after) {
-        content: '◆' !important;
-        position: absolute !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        background: #111827 !important;
-        background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-        background-clip: text !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        padding: 0 1.5rem !important;
-        font-size: 1.5rem !important;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-        :global(.markdown-content h1) {
-            font-size: 2rem !important;
-            margin: 2rem 0 1.5rem 0 !important;
-        }
-
-        :global(.markdown-content h2) {
-            font-size: 1.5rem !important;
-            margin: 2rem 0 1rem 0 !important;
-        }
-
-        :global(.markdown-content h3) {
-            font-size: 1.25rem !important;
-        }
-
-        :global(.markdown-content p) {
-            font-size: 1rem !important;
-        }
-
-        :global(.markdown-content blockquote) {
-            padding: 1.5rem 2rem !important;
-            margin: 2rem 0 !important;
-        }
-
-        :global(.markdown-content pre) {
-            padding: 1.5rem !important;
-        }
-
-        :global(.markdown-content ul li),
-        :global(.markdown-content ol li) {
-            padding-left: 2rem !important;
-        }
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
+</script>
