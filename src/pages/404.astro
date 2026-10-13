@@ -1,0 +1,23 @@
+---
+// Static hosting serves this single page for every unknown path, so it is always English.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Mascot from '../components/Mascot.astro';
+import { getTranslations } from '../locales';
+
+const lang = 'en';
+const t = getTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={t.notFound.title} description={t.notFound.text}>
+    <section class="wrap flex flex-col items-center py-16 text-center sm:py-24">
+        <Mascot lang={lang} size="md" />
+        <h1 class="mt-6 text-3xl text-text sm:text-4xl">{t.notFound.title}</h1>
+        <p class="mt-4 max-w-md text-muted">{t.notFound.text}</p>
+        <a
+            href="/en"
+            class="mt-8 inline-flex min-h-11 items-center rounded-md border border-line-strong bg-surface-2 px-5 font-mono text-sm text-text hover:border-accent hover:text-accent-soft"
+        >
+            {t.notFound.home}
+        </a>
+    </section>
+</BaseLayout>

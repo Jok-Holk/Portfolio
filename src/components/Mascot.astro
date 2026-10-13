@@ -1,0 +1,181 @@
+---
+/**
+ * The neon cat, the only element on the site that glows.
+ * Props: lang ('en' | 'vi'), size ('sm' | 'md', default 'md'), class (extra classes for the root).
+ *
+ * The root holds a real <button> and a sibling speech bubble (role="status"). The bubble sits inside the
+ * root's own box so no overflow-hidden ancestor can clip it; the root therefore reserves space above and
+ * around the cat and is taller than the SVG. Behaviour is in src/scripts/mascot.ts.
+ */
+import cat from '../assets/mascot/cat.svg?raw';
+import { getTranslations, type Lang } from '../locales';
+
+interface Props {
+    lang: Lang;
+    size?: 'sm' | 'md';
+    class?: string;
+}
+
+const { lang, size = 'md', class: className = '' } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<div
+    class:list={['mascot', className]}
+    data-mascot
+    data-size={size}
+    data-talking="false"
+    data-lines={JSON.stringify(t.mascot.lines)}
+>
+    <div class="mascot-stage">
+        <div class="mascot-bubble" role="status" aria-live="polite">
+            <div
+                class="mascot-bubble-box rounded-md border border-line-strong bg-surface-2 px-3 py-1.5 font-mono text-sm leading-5 whitespace-nowrap text-text"
+            >
+                <span data-mascot-text></span>
+            </div>
+        </div>
+        <button type="button" class="mascot-button text-neon" aria-label={t.mascot.label} data-mascot-button>
+            <span class="mascot-art" set:html={cat} />
+        </button>
+    </div>
+</div>
+
+<style>
+    .mascot {
+        /* Room for the drift around the cat and for the bubble above it. */
+        --drift: 10px;
+        position: relative;
+        display: block;
+        box-sizing: border-box;
+        width: min(100%, 22rem);
+        padding: calc(3.75rem + var(--drift)) var(--drift) var(--drift);
+        margin-inline: auto;
+    }
+    .mascot[data-size='sm'] {
+        --drift: 6px;
+        width: 8.5rem;
+    }
+
+    .mascot-stage {
+        position: relative;
+    }
+
+    .mascot-button {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        border-radius: var(--radius-md, 8px);
+        background: none;
+        color: var(--color-neon, #fc03fd);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    /* Glow on the cat only: a tight core plus a wide halo. */
+    .mascot-art {
+        display: block;
+    }
+    .mascot-art :global(svg) {
+        display: block;
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0 0 1.5px var(--color-neon, #fc03fd)) drop-shadow(0 0 8px var(--color-neon, #fc03fd));
+    }
+    .mascot[data-size='sm'] .mascot-art :global(svg) {
+        filter: drop-shadow(0 0 1px var(--color-neon, #fc03fd)) drop-shadow(0 0 5px var(--color-neon, #fc03fd));
+    }
+
+    /* Bubble: flat, centred above the cat, CSS tail. */
+    .mascot-bubble {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 0.5rem);
+        z-index: 1;
+        opacity: 0;
+        transform: translate(-50%, 6px);
+        pointer-events: none;
+    }
+    .mascot[data-talking='true'] .mascot-bubble {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    .mascot-bubble-box {
+        position: relative;
+    }
+    .mascot-bubble-box::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        width: 10px;
+        height: 10px;
+        margin-left: -5px;
+        background: inherit;
+        border: solid;
+        border-color: inherit;
+        border-width: 0 1px 1px 0;
+        transform: rotate(45deg);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .mascot-bubble {
+            transition:
+                opacity 0.3s ease-out,
+                transform 0.3s ease-out;
+        }
+        .mascot-stage {
+            will-change: transform;
+            animation: mascot-drift 8s ease-in-out infinite;
+        }
+        .mascot-bubble-box {
+            animation: mascot-bob 2s ease-in-out infinite;
+        }
+        /* data-visible is set by mascot.ts. */
+        .mascot[data-visible='false'] .mascot-stage,
+        .mascot[data-visible='false'] .mascot-bubble-box {
+            animation-play-state: paused;
+        }
+    }
+
+    /* The old "circle-loop": two slow dips per cycle with a short rest on each. Offsets are relative
+       to the centre of the reserved padding, so the cat stays inside the wrapper box. */
+    @keyframes mascot-drift {
+        0%,
+        50%,
+        100% {
+            transform: translate(0, calc(var(--drift) * -1));
+        }
+        12.5%,
+        62.5% {
+            transform: translate(calc(var(--drift) * 0.7), calc(var(--drift) * -0.3));
+        }
+        25%,
+        27%,
+        75%,
+        77% {
+            transform: translate(0, var(--drift));
+        }
+        37.5%,
+        87.5% {
+            transform: translate(calc(var(--drift) * -0.7), calc(var(--drift) * -0.3));
+        }
+    }
+    @keyframes mascot-bob {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+</style>
+
+<script>
+    import '../scripts/mascot';
+</script>
