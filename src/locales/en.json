@@ -1,7 +1,7 @@
 {
     "meta": {
-        "title": "JokHolk Realm",
-        "description": "JokHolk's personal portfolio website showcasing software development, game projects journey."
+        "title": "Jok Holk | Web and Game Developer in Ho Chi Minh City",
+        "description": "Jok Holk is a software student in Ho Chi Minh City building web apps with Astro, Next.js and Node.js, and indie games with Unity. See projects and blog."
     },
     "nav": {
         "skip": "Skip to content",
@@ -16,7 +16,7 @@
     },
     "hero": {
         "name": "Jok Holk",
-        "lead": "Welcome to my digital realm, built with passion. I'm a student of software and game development, creating web apps and indie games, with a goal to become a fullstack expert.",
+        "lead": "I'm a software student in Ho Chi Minh City. I build web apps with Astro, Next.js and Node.js, and indie games with Unity. I'm aiming for a fullstack developer role.",
         "photoAlt": "Portrait of Jok Holk wearing a black hoodie with the Jok Holk logo",
         "links": {
             "github": "GitHub",
@@ -28,17 +28,29 @@
     "about": {
         "title": "About",
         "body": [
-            "I'm a student studying software and game development, constantly learning through building apps, websites, and indie games. These projects not only fuel my creativity but also strengthen my foundation in programming and software design, which I see as essential steps toward my long-term goals.",
-            "My main direction is full stack web development: I focus on building complete web applications, from scalable back-end systems to modern, responsive front-end experiences. At the same time, I take on freelance web projects with modern tools like Astro and explore building an indie game studio. These experiences aren't my final destination, but they provide valuable real-world programming practice and help me grow toward a professional career as a full stack developer."
+            "I study software engineering at FUNiX and game programming at FPT Polytechnic. I learn mostly by building: websites, small apps and games that I finish and publish.",
+            "On the web I work with Astro for static sites and Next.js for server-rendered apps, with Node.js and REST APIs behind them. I also run my own VPS, where I host Strapi, Nextcloud and automated backups, and I write up each setup on the blog. For games I use Unity and C#. Rogue Adventure is the project where I did most of the work myself."
         ],
         "facts": [
-            { "label": "Alias", "value": "Joker, Jok." },
-            { "label": "Focus", "value": "Software Development, Full Stack Web Development, Game Development." },
-            { "label": "Toolset", "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js." },
-            { "label": "Languages", "value": "HTML, CSS, JavaScript, Python, Bash, PowerShell, React, Astro, Node.js, Next.js." },
+            {
+                "label": "Alias",
+                "value": "Joker, Jok."
+            },
+            {
+                "label": "Focus",
+                "value": "Fullstack web development, game development."
+            },
+            {
+                "label": "Toolset",
+                "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js."
+            },
+            {
+                "label": "Languages",
+                "value": "HTML, CSS, JavaScript, Python, Bash, PowerShell, React, Astro, Node.js, Next.js."
+            },
             {
                 "label": "Specialty",
-                "value": "Full stack web development with Next.js (SSR), Astro for static sites, RESTful APIs, and modern front-end architectures; Unity indie game development."
+                "value": "Next.js (SSR), Astro for static sites, REST APIs, self-hosting on a VPS. Indie games with Unity."
             }
         ]
     },
@@ -71,7 +83,7 @@
     "blog": {
         "title": "Blog",
         "listTitle": "Journals",
-        "listDescription": "Where I share insights, projects, and my journey through software development, indie games.",
+        "listDescription": "Notes on things I set up and learned: Git, HTML and CSS, Strapi on a VPS, self-hosted backups.",
         "viewAll": "All posts",
         "back": "Back to blog",
         "backHome": "Back to home",
@@ -95,7 +107,7 @@
     },
     "contact": {
         "title": "Contact",
-        "intro": "Send a message and I'll reply by email.",
+        "intro": "Questions, freelance work or a hello. Write to the email below or use the form. I reply by email.",
         "name": "Name",
         "namePlaceholder": "Your name",
         "email": "Email",
@@ -105,7 +117,7 @@
         "send": "Send message",
         "sending": "Sending...",
         "successTitle": "Message sent",
-        "successText": "Thanks for writing. I'll get back to you by email.",
+        "successText": "Thanks, your message is in. I'll reply by email.",
         "sendAnother": "Send another message",
         "errorRequired": "Please fill in this field.",
         "errorEmail": "Please enter a valid email address.",

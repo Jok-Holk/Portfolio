@@ -1,7 +1,7 @@
 {
     "meta": {
-        "title": "Không gian ảo của Thái",
-        "description": "Chào mừng bạn đến với không gian ảo của tôi, nơi tôi chia sẻ về phát triển phần mềm, phát triển game indie và hành trình trở thành lập trình viên full stack."
+        "title": "Thái Nguyễn | Lập trình web và game, TP. Hồ Chí Minh",
+        "description": "Thái Nguyễn là sinh viên phần mềm ở TP. Hồ Chí Minh, làm ứng dụng web với Astro, Next.js, Node.js và game indie với Unity. Dự án, bài viết và liên hệ."
     },
     "nav": {
         "skip": "Chuyển đến nội dung",
@@ -16,7 +16,7 @@
     },
     "hero": {
         "name": "Thái Nguyễn",
-        "lead": "Chào mừng bạn đến với không gian ảo của tôi, được xây dựng bằng đam mê. Tôi là sinh viên ngành phần mềm và phát triển game, tạo ra các ứng dụng web và game indie, với mục tiêu trở thành lập trình viên full stack.",
+        "lead": "Tôi là sinh viên phần mềm ở TP. Hồ Chí Minh. Tôi làm ứng dụng web với Astro, Next.js, Node.js và game indie với Unity, và đang hướng tới vị trí lập trình viên full stack.",
         "photoAlt": "Chân dung Thái Nguyễn mặc áo hoodie đen có in logo Jok Holk",
         "links": {
             "github": "GitHub",
@@ -28,17 +28,29 @@
     "about": {
         "title": "Giới thiệu",
         "body": [
-            "Tôi là một sinh viên đang học phát triển phần mềm và trò chơi, không ngừng học hỏi thông qua việc xây dựng ứng dụng, trang web và game indie. Những dự án này không chỉ nuôi dưỡng sự sáng tạo mà còn củng cố nền tảng của tôi về lập trình và thiết kế phần mềm, mà tôi xem là những bước đi thiết yếu hướng tới mục tiêu lâu dài.",
-            "Hướng chính của tôi là phát triển web full stack: tôi tập trung xây dựng các ứng dụng web hoàn chỉnh, từ hệ thống back-end có khả năng mở rộng đến giao diện front-end hiện đại, tối ưu trải nghiệm người dùng. Bên cạnh đó, tôi nhận các dự án web tự do sử dụng những công cụ hiện đại như Astro và đồng thời khám phá việc xây dựng một studio game indie. Những trải nghiệm này không phải là đích đến cuối cùng, nhưng chúng mang lại cơ hội rèn luyện lập trình thực tế và mở rộng góc nhìn, giúp tôi phát triển vững vàng trên con đường trở thành lập trình viên full stack chuyên nghiệp."
+            "Tôi học kỹ sư phần mềm ở FUNiX và lập trình game ở FPT Polytechnic. Tôi học chủ yếu bằng cách làm: website, ứng dụng nhỏ và game mà tôi làm xong rồi đăng lên.",
+            "Về web, tôi dùng Astro cho site tĩnh và Next.js cho ứng dụng render phía server, kèm Node.js và REST API. Tôi cũng tự chạy một VPS, nơi tôi cài Strapi, Nextcloud và backup tự động, rồi viết lại từng bước cài đặt trên blog. Với game, tôi dùng Unity và C#. Rogue Adventure là dự án tôi tự làm phần lớn."
         ],
         "facts": [
-            { "label": "Bí danh", "value": "Joker, Jok." },
-            { "label": "Lĩnh vực", "value": "Phát triển Phần mềm, Phát triển Web Full Stack, Phát triển Trò chơi." },
-            { "label": "Bộ công cụ", "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js." },
-            { "label": "Ngôn ngữ", "value": "HTML, CSS, JavaScript, Python, React, Astro, Node.js, Next.js." },
+            {
+                "label": "Bí danh",
+                "value": "Joker, Jok."
+            },
+            {
+                "label": "Lĩnh vực",
+                "value": "Phát triển web full stack, phát triển game."
+            },
+            {
+                "label": "Bộ công cụ",
+                "value": "VS Code, Git, GitHub, Unity, Node.js, Astro, Next.js."
+            },
+            {
+                "label": "Ngôn ngữ",
+                "value": "HTML, CSS, JavaScript, Python, React, Astro, Node.js, Next.js."
+            },
             {
                 "label": "Chuyên môn",
-                "value": "Phát triển web full stack với Next.js (SSR), Astro cho website tĩnh, xây dựng RESTful API và kiến trúc front-end hiện đại; Phát triển game indie với Unity."
+                "value": "Next.js (SSR), Astro cho site tĩnh, REST API, tự host trên VPS. Game indie với Unity."
             }
         ]
     },
@@ -71,7 +83,7 @@
     "blog": {
         "title": "Bài viết",
         "listTitle": "Nhật ký",
-        "listDescription": "Góc nhỏ nơi mình ghi lại suy nghĩ, dự án và hành trình theo đuổi lập trình, game indie và phát triển web full stack.",
+        "listDescription": "Ghi chú về những thứ tôi đã tự cài đặt và học: Git, HTML và CSS, Strapi trên VPS, backup tự host.",
         "viewAll": "Tất cả bài viết",
         "back": "Quay lại trang bài viết",
         "backHome": "Về trang chủ",
@@ -95,7 +107,7 @@
     },
     "contact": {
         "title": "Liên hệ",
-        "intro": "Gửi tin nhắn, tôi sẽ trả lời qua email.",
+        "intro": "Có câu hỏi, cần làm freelance hay chỉ muốn chào? Viết vào email bên dưới hoặc dùng form. Tôi trả lời qua email.",
         "name": "Họ và tên",
         "namePlaceholder": "Tên của bạn",
         "email": "Email",
@@ -105,7 +117,7 @@
         "send": "Gửi tin nhắn",
         "sending": "Đang gửi...",
         "successTitle": "Đã gửi tin nhắn",
-        "successText": "Cảm ơn bạn đã liên hệ. Tôi sẽ trả lời qua email.",
+        "successText": "Cảm ơn bạn, tin nhắn đã được gửi. Tôi sẽ trả lời qua email.",
         "sendAnother": "Gửi tin nhắn khác",
         "errorRequired": "Vui lòng điền thông tin này.",
         "errorEmail": "Vui lòng nhập địa chỉ email hợp lệ.",
